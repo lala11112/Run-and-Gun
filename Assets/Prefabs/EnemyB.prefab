@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4852626425538832837}
   - component: {fileID: 8545061957541432109}
   - component: {fileID: 6822239556541847786}
+  - component: {fileID: 4323095935267216331}
   - component: {fileID: 7918012769589532413}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: EnemyB
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.645283, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,9 +131,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  moveSpeed: 10
+  moveSpeed: 20
   spriteRenderer: {fileID: 0}
   stunColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &4323095935267216331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700ed9f4bfe518d48a8ae53f2e0f04d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 20
+  bulletsPerRing: 16
+  ringInterval: 1
+  ringCount: 1
+  projectilePrefab: {fileID: 6867986577864171439, guid: 63706e750d445bf419fa3d945111981b, type: 3}
+  projectileSpeedOverride: 10
+  firePoint: {fileID: 1557753661566689637}
 --- !u!58 &7918012769589532413
 CircleCollider2D:
   m_ObjectHideFlags: 0

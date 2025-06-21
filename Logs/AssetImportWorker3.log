@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '6000.0/staging' branch; Version is '6000.0.41f1 (46e447368a18) revision 4645959'; Using compiler version '193933523'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'ko' Physical Memory: 32494 MB
+OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'ko' Physical Memory: 16126 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -15,9 +15,9 @@ C:/Users/a0102/Documents/GitHub/Run-and-Gun
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-53089
+50728
 -job-worker-count
-5
+3
 -background-job-worker-count
 8
 -gc-helper-count
@@ -59,13 +59,13 @@ C:/Users/a0102/Documents/GitHub/Run-and-Gun
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [36064]  Target information:
+Player connection [15620]  Target information:
 
-Player connection [36064]  * "[IP] 180.66.96.214 [Port] 0 [Flags] 2 [Guid] 1972577988 [EditorId] 1972577988 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-K1UNHAH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [15620]  * "[IP] 172.30.1.51 [Port] 0 [Flags] 2 [Guid] 337261931 [EditorId] 337261931 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-97L9SVQ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [36064] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [36064] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 5
+Player connection [15620] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [15620] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 3
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -76,7 +76,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 3.57 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 308.64 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.41f1 (46e447368a18)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/Resources/UnitySubsystems
@@ -84,54 +84,54 @@ Initialize engine version: 6000.0.41f1 (46e447368a18)
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 4060 Ti (ID=0x2803)
-    Vendor:   NVIDIA
-    VRAM:     7949 MB
-    Driver:   32.0.15.6094
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0x9a49)
+    Vendor:   Intel
+    VRAM:     8063 MB
+    Driver:   30.0.101.1371
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56736
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.005287 seconds.
-- Loaded All Assemblies, in  0.324 seconds
+Registered in 0.003171 seconds.
+- Loaded All Assemblies, in  1.417 seconds
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 286 ms
+Android Extension - Scanning For ADB Devices 226 ms
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.571 seconds
-Domain Reload Profiling: 891ms
-	BeginReloadAssembly (113ms)
+- Finished resetting the current domain, in  0.586 seconds
+Domain Reload Profiling: 2001ms
+	BeginReloadAssembly (129ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (27ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (43ms)
-	LoadAllAssembliesAndSetupDomain (129ms)
-		LoadAssemblies (108ms)
+	RebuildCommonClasses (308ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (59ms)
+	LoadAllAssembliesAndSetupDomain (906ms)
+		LoadAssemblies (128ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (126ms)
-			TypeCache.Refresh (124ms)
-				TypeCache.ScanAssembly (113ms)
+		AnalyzeDomain (900ms)
+			TypeCache.Refresh (899ms)
+				TypeCache.ScanAssembly (883ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (572ms)
+	FinalizeReload (587ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (533ms)
+		SetupLoadedEditorAssemblies (543ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (357ms)
-			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (41ms)
-			ProcessInitializeOnLoadAttributes (89ms)
-			ProcessInitializeOnLoadMethodAttributes (43ms)
+			InitializePlatformSupportModulesInManaged (308ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (50ms)
+			ProcessInitializeOnLoadAttributes (121ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -140,505 +140,614 @@ Domain Reload Profiling: 891ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.921 seconds
-Refreshing native plugins compatible for Editor in 1.86 ms, found 4 plugins.
+- Loaded All Assemblies, in  1.087 seconds
+Refreshing native plugins compatible for Editor in 2.02 ms, found 4 plugins.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.657 seconds
-Domain Reload Profiling: 1570ms
-	BeginReloadAssembly (387ms)
+- Finished resetting the current domain, in  0.820 seconds
+Domain Reload Profiling: 1904ms
+	BeginReloadAssembly (167ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (4ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (79ms)
-	RebuildCommonClasses (31ms)
-	RebuildNativeTypeToScriptingClass (8ms)
-	initialDomainReloadingComplete (35ms)
-	LoadAllAssembliesAndSetupDomain (452ms)
-		LoadAssemblies (432ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (825ms)
+		LoadAssemblies (377ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (217ms)
-			TypeCache.Refresh (151ms)
-				TypeCache.ScanAssembly (137ms)
-			BuildScriptInfoCaches (57ms)
-			ResolveRequiredComponents (7ms)
-	FinalizeReload (657ms)
+		AnalyzeDomain (550ms)
+			TypeCache.Refresh (474ms)
+				TypeCache.ScanAssembly (372ms)
+			BuildScriptInfoCaches (62ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (821ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (553ms)
+		SetupLoadedEditorAssemblies (677ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			SetLoadedEditorAssemblies (2ms)
-			BeforeProcessingInitializeOnLoad (93ms)
-			ProcessInitializeOnLoadAttributes (268ms)
-			ProcessInitializeOnLoadMethodAttributes (170ms)
-			AfterProcessingInitializeOnLoad (10ms)
+			InitializePlatformSupportModulesInManaged (11ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (115ms)
+			ProcessInitializeOnLoadAttributes (382ms)
+			ProcessInitializeOnLoadMethodAttributes (162ms)
+			AfterProcessingInitializeOnLoad (4ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (9ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 2.04 ms, found 4 plugins.
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.47 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 206 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 6575 unused Assets / (3.8 MB). Loaded Objects now: 7275.
-Memory consumption went from 182.5 MB to 178.8 MB.
-Total: 7.298500 ms (FindLiveObjects: 0.640700 ms CreateObjectMapping: 0.457700 ms MarkObjects: 4.305300 ms  DeleteObjects: 1.894200 ms)
+Unloading 6577 unused Assets / (4.4 MB). Loaded Objects now: 7278.
+Memory consumption went from 180.6 MB to 176.2 MB.
+Total: 10.241900 ms (FindLiveObjects: 0.772800 ms CreateObjectMapping: 0.979800 ms MarkObjects: 5.404700 ms  DeleteObjects: 3.083200 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 7286.172516 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 03.wav
-  artifactKey: Guid(59f36298e6805dd4392f59e9ce117bf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 03.wav using Guid(59f36298e6805dd4392f59e9ce117bf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2e769f8e57ab75d37df931bc49c334f8') in 0.0972176 seconds
+  Time since last request: 9134.299103 seconds.
+  path: Assets/Settings/UniversalRP.asset
+  artifactKey: Guid(681886c5eb7344803b6206f758bf0b1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/UniversalRP.asset using Guid(681886c5eb7344803b6206f758bf0b1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2079f76a9332f10bfef0712a96e3a52d') in 0.0271651 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.033 seconds
+Refreshing native plugins compatible for Editor in 2.01 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.437 seconds
+Domain Reload Profiling: 3472ms
+	BeginReloadAssembly (310ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (18ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (69ms)
+	RebuildCommonClasses (69ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (592ms)
+		LoadAssemblies (474ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (291ms)
+			TypeCache.Refresh (10ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (264ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (2440ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2053ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (26ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (386ms)
+			ProcessInitializeOnLoadAttributes (1330ms)
+			ProcessInitializeOnLoadMethodAttributes (277ms)
+			AfterProcessingInitializeOnLoad (23ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (52ms)
+Refreshing native plugins compatible for Editor in 7.04 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (3.9 MB). Loaded Objects now: 7284.
+Memory consumption went from 151.1 MB to 147.1 MB.
+Total: 36.990000 ms (FindLiveObjects: 1.746100 ms CreateObjectMapping: 1.288200 ms MarkObjects: 23.019800 ms  DeleteObjects: 10.929400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  1.026 seconds
+Refreshing native plugins compatible for Editor in 1.34 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.918 seconds
+Domain Reload Profiling: 1948ms
+	BeginReloadAssembly (350ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (29ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (108ms)
+	RebuildCommonClasses (53ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (574ms)
+		LoadAssemblies (418ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (279ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (1ms)
+			BuildScriptInfoCaches (240ms)
+			ResolveRequiredComponents (17ms)
+	FinalizeReload (918ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (658ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (11ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (120ms)
+			ProcessInitializeOnLoadAttributes (436ms)
+			ProcessInitializeOnLoadMethodAttributes (80ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (17ms)
+Refreshing native plugins compatible for Editor in 1.33 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.3 MB). Loaded Objects now: 7286.
+Memory consumption went from 151.1 MB to 146.8 MB.
+Total: 7.941900 ms (FindLiveObjects: 0.699800 ms CreateObjectMapping: 0.664300 ms MarkObjects: 4.340800 ms  DeleteObjects: 2.235900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.854 seconds
+Refreshing native plugins compatible for Editor in 2.59 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.405 seconds
+Domain Reload Profiling: 3261ms
+	BeginReloadAssembly (239ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (65ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (528ms)
+		LoadAssemblies (374ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (261ms)
+			TypeCache.Refresh (11ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (232ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (2405ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1816ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (43ms)
+			SetLoadedEditorAssemblies (11ms)
+			BeforeProcessingInitializeOnLoad (313ms)
+			ProcessInitializeOnLoadAttributes (1190ms)
+			ProcessInitializeOnLoadMethodAttributes (244ms)
+			AfterProcessingInitializeOnLoad (12ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (49ms)
+Refreshing native plugins compatible for Editor in 7.38 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.3 MB). Loaded Objects now: 7288.
+Memory consumption went from 151.1 MB to 146.8 MB.
+Total: 33.356200 ms (FindLiveObjects: 3.857900 ms CreateObjectMapping: 4.155300 ms MarkObjects: 16.291100 ms  DeleteObjects: 9.050100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.941 seconds
+Refreshing native plugins compatible for Editor in 2.67 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.510 seconds
+Domain Reload Profiling: 3450ms
+	BeginReloadAssembly (264ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (65ms)
+	RebuildCommonClasses (48ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (568ms)
+		LoadAssemblies (433ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (267ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (238ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (2510ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2069ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (20ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (337ms)
+			ProcessInitializeOnLoadAttributes (1452ms)
+			ProcessInitializeOnLoadMethodAttributes (240ms)
+			AfterProcessingInitializeOnLoad (15ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (38ms)
+Refreshing native plugins compatible for Editor in 6.02 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.9 MB). Loaded Objects now: 7290.
+Memory consumption went from 151.1 MB to 146.2 MB.
+Total: 28.687200 ms (FindLiveObjects: 1.848700 ms CreateObjectMapping: 0.869300 ms MarkObjects: 15.795600 ms  DeleteObjects: 10.170500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.869 seconds
+Refreshing native plugins compatible for Editor in 1.76 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.141 seconds
+Domain Reload Profiling: 3011ms
+	BeginReloadAssembly (232ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (15ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (54ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (535ms)
+		LoadAssemblies (386ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (266ms)
+			TypeCache.Refresh (10ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (238ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (2142ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1706ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (19ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (314ms)
+			ProcessInitializeOnLoadAttributes (1091ms)
+			ProcessInitializeOnLoadMethodAttributes (259ms)
+			AfterProcessingInitializeOnLoad (11ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (45ms)
+Refreshing native plugins compatible for Editor in 4.99 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.4 MB). Loaded Objects now: 7292.
+Memory consumption went from 151.0 MB to 146.7 MB.
+Total: 24.505800 ms (FindLiveObjects: 0.903900 ms CreateObjectMapping: 0.882700 ms MarkObjects: 14.818100 ms  DeleteObjects: 7.899700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.818 seconds
+Refreshing native plugins compatible for Editor in 7.07 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.157 seconds
+Domain Reload Profiling: 2977ms
+	BeginReloadAssembly (225ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (15ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (506ms)
+		LoadAssemblies (378ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (232ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (208ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (2159ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1775ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (19ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (348ms)
+			ProcessInitializeOnLoadAttributes (1152ms)
+			ProcessInitializeOnLoadMethodAttributes (236ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (44ms)
+Refreshing native plugins compatible for Editor in 5.20 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.8 MB). Loaded Objects now: 7294.
+Memory consumption went from 151.1 MB to 146.3 MB.
+Total: 28.107900 ms (FindLiveObjects: 0.848000 ms CreateObjectMapping: 2.502000 ms MarkObjects: 13.431600 ms  DeleteObjects: 11.324700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.914 seconds
+Refreshing native plugins compatible for Editor in 1.80 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.241 seconds
+Domain Reload Profiling: 3158ms
+	BeginReloadAssembly (244ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (17ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (50ms)
+	RebuildCommonClasses (55ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (560ms)
+		LoadAssemblies (415ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (271ms)
+			TypeCache.Refresh (11ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (242ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (2243ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1783ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (34ms)
+			SetLoadedEditorAssemblies (12ms)
+			BeforeProcessingInitializeOnLoad (319ms)
+			ProcessInitializeOnLoadAttributes (1163ms)
+			ProcessInitializeOnLoadMethodAttributes (237ms)
+			AfterProcessingInitializeOnLoad (16ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (45ms)
+Refreshing native plugins compatible for Editor in 6.12 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.5 MB). Loaded Objects now: 7296.
+Memory consumption went from 151.1 MB to 146.6 MB.
+Total: 31.424600 ms (FindLiveObjects: 1.202900 ms CreateObjectMapping: 1.478400 ms MarkObjects: 15.271400 ms  DeleteObjects: 13.468400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.852 seconds
+Refreshing native plugins compatible for Editor in 1.47 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.289 seconds
+Domain Reload Profiling: 3142ms
+	BeginReloadAssembly (240ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (17ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (64ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (520ms)
+		LoadAssemblies (388ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (246ms)
+			TypeCache.Refresh (10ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (220ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (2290ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1643ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (37ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (361ms)
+			ProcessInitializeOnLoadAttributes (1022ms)
+			ProcessInitializeOnLoadMethodAttributes (202ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (3ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (45ms)
+Refreshing native plugins compatible for Editor in 6.65 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.3 MB). Loaded Objects now: 7298.
+Memory consumption went from 151.1 MB to 146.8 MB.
+Total: 26.615300 ms (FindLiveObjects: 0.989200 ms CreateObjectMapping: 1.211600 ms MarkObjects: 15.292400 ms  DeleteObjects: 9.119700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.854 seconds
+Refreshing native plugins compatible for Editor in 1.34 ms, found 4 plugins.
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.245 seconds
+Domain Reload Profiling: 3101ms
+	BeginReloadAssembly (239ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (46ms)
+	RebuildNativeTypeToScriptingClass (21ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (516ms)
+		LoadAssemblies (367ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (258ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (0ms)
+			BuildScriptInfoCaches (235ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (2248ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1776ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (41ms)
+			SetLoadedEditorAssemblies (10ms)
+			BeforeProcessingInitializeOnLoad (360ms)
+			ProcessInitializeOnLoadAttributes (1120ms)
+			ProcessInitializeOnLoadMethodAttributes (230ms)
+			AfterProcessingInitializeOnLoad (12ms)
+			EditorAssembliesLoaded (2ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (44ms)
+Refreshing native plugins compatible for Editor in 2.42 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6575 unused Assets / (4.1 MB). Loaded Objects now: 7300.
+Memory consumption went from 151.1 MB to 147.0 MB.
+Total: 25.829800 ms (FindLiveObjects: 2.286000 ms CreateObjectMapping: 1.061300 ms MarkObjects: 13.859500 ms  DeleteObjects: 8.616100 ms)
+
+Prepare: number of updated asset objects reloaded= 1
+========================================================================
+Received Import Request.
+  Time since last request: 1846.619522 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Prefab/bl_10.prefab
+  artifactKey: Guid(53053565e6f103248910b5724bf83beb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Prefab/bl_10.prefab using Guid(53053565e6f103248910b5724bf83beb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '37df8d8a15706831d5fe69a32bb40a03') in 0.6690307 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.553661 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_02.png
+  artifactKey: Guid(c2491831b9b03bc46b03051e76bffc33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_02.png using Guid(c2491831b9b03bc46b03051e76bffc33) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b90e52797a2745fef0ada439a76e5fbb') in 0.0416055 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 01.wav
-  artifactKey: Guid(0d22a8821aeaebc44b7b0858ed87a83c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 01.wav using Guid(0d22a8821aeaebc44b7b0858ed87a83c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e144253519e39e14346eacd6ce4a62f8') in 0.0249627 seconds
+  Time since last request: 0.000032 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_03.png
+  artifactKey: Guid(e7cd71c03055b7e48b9f48042d64d055) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_03.png using Guid(e7cd71c03055b7e48b9f48042d64d055) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'da541610cb63a36ebc9c0b9891c20cf1') in 0.0261429 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 05.wav
-  artifactKey: Guid(a36a0102ee951384283ad0960e4c34d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 05.wav using Guid(a36a0102ee951384283ad0960e4c34d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c4f9c9b56cd0e2c29d683832af3423ea') in 0.0145588 seconds
+  Time since last request: 0.000041 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_09.png
+  artifactKey: Guid(ca3ef7239894e9c45ab2bb00eba2b93c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_09.png using Guid(ca3ef7239894e9c45ab2bb00eba2b93c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '040f19bda956a470d94f287d9cab2f0b') in 0.021542 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 08.wav
-  artifactKey: Guid(39c59daa62c577b498a98c37e2bae024) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 08.wav using Guid(39c59daa62c577b498a98c37e2bae024) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '58e32a3250ab464d563880dfd526020e') in 0.0228314 seconds
+  Time since last request: 0.000043 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_04.png
+  artifactKey: Guid(a2e9d50773c5a354d8945e07fc13b86b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_04.png using Guid(a2e9d50773c5a354d8945e07fc13b86b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0b2ac01db64c05e7786bb5cf1323e1ba') in 0.0223661 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 12.wav
-  artifactKey: Guid(1a576c3c5dcae614786957586405566e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 12.wav using Guid(1a576c3c5dcae614786957586405566e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd9c26888fcebc53203ebf3c971d6bb2e') in 0.012628 seconds
+  Time since last request: 0.000028 seconds.
+  path: Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_10.png
+  artifactKey: Guid(9e8caf337c1125140b3e43441fc3a896) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/10 pixel blood splash sprite effects/Textures/bl_10.png using Guid(9e8caf337c1125140b3e43441fc3a896) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '26a5587210abe08301f4423318811e5b') in 0.0215899 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 03.wav
-  artifactKey: Guid(a6b84044885c01b4fa70899e5a33e124) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 03.wav using Guid(a6b84044885c01b4fa70899e5a33e124) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8c9ea394f2157a1bcfc4bf5d99e1d7aa') in 0.0148726 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 5.058737 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Flame.prefab
+  artifactKey: Guid(11dbf2c9c92d5014982ddbe0edde470e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Flame.prefab using Guid(11dbf2c9c92d5014982ddbe0edde470e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4601e7cfeebaf4749b7f0086be0a268b') in 0.0379366 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Running Loop 06.wav
-  artifactKey: Guid(806d626cc6dc6524cbb08e20527e94b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Running Loop 06.wav using Guid(806d626cc6dc6524cbb08e20527e94b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bd4d45aabd524d5bec9b3899ab0999fd') in 0.0145617 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000030 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Lazer.prefab
+  artifactKey: Guid(2e9062b0bf56cd5439405fa3f191143f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Lazer.prefab using Guid(2e9062b0bf56cd5439405fa3f191143f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd800eed55225697cdea93995d532356b') in 0.0323133 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (B) Single Step 02.wav
-  artifactKey: Guid(a86b9ce8dbef83f4199b9c0b59b1c0b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (B) Single Step 02.wav using Guid(a86b9ce8dbef83f4199b9c0b59b1c0b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'be55560c7b84afc6c8737f50ae29a0bf') in 0.0128733 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000059 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Mine.prefab
+  artifactKey: Guid(4f6a94928439cc041aa55ce780141b13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Mine.prefab using Guid(4f6a94928439cc041aa55ce780141b13) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e617e805c65beb00054f468254318cd5') in 0.0380296 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 03.wav
-  artifactKey: Guid(d33642860ec94384b85f0707accca1db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 03.wav using Guid(d33642860ec94384b85f0707accca1db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'aa400448feb5cdc685afa576231686f6') in 0.0147151 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000081 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Trail.prefab
+  artifactKey: Guid(cb8a5610f4ef23b44a9424706041ec2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Trail.prefab using Guid(cb8a5610f4ef23b44a9424706041ec2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '63445664f6cb55c7a5962edbd6ca38fe') in 0.0387673 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000011 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 01.wav
-  artifactKey: Guid(1bea565a5017a7840b72fe2e8da56ed4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 01.wav using Guid(1bea565a5017a7840b72fe2e8da56ed4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '314fc5dd66693af47edfefe1236d4577') in 0.0151551 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000062 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Ground_explosion.prefab
+  artifactKey: Guid(762b510f416fe3942b4b795eb989e022) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Ground_explosion.prefab using Guid(762b510f416fe3942b4b795eb989e022) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b88472a1b1c98ce1cb6c3b988b923767') in 0.0364824 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 12.wav
-  artifactKey: Guid(26e2d0b8294fb9540a7f3a7a02e1c5b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 12.wav using Guid(26e2d0b8294fb9540a7f3a7a02e1c5b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'da7d8bd24ec04733322257169eae8f33') in 0.0161964 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000033 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Lazer_big.prefab
+  artifactKey: Guid(a706cbdcc813fb64ca000dba3ac95e57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Lazer_big.prefab using Guid(a706cbdcc813fb64ca000dba3ac95e57) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '079a0ee2846c0fe162cec4c35ddebd4b') in 0.0418094 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 02.wav
-  artifactKey: Guid(a9e3c875d001c4b468ef202d0fceff94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 02.wav using Guid(a9e3c875d001c4b468ef202d0fceff94) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0e05a94c8b2507945706d15c50e14b53') in 0.013289 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000032 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Muzzle_dron.prefab
+  artifactKey: Guid(64517bbe269e5b24f9d8ed554127712c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Muzzle_dron.prefab using Guid(64517bbe269e5b24f9d8ed554127712c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b60a6f6d94d0159eb7a8f0d4ffa1953c') in 0.0301541 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 13.wav
-  artifactKey: Guid(8be8c716361c3114a901186098e340f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 13.wav using Guid(8be8c716361c3114a901186098e340f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a15c73728ba3725b20935f0f848170d1') in 0.0178047 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+  Time since last request: 0.000036 seconds.
+  path: Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Muzzle_shotgun.prefab
+  artifactKey: Guid(c40aafa7f46740349957a3bd5a278a27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel Sprite Effects pack/15 Pixel Sprite effects/Prefab/Muzzle_shotgun.prefab using Guid(c40aafa7f46740349957a3bd5a278a27) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd90db8fbdd81c350bd7be0c4ccbde270') in 0.0343978 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Walking Loop 06.wav
-  artifactKey: Guid(5316f0e308e84e44198f506297bec236) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Walking Loop 06.wav using Guid(5316f0e308e84e44198f506297bec236) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '44fe5f0a2933818b216be6372f1af40c') in 0.0157046 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 08.wav
-  artifactKey: Guid(90aeda9d8dabfdf4b9769970527d5228) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 08.wav using Guid(90aeda9d8dabfdf4b9769970527d5228) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ca245ecbbcd9ec7aef08c0beb469b1e5') in 0.0135278 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 02.wav
-  artifactKey: Guid(a2596f366ae81c3478575ce95c54c59a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 02.wav using Guid(a2596f366ae81c3478575ce95c54c59a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6468eef2a363fef9ef18352fde36b67c') in 0.0167857 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (D) Walking Loop 04.wav
-  artifactKey: Guid(57d2dcfcadaf7414baf9326b795e8a7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (D) Walking Loop 04.wav using Guid(57d2dcfcadaf7414baf9326b795e8a7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '19a9175b2018acaee26e6f3b395d54d8') in 0.0145084 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Single Step 05.wav
-  artifactKey: Guid(99bff861f9c7b4e4bb4eee5cbd7feca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Single Step 05.wav using Guid(99bff861f9c7b4e4bb4eee5cbd7feca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '647dcdfe6cda96ad7db1fd96a534a319') in 0.0131133 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 10.wav
-  artifactKey: Guid(a0c63ba9349df66438f655aeb0b98bdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 10.wav using Guid(a0c63ba9349df66438f655aeb0b98bdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '732f521919349b59267a9b7dd14dc8fc') in 0.0170818 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 05.wav
-  artifactKey: Guid(a2ee923361b708749a77b6105d0e888c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 05.wav using Guid(a2ee923361b708749a77b6105d0e888c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd6546740acfb6ebadc918d14fc9d6c73') in 0.0136491 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (B) Walking Loop 02.wav
-  artifactKey: Guid(52f10e2c847ae4e499bfe7396e27196e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (B) Walking Loop 02.wav using Guid(52f10e2c847ae4e499bfe7396e27196e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '588dbc8056974aeec53c85fb86774432') in 0.0135607 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 02.wav
-  artifactKey: Guid(6aaa68f1963bf6c4eb6dd2027c3f59ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 02.wav using Guid(6aaa68f1963bf6c4eb6dd2027c3f59ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6e88d8def32b0c8705d11ece768efb96') in 0.0147657 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Single Step 06.wav
-  artifactKey: Guid(e35baf93892894e4b8f91442ad6b6d6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (F) Single Step 06.wav using Guid(e35baf93892894e4b8f91442ad6b6d6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '66598b3373da724be99bc3506bf11618') in 0.0131346 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle Zip 02.wav
-  artifactKey: Guid(4a02be70a629e7c42aa6c08bcbaa2a0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle Zip 02.wav using Guid(4a02be70a629e7c42aa6c08bcbaa2a0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1dbfd3e292c92abacaa393cc28ff37d2') in 0.0167638 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 04.wav
-  artifactKey: Guid(34324be3912867d429ac898b6c24a028) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 04.wav using Guid(34324be3912867d429ac898b6c24a028) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a91c4ee42c187e2246eb0c3b3611f081') in 0.0133868 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 03.wav
-  artifactKey: Guid(3d30f465d25fe4a469477b8d2945bd84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 03.wav using Guid(3d30f465d25fe4a469477b8d2945bd84) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '92b94bb8fb41b22ddc163147940a3097') in 0.015245 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 09.wav
-  artifactKey: Guid(a0313de990b64ab40afec9bca649c932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 09.wav using Guid(a0313de990b64ab40afec9bca649c932) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2e1adabe7d5f132d72adb5724480eaad') in 0.0189136 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 04.wav
-  artifactKey: Guid(4f857d605cd36d346bff7ec39aa2d1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 04.wav using Guid(4f857d605cd36d346bff7ec39aa2d1e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '386908f7f76a55186022b4c54e30f19d') in 0.0178135 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000011 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (A) Walking Loop 01.wav
-  artifactKey: Guid(74f390062c899d445a5df29e0c9e719a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (A) Walking Loop 01.wav using Guid(74f390062c899d445a5df29e0c9e719a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6eb4780105648b5911c1448f25f731e9') in 0.0126054 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.984378 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Button Press Click 01.wav
-  artifactKey: Guid(6d3ccbd3ebc4bc94eb49e143b059bb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Button Press Click 01.wav using Guid(6d3ccbd3ebc4bc94eb49e143b059bb9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '795f75ec08e7533081065913e2f86352') in 0.0159024 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000011 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 02.wav
-  artifactKey: Guid(c2b91856c106e28499137325ed62eb76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 02.wav using Guid(c2b91856c106e28499137325ed62eb76) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '643a240c1fded1890f030bc5c5099b3e') in 0.0136664 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 06.wav
-  artifactKey: Guid(fb537263436a329409697e6b44b0c5b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 06.wav using Guid(fb537263436a329409697e6b44b0c5b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0264e1519f160ed9dc2ef676c3b86e49') in 0.0159748 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 06.wav
-  artifactKey: Guid(dae1a4827dc7a764999bae0296b858be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 06.wav using Guid(dae1a4827dc7a764999bae0296b858be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'df3da66ceab20c54ad9a2dad31f4d1e4') in 0.0175174 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 07.wav
-  artifactKey: Guid(93394a664c61601458b9d96bfb9b82c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 07.wav using Guid(93394a664c61601458b9d96bfb9b82c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e853216f1be1420a5eed5151083b0ef9') in 0.0126774 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 04.wav
-  artifactKey: Guid(3e3ff88f27602ba428db61a33f077dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 04.wav using Guid(3e3ff88f27602ba428db61a33f077dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a9125ab75d2a1a469b2e1a09bde55d46') in 0.0126498 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Metal Thump 02.wav
-  artifactKey: Guid(5f0fcbe8d17d1434b87a4e264578c9cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Metal Thump 02.wav using Guid(5f0fcbe8d17d1434b87a4e264578c9cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e6b437ef63777f3885b698b74cd9d3d6') in 0.0143534 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Long 04.wav
-  artifactKey: Guid(085871f2822eff741aaa0f65aef2c393) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Long 04.wav using Guid(085871f2822eff741aaa0f65aef2c393) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c396319d9d0042d91d258a947aa94e8d') in 0.0192726 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000011 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 02.wav
-  artifactKey: Guid(2249f0d7d49e5ac43aeeace665c044bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 02.wav using Guid(2249f0d7d49e5ac43aeeace665c044bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a5eef2f3b962ccf2b7b00d21947f3902') in 0.011846 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Thump Ascending 02.wav
-  artifactKey: Guid(01ea0606f9cc8074eb0dbb769af9edf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Thump Ascending 02.wav using Guid(01ea0606f9cc8074eb0dbb769af9edf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '888c4e9c78931638508d4eb72f016bd6') in 0.0147447 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Button Press Click 02.wav
-  artifactKey: Guid(9118ae9dcc9c5ba439757176bb012df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Button Press Click 02.wav using Guid(9118ae9dcc9c5ba439757176bb012df3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd960208b8d4c8b317214e25a8e7359aa') in 0.0140262 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 05.wav
-  artifactKey: Guid(6abf84c910737c542a97525ec3eec166) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 05.wav using Guid(6abf84c910737c542a97525ec3eec166) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8c7427ee017d47d8d7c8b23befffcfae') in 0.0121152 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 04.wav
-  artifactKey: Guid(d59ebe89557acc64dbd6383d0379a5f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 04.wav using Guid(d59ebe89557acc64dbd6383d0379a5f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2c2b67b152b9bce7dcd9bc62394d7f88') in 0.0131966 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Thump Ascending 01.wav
-  artifactKey: Guid(2ce965405dfedf74fa2c179cf1148bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Thump Ascending 01.wav using Guid(2ce965405dfedf74fa2c179cf1148bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0136468b74c055c0e69574de8f235cc') in 0.0143028 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 03.wav
-  artifactKey: Guid(c1b3ecd40fbb4ee4793801806091dda8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 03.wav using Guid(c1b3ecd40fbb4ee4793801806091dda8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'be08142a760149c5da0489606692c041') in 0.0139662 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 04.wav
-  artifactKey: Guid(54c16434fe964c6499bf9b44f8848d5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 04.wav using Guid(54c16434fe964c6499bf9b44f8848d5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '772b507507514edf2b929548bb429e03') in 0.0178347 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.840089 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 03.wav
-  artifactKey: Guid(0861e0974c186a24fbbc019f156db9d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 03.wav using Guid(0861e0974c186a24fbbc019f156db9d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '189018bcc42cc42f370737d61e5d94d4') in 0.0135078 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 12.wav
-  artifactKey: Guid(b43c900d8e594924e832803f9046335a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 12.wav using Guid(b43c900d8e594924e832803f9046335a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5a51e17efdf4e52f0c4efbd3be69bf31') in 0.0134932 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 07.wav
-  artifactKey: Guid(aefeafb2c621f554faf9f3e46deb6a2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 07.wav using Guid(aefeafb2c621f554faf9f3e46deb6a2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c8745cd72f439b4925856f070024aa6c') in 0.0128805 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 06.wav
-  artifactKey: Guid(1b9ee4dce81b0ee479994eb6682d8890) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 06.wav using Guid(1b9ee4dce81b0ee479994eb6682d8890) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1f9ed0c4a745bb246a3623e2341f456b') in 0.0142314 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 06.wav
-  artifactKey: Guid(20cda2edb18bfc246ae0691e6923bf8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 06.wav using Guid(20cda2edb18bfc246ae0691e6923bf8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0398e9af38bffe760f62ae50d16ce33d') in 0.0140414 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 04.wav
-  artifactKey: Guid(58e0e0d981ff6c047ba9be8a7baac62c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 04.wav using Guid(58e0e0d981ff6c047ba9be8a7baac62c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '74615f490a198f7dc9666bedeb65634c') in 0.0234821 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000012 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 07.wav
-  artifactKey: Guid(06865752b6c871b4d924ace7a0c3d045) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 07.wav using Guid(06865752b6c871b4d924ace7a0c3d045) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f30d2d746e689ac5476ca563b0c67a93') in 0.0129084 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 06.wav
-  artifactKey: Guid(6306b839779957c48a6a6e7a47d5168c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 06.wav using Guid(6306b839779957c48a6a6e7a47d5168c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '695edd9709f266e48a0bf8d5a9af0a57') in 0.012359 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000013 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 13.wav
-  artifactKey: Guid(77fb1b741d247f54d984b1d2096f2d3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 13.wav using Guid(77fb1b741d247f54d984b1d2096f2d3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8390953ba4a1c755f4ee16c05ca6f51b') in 0.0137017 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000011 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 03.wav
-  artifactKey: Guid(a3e8f34b9c9aa4545b954b9b4240088e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 03.wav using Guid(a3e8f34b9c9aa4545b954b9b4240088e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '33997e5501c6c075796d5e14a6c4f5d7') in 0.0138416 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 08.wav
-  artifactKey: Guid(f8cfa3c77656bb6448f5a3c2a00b1105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 08.wav using Guid(f8cfa3c77656bb6448f5a3c2a00b1105) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c8fa1788a446ca07e0ad0b82b0adff2a') in 0.0131993 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 14.wav
-  artifactKey: Guid(60cd794f29c79f246968d4a54fa82bc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 14.wav using Guid(60cd794f29c79f246968d4a54fa82bc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7b99dbc8fc7c77b93c6cb0b4760a6ae0') in 0.0135184 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

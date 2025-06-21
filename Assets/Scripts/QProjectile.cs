@@ -66,6 +66,7 @@ public class QProjectile : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.TakeDamage(damage);
+            StyleManager.Instance?.RegisterSkillHit(SkillType.Q);
             Destroy(gameObject);
             return;
         }

@@ -256,11 +256,13 @@ public class PlayerSkills : MonoBehaviour
     private void DoSpinDamage(float radius, int damage)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
+        bool hitEnemy = false;
         foreach (var h in hits)
         {
             if (h.TryGetComponent(out Enemy enemy))
             {
                 enemy.TakeDamage(damage);
+                hitEnemy = true;
             }
 
             // 적 투사체 삭제 (Tag 또는 컴포넌트 기반)
@@ -274,6 +276,11 @@ public class PlayerSkills : MonoBehaviour
             {
                 Destroy(ep.gameObject);
             }
+        }
+
+        if (hitEnemy)
+        {
+            StyleManager.Instance?.RegisterSkillHit(SkillType.W);
         }
 
         // 범위 표시용 이펙트 생성
@@ -377,6 +384,8 @@ public class PlayerSkills : MonoBehaviour
             if (bounceDir.sqrMagnitude < 0.01f) bounceDir = Vector2.up;
             _pc.Rigidbody2D.linearVelocity = Vector2.zero;
             _pc.AddImpulse(bounceDir * rBounceForce);
+
+            StyleManager.Instance?.RegisterSkillHit(SkillType.R);
         }
     }
 

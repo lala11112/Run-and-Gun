@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '6000.0/staging' branch; Version is '6000.0.41f1 (46e447368a18) revision 4645959'; Using compiler version '193933523'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'ko' Physical Memory: 32494 MB
+OS: 'Windows 11  (10.0.26100) 64bit Professional' Language: 'ko' Physical Memory: 16126 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -15,9 +15,9 @@ C:/Users/a0102/Documents/GitHub/Run-and-Gun
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-53089
+50728
 -job-worker-count
-5
+3
 -background-job-worker-count
 8
 -gc-helper-count
@@ -59,13 +59,13 @@ C:/Users/a0102/Documents/GitHub/Run-and-Gun
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [36456]  Target information:
+Player connection [8624]  Target information:
 
-Player connection [36456]  * "[IP] 180.66.96.214 [Port] 0 [Flags] 2 [Guid] 3991190638 [EditorId] 3991190638 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-K1UNHAH) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [8624]  * "[IP] 172.30.1.51 [Port] 0 [Flags] 2 [Guid] 583547979 [EditorId] 583547979 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-97L9SVQ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [36456] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [36456] Host joined alternative multi-casting on [225.0.0.222:34997]...
-JobSystem: Creating JobQueue using job-worker-count value 5
+Player connection [8624] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8624] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 3
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
@@ -76,7 +76,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 4.12 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 456.02 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.41f1 (46e447368a18)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/Resources/UnitySubsystems
@@ -84,54 +84,54 @@ Initialize engine version: 6000.0.41f1 (46e447368a18)
 GfxDevice: creating device client; kGfxThreadingModeNonThreaded
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 4060 Ti (ID=0x2803)
-    Vendor:   NVIDIA
-    VRAM:     7949 MB
-    Driver:   32.0.15.6094
+    Renderer: Intel(R) Iris(R) Xe Graphics (ID=0x9a49)
+    Vendor:   Intel
+    VRAM:     8063 MB
+    Driver:   30.0.101.1371
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56452
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56704
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.41f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Registered in 0.006003 seconds.
-- Loaded All Assemblies, in  0.338 seconds
+Registered in 1.155688 seconds.
+- Loaded All Assemblies, in 33.687 seconds
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 1806 ms
+Android Extension - Scanning For ADB Devices 427 ms
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.084 seconds
-Domain Reload Profiling: 2418ms
-	BeginReloadAssembly (123ms)
+- Finished resetting the current domain, in  1.554 seconds
+Domain Reload Profiling: 35237ms
+	BeginReloadAssembly (26396ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (0ms)
-	RebuildCommonClasses (32ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (45ms)
-	LoadAllAssembliesAndSetupDomain (125ms)
-		LoadAssemblies (120ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (1350ms)
+	RebuildNativeTypeToScriptingClass (31ms)
+	initialDomainReloadingComplete (1284ms)
+	LoadAllAssembliesAndSetupDomain (4621ms)
+		LoadAssemblies (26417ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (122ms)
-			TypeCache.Refresh (121ms)
-				TypeCache.ScanAssembly (111ms)
-			BuildScriptInfoCaches (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (2084ms)
+		AnalyzeDomain (4588ms)
+			TypeCache.Refresh (4582ms)
+				TypeCache.ScanAssembly (3616ms)
+			BuildScriptInfoCaches (1ms)
+			ResolveRequiredComponents (2ms)
+	FinalizeReload (1555ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (2049ms)
+		SetupLoadedEditorAssemblies (1388ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (1878ms)
-			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (35ms)
-			ProcessInitializeOnLoadAttributes (80ms)
-			ProcessInitializeOnLoadMethodAttributes (54ms)
+			InitializePlatformSupportModulesInManaged (666ms)
+			SetLoadedEditorAssemblies (11ms)
+			BeforeProcessingInitializeOnLoad (145ms)
+			ProcessInitializeOnLoadAttributes (378ms)
+			ProcessInitializeOnLoadMethodAttributes (187ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -140,737 +140,93 @@ Domain Reload Profiling: 2418ms
 Worker process is ready to serve import requests
 Import Worker Mode flag is 0x00
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.712 seconds
-Refreshing native plugins compatible for Editor in 2.42 ms, found 4 plugins.
+- Loaded All Assemblies, in 28.696 seconds
+Refreshing native plugins compatible for Editor in 4.26 ms, found 4 plugins.
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.575 seconds
-Domain Reload Profiling: 1277ms
-	BeginReloadAssembly (155ms)
+- Finished resetting the current domain, in  3.120 seconds
+Domain Reload Profiling: 31805ms
+	BeginReloadAssembly (673ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (4ms)
+		DisableScriptedObjects (24ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (30ms)
-	RebuildCommonClasses (29ms)
-	RebuildNativeTypeToScriptingClass (9ms)
-	initialDomainReloadingComplete (39ms)
-	LoadAllAssembliesAndSetupDomain (470ms)
-		LoadAssemblies (365ms)
+		CreateAndSetChildDomain (128ms)
+	RebuildCommonClasses (161ms)
+	RebuildNativeTypeToScriptingClass (36ms)
+	initialDomainReloadingComplete (126ms)
+	LoadAllAssembliesAndSetupDomain (27689ms)
+		LoadAssemblies (25376ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (197ms)
-			TypeCache.Refresh (148ms)
-				TypeCache.ScanAssembly (135ms)
-			BuildScriptInfoCaches (41ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (576ms)
+		AnalyzeDomain (2702ms)
+			TypeCache.Refresh (2433ms)
+				TypeCache.ScanAssembly (2237ms)
+			BuildScriptInfoCaches (233ms)
+			ResolveRequiredComponents (28ms)
+	FinalizeReload (3121ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (467ms)
+		SetupLoadedEditorAssemblies (1977ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			SetLoadedEditorAssemblies (2ms)
-			BeforeProcessingInitializeOnLoad (93ms)
-			ProcessInitializeOnLoadAttributes (274ms)
-			ProcessInitializeOnLoadMethodAttributes (80ms)
-			AfterProcessingInitializeOnLoad (9ms)
-			EditorAssembliesLoaded (0ms)
+			InitializePlatformSupportModulesInManaged (33ms)
+			SetLoadedEditorAssemblies (12ms)
+			BeforeProcessingInitializeOnLoad (327ms)
+			ProcessInitializeOnLoadAttributes (1229ms)
+			ProcessInitializeOnLoadMethodAttributes (364ms)
+			AfterProcessingInitializeOnLoad (12ms)
+			EditorAssembliesLoaded (1ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (9ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 2.12 ms, found 4 plugins.
+		AwakeInstancesAfterBackupRestoration (17ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 3.92 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 206 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 6575 unused Assets / (3.9 MB). Loaded Objects now: 7275.
-Memory consumption went from 182.1 MB to 178.2 MB.
-Total: 6.199200 ms (FindLiveObjects: 0.657600 ms CreateObjectMapping: 0.232800 ms MarkObjects: 3.771400 ms  DeleteObjects: 1.536700 ms)
+Memory consumption went from 180.5 MB to 176.5 MB.
+Total: 20.959800 ms (FindLiveObjects: 1.379700 ms CreateObjectMapping: 2.404800 ms MarkObjects: 11.588700 ms  DeleteObjects: 5.583500 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6672.786723 seconds.
-  path: Assets/UniversalRenderPipelineGlobalSettings.asset
-  artifactKey: Guid(93b439a37f63240aca3dd4e01d978a9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UniversalRenderPipelineGlobalSettings.asset using Guid(93b439a37f63240aca3dd4e01d978a9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '00c025d2039ced57596f58dea75cb28a') in 0.0180179 seconds
+  Time since last request: 1082.733202 seconds.
+  path: Assets/InputSystem_Actions.inputactions
+  artifactKey: Guid(2bcd2660ca9b64942af0de543d8d7100) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/InputSystem_Actions.inputactions using Guid(2bcd2660ca9b64942af0de543d8d7100) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ce14ceb9d0d7af7a762e1cc7d2e80ba4') in 0.07303 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 22
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/DefaultVolumeProfile.asset
+  artifactKey: Guid(3f9215ea0144899419cfbc0957140d3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/DefaultVolumeProfile.asset using Guid(3f9215ea0144899419cfbc0957140d3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '65636432c56742a06922c04c04ec00a3') in 0.0031735 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
 
 ========================================================================
 Received Import Request.
-  Time since last request: 285.840049 seconds.
+  Time since last request: 951.608359 seconds.
   path: Assets/Prefabs/EnemyBullet.prefab
   artifactKey: Guid(63706e750d445bf419fa3d945111981b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/EnemyBullet.prefab using Guid(63706e750d445bf419fa3d945111981b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a638b6f7ff52c3003ffd9b8b22d4d655') in 0.3439091 seconds
+Start importing Assets/Prefabs/EnemyBullet.prefab using Guid(63706e750d445bf419fa3d945111981b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '736ab6435e58da0bff55103e1d39833a') in 0.7687754 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Prefabs/Hook.prefab
-  artifactKey: Guid(e952bc900afdd9b4c9cd4080244120d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Hook.prefab using Guid(e952bc900afdd9b4c9cd4080244120d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3628eeac6e4ab2553f10433acd0eaa88') in 0.0119449 seconds
+  Time since last request: 0.000090 seconds.
+  path: Assets/Prefabs/Projectile.prefab
+  artifactKey: Guid(4944961d42362834481671d99028f35a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Projectile.prefab using Guid(4944961d42362834481671d99028f35a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5afd1a90d283c38a1396f79305645145') in 0.0290124 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000031 seconds.
+  Time since last request: 0.000078 seconds.
   path: Assets/Prefabs/QProjectile.prefab
   artifactKey: Guid(19ab86accfd8d0a418521dad9a78d65e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/QProjectile.prefab using Guid(19ab86accfd8d0a418521dad9a78d65e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4393e9875e6a9a61a9a90780dce37057') in 0.0117347 seconds
+Start importing Assets/Prefabs/QProjectile.prefab using Guid(19ab86accfd8d0a418521dad9a78d65e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4d5e0b62a5e9486ee76e9d6feb44bd99') in 0.0257458 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
 
-========================================================================
-Received Import Request.
-  Time since last request: 319.622210 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Buzzer Short 02.wav
-  artifactKey: Guid(3a5107e950ca7674eb583ca4d5c6da6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Buzzer Short 02.wav using Guid(3a5107e950ca7674eb583ca4d5c6da6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '773a217daa7858186c6aafbedcda7283') in 0.0385822 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 02.wav
-  artifactKey: Guid(ae86f994a1dcb3146b60b7a6f5d3b35d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 02.wav using Guid(ae86f994a1dcb3146b60b7a6f5d3b35d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a5c3f09fa32283edc11590929e626944') in 0.0152707 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 04.wav
-  artifactKey: Guid(4a1bb9fa185bcea4fa812874f765f58c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 04.wav using Guid(4a1bb9fa185bcea4fa812874f765f58c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ff2305345259a4feb0dd0fac4ba297c8') in 0.0133473 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 03.wav
-  artifactKey: Guid(8aa792fc5e7791640967207111c123d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 03.wav using Guid(8aa792fc5e7791640967207111c123d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1ada5e299f22a49a8b07893da903d139') in 0.0130691 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Ascend 02.wav
-  artifactKey: Guid(97430e39aaaa7f549afdc94e85bb89dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Ascend 02.wav using Guid(97430e39aaaa7f549afdc94e85bb89dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '98122beef279eaf0338190707f7d1914') in 0.0133034 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 08.wav
-  artifactKey: Guid(15252a0738fcac241bfacd0a44ebb046) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 08.wav using Guid(15252a0738fcac241bfacd0a44ebb046) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '932de85291f73482ce2e191c1230a5f9') in 0.0138734 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 06.wav
-  artifactKey: Guid(f65c079e4d0f68d4c8ed34593913774a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 06.wav using Guid(f65c079e4d0f68d4c8ed34593913774a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0a194167809191fd355759ababdb56f4') in 0.0139866 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 05.wav
-  artifactKey: Guid(10ecbc3314c2dcc47bd33c9fce559fa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 05.wav using Guid(10ecbc3314c2dcc47bd33c9fce559fa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f947479a165f766ac92837ee4b5041fb') in 0.0137153 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 03.wav
-  artifactKey: Guid(01c3f5baaa130dd41a2510ee85cca754) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 03.wav using Guid(01c3f5baaa130dd41a2510ee85cca754) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a811f844fa8b88a4540094de9edf092e') in 0.0141887 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 06.wav
-  artifactKey: Guid(8721e4842b8616c4f99a54191e2657cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 06.wav using Guid(8721e4842b8616c4f99a54191e2657cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7a58f4e9309d6096e8091cc1c053d3d7') in 0.01428 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Double Buzzer 01.wav
-  artifactKey: Guid(a9c5b50c93dfc3949b11433dd5127158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Double Buzzer 01.wav using Guid(a9c5b50c93dfc3949b11433dd5127158) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '167f9a903f0144a11845fcc9c3cecfc1') in 0.0150711 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 04.wav
-  artifactKey: Guid(990967afed5ba7c43bb2030fb4582cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 04.wav using Guid(990967afed5ba7c43bb2030fb4582cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cfb45ea43355c45173d586863cd2a268') in 0.0136412 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 07.wav
-  artifactKey: Guid(11de24e8bb882ca48b2dea8d12bac3a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 07.wav using Guid(11de24e8bb882ca48b2dea8d12bac3a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f2d28bb3930f1b108a30d9cf6ea1de95') in 0.0136365 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Short 04.wav
-  artifactKey: Guid(191c00516e93b054293ec59461d8e9c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Short 04.wav using Guid(191c00516e93b054293ec59461d8e9c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7044ebca2cb60549eb2f03a83918f478') in 0.0137199 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Short 02.wav
-  artifactKey: Guid(6c9fbe3392b42ca478cb6649fb3ffa0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Short 02.wav using Guid(6c9fbe3392b42ca478cb6649fb3ffa0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '12f4c26d399e1d60890c8cdfb021cc0b') in 0.0132921 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Buzzer Short 04.wav
-  artifactKey: Guid(18b369adf6baa494290020ca2e40f66f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Buzzer Short 04.wav using Guid(18b369adf6baa494290020ca2e40f66f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7e86bc0a0d9246155dea4fdb55c59351') in 0.0130537 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 01.wav
-  artifactKey: Guid(402097c055da05446bc7af57496d9488) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 01.wav using Guid(402097c055da05446bc7af57496d9488) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '85b95b0f7b184a09d5b1112455087b86') in 0.0122604 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 06.wav
-  artifactKey: Guid(e7d1e2198bab14a4b83d2013fe2c7cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 06.wav using Guid(e7d1e2198bab14a4b83d2013fe2c7cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6003febca49ed3031418c2841b57930f') in 0.0149665 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 12.wav
-  artifactKey: Guid(46601b0e003cd2b4abda1ffbf45f12f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 12.wav using Guid(46601b0e003cd2b4abda1ffbf45f12f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6c1c8682910162cf51ce7463493d3cc3') in 0.0161404 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 05.wav
-  artifactKey: Guid(f73232c296ca413469e4a6796a09c87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Tiny 05.wav using Guid(f73232c296ca413469e4a6796a09c87d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ce96b34853bf7fc8b03c5e531b6c4ff5') in 0.0183217 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 07.wav
-  artifactKey: Guid(64274998846279147be62b16cc2bcb4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 07.wav using Guid(64274998846279147be62b16cc2bcb4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '288b5980a4dc8f3a39cd9d5415947446') in 0.0151347 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 03.wav
-  artifactKey: Guid(bd018734d9722394fb9add6d9538e8a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Buzzer 03.wav using Guid(bd018734d9722394fb9add6d9538e8a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'aacee50414cb8c6682f700f3949fb864') in 0.0148671 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 02.wav
-  artifactKey: Guid(d4b3e1fe4789c3e44a5e7ec4b8b7c1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/ALARMS - BUZZERS - RINGERS - (44)/ALARM Alert Ringer Bell 02.wav using Guid(d4b3e1fe4789c3e44a5e7ec4b8b7c1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3a0fc3fc315c308a77fa2650dd0445c1') in 0.0144038 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 6.359526 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 02.wav
-  artifactKey: Guid(87b152976a60f6140b001099ff7c8dca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 02.wav using Guid(87b152976a60f6140b001099ff7c8dca) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a5b68c245e8d1c4822d5da30ae7e7806') in 0.0162194 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 10.wav
-  artifactKey: Guid(b863238562064134c9983db5ff228a4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 10.wav using Guid(b863238562064134c9983db5ff228a4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '92037d60f16fb3205eeae6889f2ad8c4') in 0.0193827 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 08.wav
-  artifactKey: Guid(a1ec8b6330139184297dc494a8cdbe9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 08.wav using Guid(a1ec8b6330139184297dc494a8cdbe9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '98e65e79d324bc4f85654ea14e1a8c60') in 0.0158232 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 11.wav
-  artifactKey: Guid(aa0df9893820dbe4ba94547abc7ab2d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 11.wav using Guid(aa0df9893820dbe4ba94547abc7ab2d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fc92a3dc8762406e2dae9ce3920860f1') in 0.0166415 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 06.wav
-  artifactKey: Guid(a4a5c63abeee1c74e8061669f3783d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 06.wav using Guid(a4a5c63abeee1c74e8061669f3783d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '67857050e0af5d6e231c75f129181de0') in 0.0169409 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 07.wav
-  artifactKey: Guid(68abc204daa6b3243b1bc61ef8a60928) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 07.wav using Guid(68abc204daa6b3243b1bc61ef8a60928) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '617f4cc07f714a9ed03e8a5fd38073e5') in 0.0157761 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 05.wav
-  artifactKey: Guid(3249dbc439fc4f74ca993397cba59de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 05.wav using Guid(3249dbc439fc4f74ca993397cba59de9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '215c384f95ad73e49422f074a2caf2d2') in 0.0144926 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 04.wav
-  artifactKey: Guid(b1013158d382007409cca4c9ef12e334) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 04.wav using Guid(b1013158d382007409cca4c9ef12e334) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '94737994b602ae80b200c4d2f882f265') in 0.0149078 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Walking Loop 05.wav
-  artifactKey: Guid(c9610da87899aad4bb17bf7f0ac243ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Walking Loop 05.wav using Guid(c9610da87899aad4bb17bf7f0ac243ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '3bd650cf2e858cfab9274276fbf5e407') in 0.0166731 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 04.wav
-  artifactKey: Guid(eff296d02232aa44eb4b7fd05e4e817f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 04.wav using Guid(eff296d02232aa44eb4b7fd05e4e817f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9c199b942e3fe571186d005960ac0a0f') in 0.0141328 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 14.wav
-  artifactKey: Guid(6ce4677ce4ba7754d9f3e3bc9c7bf51f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 14.wav using Guid(6ce4677ce4ba7754d9f3e3bc9c7bf51f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c2fc23f53a3041d608af263c211402b6') in 0.0131388 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 06.wav
-  artifactKey: Guid(4ed510d331967ae47b2b4beba50e96fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 06.wav using Guid(4ed510d331967ae47b2b4beba50e96fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7416ca071e49f6538d585983df65fe38') in 0.0147936 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 11.wav
-  artifactKey: Guid(9b20eb0fd6f868942907838413b0437f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 11.wav using Guid(9b20eb0fd6f868942907838413b0437f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '53e1b47e5020cefcc0bae90f6eb2cd7e') in 0.0144603 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 09.wav
-  artifactKey: Guid(d1be0fdaafd38cd4f9b6a3e5c15a0369) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 09.wav using Guid(d1be0fdaafd38cd4f9b6a3e5c15a0369) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f9abf1a1e2fdefc7379e3c20c385417d') in 0.0138599 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 07.wav
-  artifactKey: Guid(4db68b730fdc52447945295c6e4a70d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 07.wav using Guid(4db68b730fdc52447945295c6e4a70d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f0bb4e7fa7440d787ff292c1484dfef3') in 0.0180991 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 06.wav
-  artifactKey: Guid(ab3e6202b9184e0468c6eecc1a8a9ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 06.wav using Guid(ab3e6202b9184e0468c6eecc1a8a9ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '90d181515425aba0139a73aec8b51f0e') in 0.0146006 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 02.wav
-  artifactKey: Guid(08ce3dc0958200f47ac6ecb5f4e4a9b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 02.wav using Guid(08ce3dc0958200f47ac6ecb5f4e4a9b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a7e54c3da3845ce61b7e4832449d5e0a') in 0.0134565 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 05.wav
-  artifactKey: Guid(7f6df7146bc6b1846b5f526f2e9c1a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 05.wav using Guid(7f6df7146bc6b1846b5f526f2e9c1a54) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0a63c94317df67e42b15161f4a5106ca') in 0.0145691 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (D) Running Loop 04.wav
-  artifactKey: Guid(c0d08957e0756154cb2f7c6c3deeb4d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (D) Running Loop 04.wav using Guid(c0d08957e0756154cb2f7c6c3deeb4d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '18999edec5466f7eb827c8a22c3e65e3') in 0.0157685 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (C) Running Loop 03.wav
-  artifactKey: Guid(93ce0d9fa0ad45c4784cef9cdad1a79f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (C) Running Loop 03.wav using Guid(93ce0d9fa0ad45c4784cef9cdad1a79f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '72132d486c6261c5d842a8a5a213c3fc') in 0.0137895 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Running Loop 05.wav
-  artifactKey: Guid(727f34763160c9f49a7d477c7290ab23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (E) Running Loop 05.wav using Guid(727f34763160c9f49a7d477c7290ab23) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a4955334b9c144da29e669dcc0c2d51b') in 0.0153931 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 01.wav
-  artifactKey: Guid(d357603caffdf8e41a6a93bd2ac17a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS Walk Single Step Crunch Stones 01.wav using Guid(d357603caffdf8e41a6a93bd2ac17a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'fa0279ae80d1b8752e609ca49ee70408') in 0.0136207 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 10.wav
-  artifactKey: Guid(c21cb989f97af0e47b48279d0808e5cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 10.wav using Guid(c21cb989f97af0e47b48279d0808e5cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2c21c143cd0f719ba521877f67605932') in 0.0134797 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (A) Running Loop 01.wav
-  artifactKey: Guid(76093329d9a6b6e4f8400b3a442c80c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/FOOTSTEPS (A) Running Loop 01.wav using Guid(76093329d9a6b6e4f8400b3a442c80c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ee9ba2a0955fcad8785c105d42d1d704') in 0.0147721 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 06.wav
-  artifactKey: Guid(a0212b2f4f793694c8cf3f98a5e64004) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Cloth Ruffle 06.wav using Guid(a0212b2f4f793694c8cf3f98a5e64004) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4d9fb63fb2c86ec46d3efebd2ce74428') in 0.0153391 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 09.wav
-  artifactKey: Guid(b7ea08f6550d5fd4aaaa676d873e7125) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 09.wav using Guid(b7ea08f6550d5fd4aaaa676d873e7125) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a142d09747b127331d46680c266cee45') in 0.0148193 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 06.wav
-  artifactKey: Guid(60fc9e5617c1b7b47b08f89616a87a0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/FOOTSTEPS - WALKING - RUNNING - (93)/EQUIPMENT Pack Ruffle 06.wav using Guid(60fc9e5617c1b7b47b08f89616a87a0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8d194ac06e45862734e46c9d81297725') in 0.0152696 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 05.wav
-  artifactKey: Guid(32db6b72083f8f9409da56ab96002eaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep Long 05.wav using Guid(32db6b72083f8f9409da56ab96002eaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5999a213c736b337cc826ec449f00677') in 0.0158199 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 12.wav
-  artifactKey: Guid(9097bfab53925b347a1d6bb7b6d91097) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Short 12.wav using Guid(9097bfab53925b347a1d6bb7b6d91097) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'db9ff3a24e1644a055473bd5dbb9231a') in 0.0125056 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 03.wav
-  artifactKey: Guid(e3815c71fc59ff94e9698bccdf76a04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 03.wav using Guid(e3815c71fc59ff94e9698bccdf76a04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2a3e2fa563f737f8748d433ba237705d') in 0.0129204 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 09.wav
-  artifactKey: Guid(0c78f7dfa0a7c634ea30404b150e92a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit 09.wav using Guid(0c78f7dfa0a7c634ea30404b150e92a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ee83643ad7fba59d7f30efbeb513ca9d') in 0.0141686 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 10.wav
-  artifactKey: Guid(677c5f13c8cbb354c8f279359e8aaf19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/BONGS - TIMERS - BELLS - (72)/BONG Bell Timer Hit Deep 10.wav using Guid(677c5f13c8cbb354c8f279359e8aaf19) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '629f27fb3d64b524de12530790daddbf') in 0.0156434 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.942344 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Bang Hit 02.wav
-  artifactKey: Guid(fbb407e1634933c4e9cd75fff6a4245c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Bang Hit 02.wav using Guid(fbb407e1634933c4e9cd75fff6a4245c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7c290edc931f0b7adc74e7e51285a833') in 0.0151381 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 01.wav
-  artifactKey: Guid(e6d925d39361e454eb1e7c8e97ebf6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 01.wav using Guid(e6d925d39361e454eb1e7c8e97ebf6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '102a3502682a964ef80c68beface4fe3') in 0.0140416 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Long 03.wav
-  artifactKey: Guid(3ea685385fef40346b51b66882def379) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Long 03.wav using Guid(3ea685385fef40346b51b66882def379) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7847ebc074e903619490e12fb954d3c4') in 0.0151549 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 08.wav
-  artifactKey: Guid(99153a8e86ab63440be1e93a22b8e462) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 08.wav using Guid(99153a8e86ab63440be1e93a22b8e462) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '87ae1e36d7213ce927b4f99f64d2dfb0') in 0.0131248 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 01.wav
-  artifactKey: Guid(10be613d8c4782047aa5513f3eac7a6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 01.wav using Guid(10be613d8c4782047aa5513f3eac7a6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd3b85a1fd48708816c2338566b3b61ad') in 0.0157917 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Metal Thump 01.wav
-  artifactKey: Guid(920e02dda565eec458f2be0fc2b2c240) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Heavy Metal Thump 01.wav using Guid(920e02dda565eec458f2be0fc2b2c240) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9829bef8bcf39f43f485bc211fbe535c') in 0.013406 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 04.wav
-  artifactKey: Guid(8cc46361651c7c14188305c1afddec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 04.wav using Guid(8cc46361651c7c14188305c1afddec2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'eb89a7c45eef10a0e4cbba5c0d0cd9b2') in 0.0153125 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Clang Heavy Bong 01.wav
-  artifactKey: Guid(6689ba90ff3415a44a1da3341f870841) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Clang Heavy Bong 01.wav using Guid(6689ba90ff3415a44a1da3341f870841) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0943dabb5719b5f02796cceec804cc58') in 0.0168194 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 06.wav
-  artifactKey: Guid(58f019f0bbfba8344b499976353df07e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Chink 06.wav using Guid(58f019f0bbfba8344b499976353df07e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bd984b190b5245748ca929445598129b') in 0.0117983 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 03.wav
-  artifactKey: Guid(1ae044932b237ea4fa4502fbb2b451be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 03.wav using Guid(1ae044932b237ea4fa4502fbb2b451be) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '729e9847bbc6af688586e85d6e875ff5') in 0.0159391 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 03.wav
-  artifactKey: Guid(51f7b357765aee94f93c8269a7fee697) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 03.wav using Guid(51f7b357765aee94f93c8269a7fee697) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '726544ad2cbb2b658f157592fd16d07a') in 0.0238938 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 02.wav
-  artifactKey: Guid(76b3d3697f8393f4bba5b15be7285903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang 02.wav using Guid(76b3d3697f8393f4bba5b15be7285903) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5ed65ebe12f1b709c08f69a9823d51a8') in 0.013645 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 03.wav
-  artifactKey: Guid(8d3b7ebf32641f241bd14d9867921bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Blade Clang 03.wav using Guid(8d3b7ebf32641f241bd14d9867921bbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a8c77d010968e91845edda513cb593af') in 0.0126908 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 02.wav
-  artifactKey: Guid(114f0816d32cc154391e13cedd66a586) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Digging Shovel Metal Clang Short 02.wav using Guid(114f0816d32cc154391e13cedd66a586) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b1dcd1723b9b5d9e9758f790e8f7c937') in 0.0164313 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 01.wav
-  artifactKey: Guid(35ce90d686b06a24eb41f44b44d63544) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/IMPACTS - HITS - (50)/IMPACT Metal Hit Short 01.wav using Guid(35ce90d686b06a24eb41f44b44d63544) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e401670bacac16bd770cb0e2d7409169') in 0.0151374 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.876041 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 02.wav
-  artifactKey: Guid(046e91a08c2b93745afd1863c8d5ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 02.wav using Guid(046e91a08c2b93745afd1863c8d5ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a41018ac68a9657b12da594b552bb409') in 0.0142701 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 09.wav
-  artifactKey: Guid(f06e0b09c623bac469c7969bbcbaba86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 09.wav using Guid(f06e0b09c623bac469c7969bbcbaba86) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5f07cae4effa87812203a1c49adf09ee') in 0.0138478 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 15.wav
-  artifactKey: Guid(9f341729558baca4caa31215c819f71a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 15.wav using Guid(9f341729558baca4caa31215c819f71a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8f639f7f0416b3236c436c84350e131c') in 0.0128796 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch Long 01.wav
-  artifactKey: Guid(aaafedbf24748d54f912b42e0ea787ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch Long 01.wav using Guid(aaafedbf24748d54f912b42e0ea787ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '42958ec9ae96c6ce8e238e21f9ee0995') in 0.0141028 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 04.wav
-  artifactKey: Guid(28316c25dfc562b43a20cf50b2b1f77b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 04.wav using Guid(28316c25dfc562b43a20cf50b2b1f77b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6f312f7aa1d63428b81bb900f179dd25') in 0.0150665 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 11.wav
-  artifactKey: Guid(780a3b23ee4c242468fa0d914b8de665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 11.wav using Guid(780a3b23ee4c242468fa0d914b8de665) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f5fa88d13a8ec6d95f578ef86c21a294') in 0.0143298 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 03.wav
-  artifactKey: Guid(efe8e2e669849b245a9d54c1aca4a64e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 03.wav using Guid(efe8e2e669849b245a9d54c1aca4a64e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'caa21d22f013fac2789abcb08e23fbf7') in 0.01395 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 10.wav
-  artifactKey: Guid(3fc8dcfe252737a4dad3fd97af91e4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Crush 10.wav using Guid(3fc8dcfe252737a4dad3fd97af91e4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '159d10abe34c0b03402d0e9094d14432') in 0.01513 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch Long 02.wav
-  artifactKey: Guid(43ef2ee1d42479648b07ea9714564e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch Long 02.wav using Guid(43ef2ee1d42479648b07ea9714564e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a6832263785d69176607c1c74a898920') in 0.0163834 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 05.wav
-  artifactKey: Guid(36800eb95fa726f47be5aa5141231a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 05.wav using Guid(36800eb95fa726f47be5aa5141231a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '869578b4fb6ccc9f4be1d0ad3cb29b6a') in 0.0135913 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 02.wav
-  artifactKey: Guid(65dffeea46ec7084288234ebfd2dcda0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Short 02.wav using Guid(65dffeea46ec7084288234ebfd2dcda0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1ec7d0e2e127a4eef0121c57d7841d66') in 0.0137166 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 08.wav
-  artifactKey: Guid(3c940f2e4c28c354faa1e68bfc7c40d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/2000 Game Sound FX/SPLATS - SQUELCHES - (36)/SPLAT Squelch 08.wav using Guid(3c940f2e4c28c354faa1e68bfc7c40d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '8e35fd730c70480287faee924e69d832') in 0.013553 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
-
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
