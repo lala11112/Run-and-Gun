@@ -20,6 +20,12 @@ public class StyleManager : MonoBehaviour
     [Tooltip("행동이 없을 때 점수가 감소하기까지 대기 시간(초)")] public float decayDelay = 2f;
     [Tooltip("점수 감소 속도 (초당)")] public float decayPerSecond = 50f;
 
+    [Header("Rank Buff Settings")]
+    [Tooltip("B 랭크에서 쿨타임에 곱해질 배수 (ex 0.9 = 10% 감소)")] public float bCooldownMultiplier = 0.9f;
+    [Tooltip("A 랭크에서 쿨타임에 곱해질 배수")] public float aCooldownMultiplier = 0.7f;
+    [Tooltip("B 랭크 이동 속도 배수")] public float bMoveSpeedMultiplier = 1.1f;
+    [Tooltip("A 랭크 이동 속도 배수")] public float aMoveSpeedMultiplier = 1.25f;
+
     private int _currentScore;
     private SkillType? _lastSkillHit; // 마지막으로 적중한 스킬
     private float _decayTimer;
@@ -91,6 +97,27 @@ public class StyleManager : MonoBehaviour
             _cachedRank = current;
             OnRankChanged?.Invoke(current);
         }
+    }
+
+    // --- Public helper methods for other systems ---
+    public float GetCooldownMultiplier()
+    {
+        return _cachedRank switch
+        {
+            StyleRank.A => aCooldownMultiplier,
+            StyleRank.B => bCooldownMultiplier,
+            _ => 1f,
+        };
+    }
+
+    public float GetMoveSpeedMultiplier()
+    {
+        return _cachedRank switch
+        {
+            StyleRank.A => aMoveSpeedMultiplier,
+            StyleRank.B => bMoveSpeedMultiplier,
+            _ => 1f,
+        };
     }
 }
 
