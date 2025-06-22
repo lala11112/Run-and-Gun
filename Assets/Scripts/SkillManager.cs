@@ -145,6 +145,12 @@ public class SkillManager : MonoBehaviour
         
         float cd = data.baseCooldown;
         
+        // Style rank 기반 쿨타임 배수 적용
+        if (StyleManager.Instance != null)
+        {
+            cd *= StyleManager.Instance.GetCooldownMultiplier();
+        }
+        
         _cooldowns[type] = cd;
     }
 
@@ -242,6 +248,22 @@ public class SkillManager : MonoBehaviour
     public float GetCooldownRemaining(SkillType type)
     {
         return _cooldowns.TryGetValue(type, out var cd) ? cd : 0f;
+    }
+
+    /// <summary>
+    /// 현재 랭크 등 모든 보정이 적용된 총 쿨타임 값을 반환
+    /// </summary>
+    public float GetTotalCooldown(SkillType type)
+    {
+        var data = skills.Find(s => s.type == type);
+        if (data == null) return 0f;
+
+        float cd = data.baseCooldown;
+        if (StyleManager.Instance != null)
+        {
+            cd *= StyleManager.Instance.GetCooldownMultiplier();
+        }
+        return cd;
     }
 
     private void OnValidate()

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// SkillManager에서 발생하는 스킬 사용 이벤트를 받아 실제 효과를 수행하는 컴포넌트
@@ -57,22 +58,16 @@ public class PlayerSkills : MonoBehaviour
     private int _qSpeedBuffCount = 0;
     private float _baseMoveSpeed;
 
-    [Header("R Skill Settings")]
-    [Tooltip("R 스킬 갈고리 프리팹(HookProjectile)")] public GameObject rHookPrefab;
-    [Tooltip("갈고리 속도")] public float rHookSpeed = 20f;
-    [Tooltip("갈고리 최대 거리")] public float rHookMaxDistance = 12f;
-    [Tooltip("몸통 박치기 데미지")] public int rCollisionDamage = 3;
-    [Tooltip("플레이어가 튕겨져 나갈 때 적용할 임펄스 힘")] public float rBounceForce = 12f;
-    [Tooltip("벽에 갈고리가 박혔을 때 재사용 시 벽으로 이동 속도 배수")] public float rWallPullMultiplier = 1.4f;
-    [Tooltip("적 돌진 시 거리 계산 배수(속도 조정용)")] public float rEnemyDashExtraMultiplier = 1.1f;
+    [Header("R Skill – Giant Shot Settings")]
+    [Tooltip("R 스킬 거대 투사체 프리팹")] public GameObject rGiantProjectilePrefab;
+    [Tooltip("거대 투사체 속도")] public float rGiantProjectileSpeed = 15f;
+    [Tooltip("거대 투사체 데미지")] public int rGiantProjectileDamage = 3;
 
-    private HookProjectile _activeHook;
-    private bool _hookLatchedWall;
-    private Vector2 _wallPoint;
-    private Vector2 _lastHookDir;
-
-    private bool _hookLatchedEnemy;
-    private Enemy _enemyTarget;
+    [Header("W Rank Up Settings")]
+    [Tooltip("B/A 랭크에서 스핀 폭발 반복 횟수")] public int wRankedRepeats = 3;
+    [Tooltip("B/A 랭크에서 적 밀쳐내기 임펄스 힘")] public float wKnockbackForce = 8f;
+    [Tooltip("A 랭크 범위 배율")] public float wARankRadiusMultiplier = 1.8f;
+    [Tooltip("밀쳐내기 지속 시간(초)")] public float wKnockbackDuration = 0.15f;
 
     private void Awake()
     {
@@ -143,7 +138,7 @@ public class PlayerSkills : MonoBehaviour
                 E_Dash();
                 break;
             case SkillType.R:
-                R_Barrage();
+                R_GiantShot();
                 break;
         }
     }
@@ -151,29 +146,16 @@ public class PlayerSkills : MonoBehaviour
     #region Q Skill – Stun + Speed Buff
     private IEnumerator Q_StunSkill(bool weakened)
     {
-        float stunDuration = weakened ? 1f : 2f;
-        if (SkillManager.Instance.IsUltimateActive) stunDuration += 1f;
+        StyleRank rank = StyleManager.Instance != null ? StyleManager.Instance.CurrentRank : StyleRank.C;
 
-        // 마우스 위치의 적 하나 지정
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = mouseWorld;
+        List<Enemy> targets = new List<Enemy>();
 
-        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos2D);
-        Enemy target = null;
-        foreach (var h in hits)
+        if (rank == StyleRank.C)
         {
-            if (h.TryGetComponent(out Enemy enemy))
-            {
-                target = enemy;
-                break;
-            }
-        }
-
-        // 만약 마우스에 적이 없다면, 기존 방식으로 주변 가장 가까운 적 찾기
-        if (target == null)
-        {
+            // 가장 가까운 적 하나 찾기
             Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, qTargetSearchRadius);
             float minDist = float.MaxValue;
+            Enemy closest = null;
             foreach (var h in nearHits)
             {
                 if (h.TryGetComponent(out Enemy enemy))
@@ -182,20 +164,29 @@ public class PlayerSkills : MonoBehaviour
                     if (d < minDist)
                     {
                         minDist = d;
-                        target = enemy;
+                        closest = enemy;
                     }
+                }
+            }
+            if (closest != null) targets.Add(closest);
+        }
+        else // B, A 랭크 – 범위 내 모든 적
+        {
+            Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, qTargetSearchRadius);
+            foreach (var h in nearHits)
+            {
+                if (h.TryGetComponent(out Enemy enemy))
+                {
+                    targets.Add(enemy);
                 }
             }
         }
 
-        if (target != null)
+        if (targets.Count > 0 && qProjectilePrefab != null && _pc.firePoint != null)
         {
-            target.Stun(stunDuration);
-
-            // 투사체 연사 코루틴 실행
-            if (qProjectilePrefab != null && _pc.firePoint != null)
+            foreach (var t in targets)
             {
-                StartCoroutine(Q_FireBarrage(target));
+                StartCoroutine(Q_FireBarrage(t));
             }
         }
 
@@ -234,7 +225,14 @@ public class PlayerSkills : MonoBehaviour
     #region W Skill – Spin AoE
     private IEnumerator W_SpinAttack(bool weakened)
     {
+        StyleRank rank = StyleManager.Instance != null ? StyleManager.Instance.CurrentRank : StyleRank.C;
+
         int repeats = SkillManager.Instance.IsUltimateActive ? wUltimateRepeats : 1;
+
+        // 랭크별 추가 폭발 횟수
+        if (rank == StyleRank.B || rank == StyleRank.A)
+            repeats = wRankedRepeats;
+
         // 연속 사용에 따른 범위 패널티 계산
         float penaltyFactor = 1f;
         if (_wConsecutiveCount > 1)
@@ -245,15 +243,21 @@ public class PlayerSkills : MonoBehaviour
         float radius = wRadius * penaltyFactor;
         int damage = weakened ? wDamageWeakened : wDamage;
 
+        // A 랭크 시 범위 증가
+        if (rank == StyleRank.A)
+        {
+            radius *= wARankRadiusMultiplier;
+        }
+
         for (int i = 0; i < repeats; i++)
         {
-            DoSpinDamage(radius, damage);
+            DoSpinDamage(radius, damage, rank);
             // 회전 이펙트 / 사운드 추가 위치
             yield return new WaitForSeconds(0.25f);
         }
     }
 
-    private void DoSpinDamage(float radius, int damage)
+    private void DoSpinDamage(float radius, int damage, StyleRank rank)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         bool hitEnemy = false;
@@ -263,18 +267,45 @@ public class PlayerSkills : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
                 hitEnemy = true;
+
+                // B, A 랭크에서 밀쳐내기 구현 (폭발력)
+                if (rank != StyleRank.C && enemy.TryGetComponent(out Rigidbody2D erigidbody))
+                {
+                    Vector2 toEnemy = enemy.transform.position - transform.position;
+                    float dist = toEnemy.magnitude;
+                    if (dist < radius)
+                    {
+                        Vector2 pushDir = toEnemy.normalized;
+                        float pushDistance = radius - dist + 0.1f; // 패딩
+                        Vector2 targetPos = (Vector2)enemy.transform.position + pushDir * pushDistance;
+                        StartCoroutine(KnockbackSmooth(erigidbody, targetPos, wKnockbackDuration));
+                    }
+                }
             }
 
-            // 적 투사체 삭제 (Tag 또는 컴포넌트 기반)
             if (h.CompareTag("EnemyBullet"))
             {
+                if (rank == StyleRank.A)
+                {
+                    ReflectProjectile(h.gameObject, h.transform.position);
+                }
+                else
+            {
                 Destroy(h.gameObject);
+                }
                 continue;
             }
-            // EnemyProjectile 컴포넌트(예: EnemyBullet.cs)가 있다면 제거
+            // EnemyProjectile 컴포넌트가 있을 때
             if (h.TryGetComponent(out EnemyProjectile ep))
             {
+                if (rank == StyleRank.A)
+                {
+                    ReflectProjectile(ep.gameObject, ep.transform.position);
+                }
+                else
+            {
                 Destroy(ep.gameObject);
+                }
             }
         }
 
@@ -295,6 +326,22 @@ public class PlayerSkills : MonoBehaviour
             Destroy(fx, wEffectDuration);
         }
     }
+
+    // 적 투사체를 반사하여 플레이어 방향 기준 밖으로 되돌려보냄
+    private void ReflectProjectile(GameObject enemyProj, Vector3 projPos)
+    {
+        if (_pc.projectilePrefab == null || _pc.firePoint == null) { Destroy(enemyProj); return; }
+
+        Vector2 dir = (projPos - transform.position).normalized; // 밖으로 향함
+
+        GameObject proj = Instantiate(_pc.projectilePrefab, projPos, Quaternion.identity);
+        if (proj.TryGetComponent(out Projectile p))
+        {
+            p.Init(dir);
+        }
+
+        Destroy(enemyProj);
+    }
     #endregion
 
     #region E Skill – Dash
@@ -311,102 +358,49 @@ public class PlayerSkills : MonoBehaviour
     }
     #endregion
 
-    #region R Skill – Barrage
-    private void R_Barrage()
-    {
-        // 1) 벽에 갈고리 박힌 상태에서 재사용 -> 정확히 벽 지점까지 이동
-        if (_hookLatchedWall)
+    #region R Skill – Giant Shot
+    private void R_GiantShot()
         {
-            Vector2 toWall = _wallPoint - (Vector2)transform.position;
-            float distance = toWall.magnitude;
-            Vector2 dir = distance > 0.01f ? toWall.normalized : Vector2.up;
+        if (rGiantProjectilePrefab == null || _pc.firePoint == null) return;
 
-            // dashSpeed * mult * dashDuration = distance  => mult = distance /(dashSpeed*duration)
-            float mult = distance / (_pc.dashSpeed * _pc.dashDuration);
-            mult = Mathf.Max(0.1f, mult); // safety
-            _pc.StartDash(dir, mult);
-
-            _hookLatchedWall = false;
-            return;
-        }
-
-        // 2) 적에 갈고리가 붙어있는 상태에서 재사용 -> 돌진 공격
-        if (_hookLatchedEnemy && _enemyTarget != null)
+        // 네 방향: 앞, 뒤, 좌, 우 (플레이어 기준)
+        Vector2[] dirs = new Vector2[]
         {
-            Vector2 toEnemy = (Vector2)_enemyTarget.transform.position - (Vector2)transform.position;
-            float dist = toEnemy.magnitude;
-            Vector2 dirDash = dist > 0.01f ? toEnemy.normalized : _lastHookDir;
+            _pc.transform.up,
+            -_pc.transform.up,
+            _pc.transform.right,
+            -_pc.transform.right
+        };
 
-            float mult = dist / (_pc.dashSpeed * _pc.dashDuration) * rEnemyDashExtraMultiplier;
-            mult = Mathf.Max(0.2f, mult);
-
-            _pc.StartDash(dirDash, mult);
-
-            // 데미지를 대시 끝부분에서 적용
-            StartCoroutine(R_DashHitEnemy(_enemyTarget));
-
-            _hookLatchedEnemy = false;
-            _enemyTarget = null;
-            _lastHookDir = dirDash;
-            return;
-        }
-
-        // 3) 이미 갈고리가 날아가는 중이면 재시전 무시
-        if (_activeHook != null) return;
-
-        // 4) 새로운 갈고리 발사
-        if (rHookPrefab == null || _pc.firePoint == null) return;
-
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dirShoot = (mouseWorld - _pc.firePoint.position).normalized;
-        _lastHookDir = dirShoot;
-        GameObject hookObj = Instantiate(rHookPrefab, _pc.firePoint.position, Quaternion.identity);
-        if (hookObj.TryGetComponent(out HookProjectile hook))
+        foreach (var dir in dirs)
         {
-            hook.owner = this;
-            hook.speed = rHookSpeed;
-            hook.maxDistance = rHookMaxDistance;
-            hook.Init(dirShoot);
-            _activeHook = hook;
+            Quaternion rot = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f);
+            GameObject obj = Instantiate(rGiantProjectilePrefab, _pc.firePoint.position, rot);
+            if (obj.TryGetComponent(out GiantProjectile gp))
+        {
+                gp.speed = rGiantProjectileSpeed;
+                gp.damage = rGiantProjectileDamage;
+                gp.Init(dir);
         }
     }
 
-    private IEnumerator R_DashHitEnemy(Enemy target)
-    {
-        float delay = _pc.dashDuration * 0.9f;
-        yield return new WaitForSeconds(delay);
-        if (target != null)
-        {
-            target.TakeDamage(rCollisionDamage);
-
-            // 반대 방향 임펄스
-            Vector2 bounceDir = -_lastHookDir;
-            if (bounceDir.sqrMagnitude < 0.01f) bounceDir = Vector2.up;
-            _pc.Rigidbody2D.linearVelocity = Vector2.zero;
-            _pc.AddImpulse(bounceDir * rBounceForce);
-
-            StyleManager.Instance?.RegisterSkillHit(SkillType.R);
-        }
-    }
-
-    // Callback from HookProjectile when hit enemy
-    public void OnHookHitEnemy(Enemy enemy)
-    {
-        _activeHook = null;
-        if (enemy == null) return;
-
-        _hookLatchedEnemy = true;
-        _enemyTarget = enemy;
-    }
-
-    // Callback when hook hits wall
-    public void OnHookHitWall(Vector2 point)
-    {
-        _activeHook = null;
-        _hookLatchedWall = true;
-        _wallPoint = point;
-        _hookLatchedEnemy = false;
-        _enemyTarget = null;
+        StyleManager.Instance?.RegisterSkillHit(SkillType.R);
     }
     #endregion
+
+    // 부드러운 넉백 코루틴
+    private IEnumerator KnockbackSmooth(Rigidbody2D rb, Vector2 targetPos, float duration)
+    {
+        Vector2 start = rb.position;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            Vector2 newPos = Vector2.Lerp(start, targetPos, t);
+            rb.MovePosition(newPos);
+            yield return null;
+        }
+        rb.MovePosition(targetPos);
+    }
 } 

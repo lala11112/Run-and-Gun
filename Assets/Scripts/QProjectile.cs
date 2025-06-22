@@ -37,6 +37,9 @@ public class QProjectile : MonoBehaviour
             {
                 Physics2D.IgnoreLayerCollision(projLayer, playerLayer, true);
             }
+
+            // Q 스킬 투사체끼리 충돌 무시 (PlayerProjectile ↔ PlayerProjectile)
+            Physics2D.IgnoreLayerCollision(projLayer, projLayer, true);
         }
 
         Destroy(gameObject, lifetime);
@@ -66,6 +69,10 @@ public class QProjectile : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.TakeDamage(damage);
+            if (StyleManager.Instance != null && StyleManager.Instance.CurrentRank == StyleRank.A)
+            {
+                enemy.Stun(0.5f);
+            }
             StyleManager.Instance?.RegisterSkillHit(SkillType.Q);
             Destroy(gameObject);
             return;

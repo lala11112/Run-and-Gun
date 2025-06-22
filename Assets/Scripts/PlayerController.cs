@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
     // 내부 변수들
     private float _fireTimer; // 발사 간격 계산용 타이머
     private Rigidbody2D _rb; // 2D 물리 컴포넌트
-    private Camera _mainCam; // 메인 카메라 참조
-    private bool _isDashing; // 대시 중엔 일반 이동 입력 무시
+    private bool _isDashing; // 대시 중 이동 입력 무시
+    private Vector2 _lastLookDir = Vector2.up; // 마지막으로 바라본 방향 (회전 유지)
 
     /// <summary>
     /// 최근 프레임에 입력된 이동 방향(정규화). 0,0 이면 입력 없음.
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         // 필요한 컴포넌트들 가져오기
         _rb = GetComponent<Rigidbody2D>();
-        _mainCam = Camera.main;
     }
 
     /// <summary>
@@ -62,8 +61,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        HandleMovement(); // 이동 처리
-        HandleAiming();   // 조준 처리
+        HandleMovement(); // 이동 및 회전 처리 (마우스 조준 제거)
         HandleShooting(); // 사격 처리
     }
 
@@ -75,6 +73,7 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         if (_isDashing) return; // 대시 중엔 수동 입력 무시
+
         Vector2 inputDir = Vector2.zero;
         if (moveAction != null && moveAction.action != null)
         {
@@ -84,34 +83,20 @@ public class PlayerController : MonoBehaviour
         inputDir = inputDir.normalized;
         CurrentInputDir = inputDir;
         
-        // Rigidbody2D의 velocity를 직접 설정하여 이동
-        _rb.linearVelocity = inputDir * moveSpeed;
-    }
-    #endregion
+        float rankMoveMult = StyleManager.Instance != null ? StyleManager.Instance.GetMoveSpeedMultiplier() : 1f;
+        // Rigidbody2D의 velocity를 직접 설정하여 이동 (랭크 이동 속도 보정 포함)
+        _rb.linearVelocity = inputDir * moveSpeed * rankMoveMult;
 
-    #region Aiming
-    /// <summary>
-    /// 마우스 위치를 기준으로 플레이어 회전 처리
-    /// 2D 환경에서 Z축 회전을 사용하여 마우스 방향을 바라보도록 함
-    /// </summary>
-    private void HandleAiming()
-    {
-        // 메인 카메라가 없으면 처리하지 않음
-        if (_mainCam == null) return;
-
-        // 마우스 스크린 좌표를 월드 좌표로 변환
-        Vector3 mouseWorld = _mainCam.ScreenToWorldPoint(Input.mousePosition);
-        
-        // 플레이어에서 마우스 위치로의 방향 벡터 계산
-        Vector2 dir = mouseWorld - transform.position;
-        
-        // 방향 벡터가 유효한지 확인 (너무 작으면 회전하지 않음)
-        if (dir.sqrMagnitude > 0.001f)
+        // 회전 처리: 입력이 있으면 방향 갱신, 없으면 이전 방향 유지
+        if (inputDir.sqrMagnitude > 0.001f)
         {
-            // 2D에서 각도 계산 (atan2 사용)
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            
-            // Z축 회전 적용 (스프라이트가 위쪽을 향한다고 가정하여 -90도 보정)
+            _lastLookDir = inputDir;
+        }
+
+        // 항상 _lastLookDir 기준으로 회전 유지
+        if (_lastLookDir.sqrMagnitude > 0.001f)
+        {
+            float angle = Mathf.Atan2(_lastLookDir.y, _lastLookDir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f);
         }
     }
