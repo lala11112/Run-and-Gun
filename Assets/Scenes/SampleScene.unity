@@ -3338,7 +3338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4323095935267216331, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
       propertyPath: bulletsPerRing
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4323095935267216331, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
       propertyPath: detectionRange
@@ -3605,7 +3605,7 @@ MonoBehaviour:
   firePoint: {fileID: 1985501628}
   projectilePrefab: {fileID: 700885038795948565, guid: 4944961d42362834481671d99028f35a, type: 3}
   fireRate: 2
-  dashSpeed: 80
+  dashSpeed: 120
   dashDuration: 0.2
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!58 &1985501630
@@ -3906,7 +3906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4323095935267216331, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
       propertyPath: bulletsPerRing
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4323095935267216331, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
       propertyPath: detectionRange
