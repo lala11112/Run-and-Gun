@@ -52,6 +52,10 @@ public class QProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.TryGetComponent(out QTrailZone _))
+        {
+            return; // Q 장판과는 무시
+        }
         // EnemyProjectile 또는 EnemyBullet 태그 제거
         if (other.CompareTag("EnemyBullet"))
         {

@@ -47,11 +47,10 @@ public class EnemyProjectile : MonoBehaviour
         // 동일한 적 또는 다른 투사체와 충돌 시 무시
         if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet")) return;
 
-        // 플레이어와 충돌 체크
-        if (other.TryGetComponent(out PlayerController player))
+        // 플레이어와 충돌 체크 (루트에 PlayerHealth 존재 여부)
+        if (other.TryGetComponent(out PlayerHealth ph))
         {
-            // TODO: 플레이어 체력 시스템 구현 후 데미지 적용
-            // player.TakeDamage(damage);
+            ph.TakeDamage(damage);
         }
 
         // 충돌 후 파괴

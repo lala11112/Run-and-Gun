@@ -47,6 +47,11 @@ public class PlayerSkills : MonoBehaviour
     [Tooltip("마우스에 적이 없을 때 탐색할 최대 반경")] public float qTargetSearchRadius = 20f;
     [Tooltip("이동 속도 증가 유지 시간 (초)")] public float qSpeedDuration = 3f;
 
+    [Header("Q Trail Settings")]
+    [Tooltip("Q 스킬 가속 중 생성될 트레일 프리팹")] public GameObject qTrailPrefab;
+    [Tooltip("트레일 유지 시간(초)")] public float qTrailLifetime = 1.5f;
+    [Tooltip("같은 지점 중복 생성을 방지할 최소 거리")] public float qTrailMinDistance = 0.3f;
+
     [Header("E Dash Penalty Settings")]
     [Tooltip("같은 E 스킬(대시)을 연속 사용 시 거리(속도) 감소 비율 (0~1)")]
     public float eDashPenaltyStep = 0.2f;
@@ -68,6 +73,22 @@ public class PlayerSkills : MonoBehaviour
     [Tooltip("B/A 랭크에서 적 밀쳐내기 임펄스 힘")] public float wKnockbackForce = 8f;
     [Tooltip("A 랭크 범위 배율")] public float wARankRadiusMultiplier = 1.8f;
     [Tooltip("밀쳐내기 지속 시간(초)")] public float wKnockbackDuration = 0.15f;
+
+    [Header("W Inner Range Settings")]
+    [Tooltip("내부 범위 반지름 비율(0~1)")] public float wInnerRadiusRatio = 0.5f;
+    [Tooltip("내부 범위 추가 데미지")] public int wInnerBonusDamage = 2;
+    [Tooltip("내부 범위 스턴 시간(초)")] public float wInnerStunDuration = 1f;
+    [Tooltip("내부 범위 이펙트 프리팹")] public GameObject wInnerEffectPrefab;
+
+    private Vector2 _lastTrailPos;
+    private bool _hasLastTrailPos = false;
+
+    [Header("E Orbit Settings")]
+    [Tooltip("E 대시 시 생성될 궤도 탄막 프리팹")] public GameObject eOrbitPrefab;
+    [Tooltip("궤도 반경")] public float eOrbitRadius = 1.2f;
+    [Tooltip("각속도(º/초)")] public float eOrbitAngularSpeed = 360f;
+    [Tooltip("대시 종료 후 추가 유지 시간(초)")] public float eOrbitExtraDuration = 0.3f;
+    [Tooltip("궤도 탄막 데미지")] public int eOrbitDamage = 3;
 
     private void Awake()
     {
@@ -194,6 +215,12 @@ public class PlayerSkills : MonoBehaviour
         if (_qSpeedBuffCount == 1)
         {
             _pc.moveSpeed = _baseMoveSpeed * qSpeedMultiplier;
+
+            // B 랭크 이상일 때 이동 트레일 생성 (속도 버프 기간 동안)
+            if (rank != StyleRank.C && qTrailPrefab != null)
+            {
+                StartCoroutine(Q_TrailCoroutine(qSpeedDuration));
+            }
         }
 
         yield return new WaitForSeconds(qSpeedDuration);
@@ -219,6 +246,28 @@ public class PlayerSkills : MonoBehaviour
             }
             yield return new WaitForSeconds(qFireInterval);
         }
+    }
+
+    private IEnumerator Q_TrailCoroutine(float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            Vector2 currentPos = transform.position;
+            if (!_hasLastTrailPos || Vector2.Distance(currentPos, _lastTrailPos) >= qTrailMinDistance)
+            {
+                GameObject zone = Instantiate(qTrailPrefab, currentPos, Quaternion.identity);
+                if (zone.TryGetComponent(out QTrailZone qtz))
+                {
+                    qtz.lifetime = qTrailLifetime;
+                }
+                _lastTrailPos = currentPos;
+                _hasLastTrailPos = true;
+            }
+            yield return null;
+            elapsed += Time.deltaTime;
+        }
+        _hasLastTrailPos = false;
     }
     #endregion
 
@@ -249,6 +298,9 @@ public class PlayerSkills : MonoBehaviour
             radius *= wARankRadiusMultiplier;
         }
 
+        float innerRadiusVal = radius * wInnerRadiusRatio;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
+
         for (int i = 0; i < repeats; i++)
         {
             DoSpinDamage(radius, damage, rank);
@@ -259,13 +311,21 @@ public class PlayerSkills : MonoBehaviour
 
     private void DoSpinDamage(float radius, int damage, StyleRank rank)
     {
+        float innerRadiusVal = radius * wInnerRadiusRatio;
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         bool hitEnemy = false;
         foreach (var h in hits)
         {
             if (h.TryGetComponent(out Enemy enemy))
             {
-                enemy.TakeDamage(damage);
+                int dealtDmg = damage;
+                float distToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+                if (distToEnemy <= innerRadiusVal)
+                {
+                    dealtDmg += wInnerBonusDamage;
+                    enemy.Stun(wInnerStunDuration);
+                }
+                enemy.TakeDamage(dealtDmg);
                 hitEnemy = true;
 
                 // B, A 랭크에서 밀쳐내기 구현 (폭발력)
@@ -314,7 +374,7 @@ public class PlayerSkills : MonoBehaviour
             StyleManager.Instance?.RegisterSkillHit(SkillType.W);
         }
 
-        // 범위 표시용 이펙트 생성
+        // 외부 범위 표시용 이펙트 생성
         if (wEffectPrefab != null)
         {
             GameObject fx = Instantiate(wEffectPrefab, transform.position, Quaternion.identity);
@@ -324,6 +384,15 @@ public class PlayerSkills : MonoBehaviour
             fx.transform.localScale = new Vector3(scale, scale, 1f);
 
             Destroy(fx, wEffectDuration);
+        }
+
+        // 내부 범위 이펙트
+        if (wInnerEffectPrefab != null)
+        {
+            GameObject fx2 = Instantiate(wInnerEffectPrefab, transform.position, Quaternion.identity);
+            float scale2 = innerRadiusVal * 2f;
+            fx2.transform.localScale = new Vector3(scale2, scale2, 1f);
+            Destroy(fx2, wEffectDuration);
         }
     }
 
@@ -355,8 +424,34 @@ public class PlayerSkills : MonoBehaviour
 
         Vector2 dashDir = _pc.CurrentInputDir;
         _pc.StartDash(dashDir, penaltyMultiplier);
+
+        // 궤도 탄막 생성
+        SpawnEOrbitBullets();
     }
     #endregion
+
+    private void SpawnEOrbitBullets()
+    {
+        if (eOrbitPrefab == null) return;
+
+        float totalDur = _pc.dashDuration + eOrbitExtraDuration;
+        for (int i = 0; i < 3; i++)
+        {
+            float angleDeg = i * 120f;
+            float rad = angleDeg * Mathf.Deg2Rad;
+            Vector2 offset = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * eOrbitRadius;
+            GameObject obj = Instantiate(eOrbitPrefab, (Vector2)transform.position + offset, Quaternion.identity);
+            if (obj.TryGetComponent(out DashOrbitBullet orb))
+            {
+                orb.center = transform;
+                orb.radius = eOrbitRadius;
+                orb.angularSpeedDeg = eOrbitAngularSpeed;
+                orb.damage = eOrbitDamage;
+                orb.lifetime = totalDur;
+                orb.startAngleDeg = angleDeg;
+            }
+        }
+    }
 
     #region R Skill – Giant Shot
     private void R_GiantShot()
