@@ -30,19 +30,16 @@ public class SkillManager : MonoBehaviour
 
     // 이벤트 시스템 - 다른 스크립트에서 스킬 사용/궁극기 상태를 감지할 수 있음
     public System.Action<SkillType, bool /*weakened*/> OnSkillActivated; // 스킬 사용 시 호출
-    public System.Action OnUltimateEnter; // 궁극기 진입 시 호출
-    public System.Action OnUltimateExit;  // 궁극기 종료 시 호출
 
     // 내부 관리 변수들
     private readonly Dictionary<SkillType, float> _cooldowns = new(); // 각 스킬의 남은 쿨타임
     private readonly List<(SkillType type, float time)> _skillHistory = new(); // 스킬 사용 이력
+    private Dictionary<SkillType, PlayerSkillBase> _skillBehaviours; // 실제 스킬 동작
 
-    private float _ultimateTimer; // 궁극기 남은 시간
-    
     /// <summary>
-    /// 현재 궁극기 상태인지 확인하는 프로퍼티
+    /// 궁극기 시스템 제거 — 항상 false 반환
     /// </summary>
-    public bool IsUltimateActive => _ultimateTimer > 0f;
+    public bool IsUltimateActive => false;
 
     /// <summary>
     /// 컴포넌트 초기화 및 싱글톤 설정
@@ -62,6 +59,15 @@ public class SkillManager : MonoBehaviour
         {
             _cooldowns[s.type] = 0f; // 게임 시작 시 모든 스킬 사용 가능
         }
+
+        // 스킬 Behaviour 수집
+        _skillBehaviours = new Dictionary<SkillType, PlayerSkillBase>();
+        var skillComps = FindObjectsOfType<PlayerSkillBase>();
+        foreach (var comp in skillComps)
+        {
+            if (!_skillBehaviours.ContainsKey(comp.skillType))
+                _skillBehaviours.Add(comp.skillType, comp);
+        }
     }
 
     /// <summary>
@@ -70,7 +76,6 @@ public class SkillManager : MonoBehaviour
     private void Update()
     {
         TickCooldowns(); // 쿨타임 감소 처리
-        TickUltimate();  // 궁극기 타이머 처리
         HandleInput();   // 키보드 입력 처리
     }
 
@@ -79,10 +84,10 @@ public class SkillManager : MonoBehaviour
     /// </summary>
     private void HandleInput()
     {
-        if (qAction != null && qAction.action != null && qAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.Q);
-        if (wAction != null && wAction.action != null && wAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.W);
-        if (eAction != null && eAction.action != null && eAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.E);
-        if (rAction != null && rAction.action != null && rAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.R);
+        if (qAction != null && qAction.action != null && qAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.Z);
+        if (wAction != null && wAction.action != null && wAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.X);
+        if (eAction != null && eAction.action != null && eAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.C);
+        if (rAction != null && rAction.action != null && rAction.action.WasPerformedThisFrame()) TryUseSkill(SkillType.V);
     }
 
     /// <summary>
@@ -103,17 +108,22 @@ public class SkillManager : MonoBehaviour
             weakened = true;
         }
         
-        // 실제 스킬 효과 실행
-        ActivateSkill(type, weakened);
+        // 실제 스킬 효과 실행 (Behaviour 있으면)
+        if (_skillBehaviours != null && _skillBehaviours.TryGetValue(type, out var behaviour))
+        {
+            behaviour.RequestActivate(weakened);
+        }
+        else
+        {
+            // 이벤트 백워드 호환
+            ActivateSkill(type, weakened);
+        }
         
         // 쿨타임 설정
         SetCooldown(type, weakened);
         
         // 스킬 사용 이력에 기록
         RecordSkillHistory(type);
-        
-        // 궁극기 조건 체크
-        CheckUltimateCondition();
         
         return true; // 스킬 사용 성공
     }
@@ -166,48 +176,6 @@ public class SkillManager : MonoBehaviour
         
         // 콤보 윈도우를 벗어난 오래된 기록들 제거
         _skillHistory.RemoveAll(e => Time.time - e.time > comboWindow);
-    }
-
-    /// <summary>
-    /// 궁극기 발동 조건을 체크하는 메서드
-    /// 6초 내에 4가지 다른 스킬을 모두 사용했는지 확인
-    /// </summary>
-    private void CheckUltimateCondition()
-    {
-        // 이미 궁극기 상태면 체크하지 않음
-        if (IsUltimateActive) return;
-        
-        // 최근 사용한 스킬들 중 중복을 제거하여 종류 확인
-        HashSet<SkillType> unique = new();
-        foreach (var entry in _skillHistory)
-        {
-            unique.Add(entry.type);
-        }
-        
-        // 4가지 다른 스킬을 모두 사용했으면 궁극기 발동
-        if (unique.Count == 4)
-        {
-            _ultimateTimer = ultimateDuration;
-            OnUltimateEnter?.Invoke(); // 궁극기 진입 이벤트 발생
-        }
-    }
-
-    /// <summary>
-    /// 궁극기 타이머를 감소시키고 종료 처리
-    /// </summary>
-    private void TickUltimate()
-    {
-        if (_ultimateTimer > 0f)
-        {
-            _ultimateTimer -= Time.deltaTime;
-            
-            // 궁극기 시간이 끝났으면 종료 처리
-            if (_ultimateTimer <= 0f)
-            {
-                _ultimateTimer = 0f;
-                OnUltimateExit?.Invoke(); // 궁극기 종료 이벤트 발생
-            }
-        }
     }
 
     /// <summary>

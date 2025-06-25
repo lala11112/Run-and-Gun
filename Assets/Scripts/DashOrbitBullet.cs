@@ -80,7 +80,7 @@ public class DashOrbitBullet : MonoBehaviour
                 erb.AddForce(dir.normalized * pullForce, ForceMode2D.Impulse);
             }
 
-            StyleManager.Instance?.RegisterSkillHit(SkillType.E);
+            StyleManager.Instance?.RegisterSkillHit(SkillType.C);
         }
 
         // A 랭크 투사체 반사

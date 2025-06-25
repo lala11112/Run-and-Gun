@@ -12,9 +12,17 @@ public class StyleManager : MonoBehaviour
     [Header("Score Settings")]
     [Tooltip("스킬이 유효하게 적중할 때마다 증가하는 기본 점수")] public int baseScorePerHit = 30;
 
-    [Header("Rank Thresholds")]
-    [Tooltip("B 랭크가 되기 위한 점수 임계값")] public int bThreshold = 150;
-    [Tooltip("A 랭크가 되기 위한 점수 임계값")] public int aThreshold = 300;
+    [Header("스킬별 점수 설정")]
+    [Tooltip("Z 스킬 적중 시 가산 점수")] public int zScore = 30;
+    [Tooltip("X 스킬 적중 시 가산 점수")] public int xScore = 40;
+    [Tooltip("C 스킬 적중 시 가산 점수")] public int cScore = 25;
+    [Tooltip("V 스킬 적중 시 가산 점수")] public int vScore = 35;
+
+    [Header("Rank Thresholds (수치 이상이 되면 해당 랭크)")]
+    [Tooltip("D 랭크 임계값")] public int dThreshold = 50;
+    [Tooltip("C 랭크 임계값")] public int cThreshold = 100;
+    [Tooltip("B 랭크 임계값")] public int bThreshold = 200;
+    [Tooltip("A 랭크 임계값")] public int aThreshold = 350;
 
     [Header("Decay Settings")]
     [Tooltip("행동이 없을 때 점수가 감소하기까지 대기 시간(초)")] public float decayDelay = 2f;
@@ -45,6 +53,9 @@ public class StyleManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        // 게임 시작 시 C 랭크 점수로 초기화
+        _currentScore = cThreshold;
     }
 
     private void Update()
@@ -53,7 +64,7 @@ public class StyleManager : MonoBehaviour
         {
             _decayTimer -= Time.deltaTime;
         }
-        else if (_currentScore > 0)
+        else if (_currentScore > 0 && _cachedRank >= StyleRank.B)
         {
             _currentScore = Mathf.Max(0, _currentScore - Mathf.RoundToInt(decayPerSecond * Time.deltaTime));
         }
@@ -76,7 +87,17 @@ public class StyleManager : MonoBehaviour
         }
 
         _lastSkillHit = type;
-        _currentScore += baseScorePerHit;
+        int add = baseScorePerHit;
+        add = type switch
+        {
+            SkillType.Z => zScore,
+            SkillType.X => xScore,
+            SkillType.C => cScore,
+            SkillType.V => vScore,
+            _ => baseScorePerHit
+        };
+
+        _currentScore += add;
         _decayTimer = decayDelay;
 
         CheckRankChange();
@@ -86,7 +107,8 @@ public class StyleManager : MonoBehaviour
     {
         if (score >= aThreshold) return StyleRank.A;
         if (score >= bThreshold) return StyleRank.B;
-        return StyleRank.C;
+        if (score >= cThreshold) return StyleRank.C;
+        return StyleRank.D;
     }
 
     private void CheckRankChange()
@@ -97,6 +119,18 @@ public class StyleManager : MonoBehaviour
             _cachedRank = current;
             OnRankChanged?.Invoke(current);
         }
+    }
+
+    /// <summary>
+    /// 스타일 점수를 소모합니다. 최소 0으로 클램프 후 랭크 변동 체크.
+    /// </summary>
+    /// <param name="amount">소모할 점수(양수)</param>
+    public void ConsumeScore(int amount)
+    {
+        if (amount <= 0) return;
+        _currentScore = Mathf.Max(0, _currentScore - amount);
+        _decayTimer = decayDelay; // 소모 시 디케이 타이머 초기화
+        CheckRankChange();
     }
 
     // --- Public helper methods for other systems ---
@@ -124,4 +158,4 @@ public class StyleManager : MonoBehaviour
 /// <summary>
 /// 스타일 랭크 열거형
 /// </summary>
-public enum StyleRank { C, B, A } 
+public enum StyleRank { D, C, B, A } 
