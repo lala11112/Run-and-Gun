@@ -16,3 +16,5 @@
 *.VC.db
 sysinfo.txt
 *.apk
+Logs/
+*.log
