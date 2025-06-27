@@ -149,14 +149,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseScorePerHit: 30
-  bThreshold: 250
-  aThreshold: 450
+  zScore: 30
+  xScore: 40
+  cScore: 25
+  vScore: 35
+  dThreshold: 50
+  cThreshold: 250
+  bThreshold: 500
+  aThreshold: 1500
   decayDelay: 2
   decayPerSecond: 50
   bCooldownMultiplier: 0.9
   aCooldownMultiplier: 0.7
-  bMoveSpeedMultiplier: 1.1
-  aMoveSpeedMultiplier: 1.25
+  bMoveSpeedMultiplier: 1.6
+  aMoveSpeedMultiplier: 2
 --- !u!4 &90743389
 Transform:
   m_ObjectHideFlags: 0
@@ -1812,10 +1818,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - type: 0
-    baseCooldown: 3
+    baseCooldown: 0.5
     skillPrefab: {fileID: 1372210804763385033, guid: dda2013ffd130984693cbc12d550b536, type: 3}
   - type: 1
-    baseCooldown: 2
+    baseCooldown: 0.5
     skillPrefab: {fileID: 7424926114400536075, guid: 6d6a91795ebe84f44808082b6ddc2b16, type: 3}
   - type: 2
     baseCooldown: 0.5
@@ -3424,7 +3430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 153.2479, y: 32}
+  m_AnchoredPosition: {x: 153.2479, y: 23.86705}
   m_SizeDelta: {x: 306.4958, y: 47.7341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910810972
@@ -3673,8 +3679,11 @@ GameObject:
   - component: {fileID: 1985501629}
   - component: {fileID: 1985501631}
   - component: {fileID: 1985501630}
-  - component: {fileID: 1985501632}
   - component: {fileID: 1985501633}
+  - component: {fileID: 1985501637}
+  - component: {fileID: 1985501636}
+  - component: {fileID: 1985501635}
+  - component: {fileID: 1985501634}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3764,14 +3773,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2654efec6ad4c4191416385bb25b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 40
+  moveSpeed: 25
   aimLayerMask:
     serializedVersion: 2
     m_Bits: 1024
   firePoint: {fileID: 1985501628}
   projectilePrefab: {fileID: 700885038795948565, guid: 4944961d42362834481671d99028f35a, type: 3}
   fireRate: 2
-  dashSpeed: 120
   dashDuration: 0.2
   moveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!58 &1985501630
@@ -3837,53 +3845,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1985501632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985501626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e669c9d80ea3344882923c21e4ab7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wRadius: 15
-  wDamage: 10
-  wDamageWeakened: 1
-  wUltimateRepeats: 2
-  wEffectPrefab: {fileID: 6890366280087930663, guid: 475fdec9048e0ef49a1986312df5ea19, type: 3}
-  wEffectDuration: 0.3
-  wRadiusPenaltyStep: 0.2
-  wRadiusMin: 0.5
-  qProjectilePrefab: {fileID: 3920448791100974222, guid: 19ab86accfd8d0a418521dad9a78d65e, type: 3}
-  qProjectileCount: 12
-  qFireInterval: 0.07
-  qSpeedMultiplier: 1.4
-  qTargetSearchRadius: 50
-  qSpeedDuration: 2
-  qTrailPrefab: {fileID: 6772250071546964515, guid: 69b01da02a4119c4dbe8e41fef4a0471, type: 3}
-  qTrailLifetime: 1.5
-  qTrailMinDistance: 2
-  eDashPenaltyStep: 0.2
-  eDashMinMultiplier: 0.4
-  rGiantProjectilePrefab: {fileID: 6188139445992187909, guid: e952bc900afdd9b4c9cd4080244120d6, type: 3}
-  rGiantProjectileSpeed: 35
-  rGiantProjectileDamage: 5
-  wRankedRepeats: 3
-  wKnockbackForce: 50
-  wARankRadiusMultiplier: 1.1
-  wKnockbackDuration: 0.15
-  wInnerRadiusRatio: 0.5
-  wInnerBonusDamage: 2
-  wInnerStunDuration: 1
-  wInnerEffectPrefab: {fileID: 6890366280087930663, guid: e644ec69f9446294eaa4f762819f4892, type: 3}
-  eOrbitPrefab: {fileID: 1968394711282716621, guid: 89675a82c3f1bc04ebd5f91f64b25082, type: 3}
-  eOrbitRadius: 3
-  eOrbitAngularSpeed: 360
-  eOrbitExtraDuration: 2
-  eOrbitDamage: 3
 --- !u!114 &1985501633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,6 +3861,93 @@ MonoBehaviour:
   invincibilityDuration: 0.5
   shakeDuration: 0.15
   shakeMagnitude: 0.25
+--- !u!114 &1985501634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985501626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3276374365495e409fe962ec0f708c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 3
+  giantProjectilePrefab: {fileID: 6188139445992187909, guid: e952bc900afdd9b4c9cd4080244120d6, type: 3}
+  projectileSpeed: 15
+  projectileDamage: 3
+--- !u!114 &1985501635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985501626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ec5d5ce5385544fa55d1c84ad04de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 2
+  dashPenaltyStep: 0.2
+  dashMinMultiplier: 0.4
+  orbitPrefab: {fileID: 1968394711282716621, guid: 89675a82c3f1bc04ebd5f91f64b25082, type: 3}
+  orbitRadius: 4
+  orbitAngularSpeedDeg: 500
+  orbitExtraDuration: 1
+  orbitDamage: 10
+  baseDashSpeed: 50
+--- !u!114 &1985501636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985501626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f48fd019ffbb4f4d9753c16e4f53967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 1
+  radius: 10
+  damage: 10
+  damageWeakened: 1
+  radiusPenaltyStep: 0.2
+  radiusMin: 0.5
+  rankedRepeats: 3
+  knockbackForce: 8
+  aRankRadiusMultiplier: 1.8
+  knockbackDuration: 0.15
+  innerRadiusRatio: 0.5
+  innerBonusDamage: 5
+  innerStunDuration: 2
+  outerEffectPrefab: {fileID: 6890366280087930663, guid: 475fdec9048e0ef49a1986312df5ea19, type: 3}
+  innerEffectPrefab: {fileID: 6890366280087930663, guid: e644ec69f9446294eaa4f762819f4892, type: 3}
+  effectDuration: 0.3
+--- !u!114 &1985501637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985501626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d641bbd89164174fbdaea63d2c2bb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillType: 0
+  projectilePrefab: {fileID: 3920448791100974222, guid: 19ab86accfd8d0a418521dad9a78d65e, type: 3}
+  projectileCount: 15
+  fireInterval: 0.07
+  speedMultiplier: 1.8
+  speedDuration: 3
+  targetSearchRadius: 20
+  trailPrefab: {fileID: 6772250071546964515, guid: 69b01da02a4119c4dbe8e41fef4a0471, type: 3}
+  trailLifetime: 1.5
+  trailMinDistance: 2
 --- !u!1 &2012928022
 GameObject:
   m_ObjectHideFlags: 0

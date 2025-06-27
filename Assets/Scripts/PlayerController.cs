@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 10f;
 
     [Header("Dash")]
-    [Tooltip("대시 속도 (단위/초)")]
-    public float dashSpeed = 20f;
     [Tooltip("대시 지속 시간 (초)")]
     public float dashDuration = 0.2f;
 
@@ -148,23 +146,23 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// 대시 시작. speedMultiplier 값을 통해 거리를 조절할 수 있음
+    /// 대시 시작. 절대 속도를 직접 전달하여 PlayerController는 이동만 처리하도록 단일 책임화.
     /// </summary>
-    /// <param name="speedMultiplier">dashSpeed에 곱해지는 배수</param>
-    public void StartDash(Vector2 direction, float speedMultiplier = 1f)
+    /// <param name="speed">대시 속도 (단위/초)</param>
+    public void StartDash(Vector2 direction, float speed)
     {
         if (!_isDashing)
         {
-            StartCoroutine(DashRoutine(direction, speedMultiplier));
+            StartCoroutine(DashRoutine(direction, speed));
         }
     }
 
-    private IEnumerator DashRoutine(Vector2 direction, float speedMultiplier)
+    private IEnumerator DashRoutine(Vector2 direction, float speed)
     {
         _isDashing = true;
 
         Vector2 dir = direction.sqrMagnitude > 0.01f ? direction.normalized : transform.up;
-        _rb.linearVelocity = dir * dashSpeed * speedMultiplier;
+        _rb.linearVelocity = dir * speed;
 
         // 대시 동안 충돌 무시 / 무적 처리는 이후 구현 가능
         yield return new WaitForSeconds(dashDuration);

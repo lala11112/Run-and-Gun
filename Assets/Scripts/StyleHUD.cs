@@ -34,9 +34,10 @@ public class StyleHUD : MonoBehaviour
     {
         return rank switch
         {
-            StyleRank.C => new Color(0.3f, 0.9f, 0.3f), // 연녹색
+            StyleRank.D => new Color(0.5f,0.5f,0.5f),
+            StyleRank.C => new Color(0.3f, 0.9f, 0.3f),
             StyleRank.B => Color.cyan,
-            StyleRank.A => new Color(0.9f, 0.4f, 1f), // 보라
+            StyleRank.A => new Color(0.9f, 0.4f, 1f),
             _ => Color.white,
         };
     }

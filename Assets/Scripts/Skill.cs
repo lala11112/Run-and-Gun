@@ -5,7 +5,7 @@ using UnityEngine;
 /// 스킬 타입을 정의하는 열거형
 /// Q, W, E, R 네 가지 스킬을 구분
 /// </summary>
-public enum SkillType { Q, W, E, R }
+public enum SkillType { Z, X, C, V }
 
 /// <summary>
 /// 개별 스킬의 기본 설정 데이터를 담는 직렬화 가능한 클래스

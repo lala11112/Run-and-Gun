@@ -77,7 +77,7 @@ public class QProjectile : MonoBehaviour
             {
                 enemy.Stun(0.5f);
             }
-            StyleManager.Instance?.RegisterSkillHit(SkillType.Q);
+            StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
             Destroy(gameObject);
             return;
         }
