@@ -32,6 +32,8 @@ public class EnemyShooter : MonoBehaviour
     {
         if (_player == null) return;
 
+        if (_enemy != null && _enemy.IsStunned) { if (_rb != null) _rb.linearVelocity = Vector2.zero; return; }
+
         float dist = Vector2.Distance(transform.position, _player.position);
 
         // 플레이어를 인식하지 못할 정도로 멀리 있으면 아무 것도 안 함

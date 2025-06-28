@@ -7,7 +7,7 @@ using TMPro;
 /// </summary>
 public class SkillCooldownDisplay : MonoBehaviour
 {
-    [Tooltip("표시할 스킬 타입 (Q/W/E/R)")] public SkillType skillType;
+    [Tooltip("표시할 스킬 타입 (Z/X/C/V)")] public SkillType skillType;
     [Tooltip("쿨타임을 표시할 TextMeshProUGUI")] public TextMeshProUGUI cooldownText;
     [Tooltip("쿨타임 게이지로 사용할 Slider (Fill Rect 이미지)")] public Slider cooldownSlider;
 

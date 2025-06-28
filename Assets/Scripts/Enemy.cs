@@ -19,10 +19,15 @@ public class Enemy : MonoBehaviour
     [Tooltip("스턴 시 컬러")] public Color stunColor = Color.cyan;
 
     private int _currentHealth;
+    public int CurrentHealth => _currentHealth;
+
+    public System.Action<int, int> OnHealthChanged;
+
     private Rigidbody2D _rb;
     private Transform _player;
 
     private bool _isStunned;
+    public bool IsStunned => _isStunned;
     private float _stunTimer;
     private Color _originalColor;
 
@@ -72,6 +77,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         _currentHealth -= dmg;
+        OnHealthChanged?.Invoke(_currentHealth, maxHealth);
         if (_currentHealth <= 0)
         {
             Die();

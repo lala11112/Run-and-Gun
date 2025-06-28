@@ -25,6 +25,10 @@ public class QTrailZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // 플레이어 투사체와는 상호작용하지 않음
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile"))
+            return;
+
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.TakeDamage(damage);

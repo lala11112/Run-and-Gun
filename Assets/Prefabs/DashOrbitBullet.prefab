@@ -153,7 +153,7 @@ MonoBehaviour:
   damage: 3
   lifetime: 0.6
   startAngleDeg: 0
-  sizeBMultiplier: 2
-  sizeAMultiplier: 3
+  sizeBMultiplier: 1.5
+  sizeAMultiplier: 2
   pullForce: 6
   reflectSpeed: 14

@@ -36,13 +36,14 @@ public class ZSkill : PlayerSkillBase
 
     protected override IEnumerator Activate(bool weakened)
     {
-        // 스타일 점수 소모
+        // 현재 랭크를 소비 전 상태로 저장
+        StyleRank rank = StyleManager.Instance != null ? StyleManager.Instance.CurrentRank : StyleRank.C;
+
+        // 스타일 점수 소모 (소모 후 랭크가 변해도 rank 변수는 유지)
         if (StyleManager.Instance != null)
         {
             StyleManager.Instance.ConsumeScore(styleCost);
         }
-
-        StyleRank rank = StyleManager.Instance != null ? StyleManager.Instance.CurrentRank : StyleRank.C;
 
         // 대상 선정
         List<Enemy> targets = new List<Enemy>();
@@ -115,20 +116,31 @@ public class ZSkill : PlayerSkillBase
 
     private IEnumerator TrailCoroutine(float duration)
     {
+        _hasLastTrailPos = false; // 새 트레일 시퀀스 초기화
+
+        // 첫 지점 즉시 생성
+        Vector2 startPos = transform.position;
+        SpawnTrail(startPos);
+
         float elapsed = 0f;
         while (elapsed < duration)
         {
+            elapsed += Time.deltaTime;
             Vector2 currentPos = transform.position;
-            if (!_hasLastTrailPos || Vector2.Distance(currentPos, _lastTrailPos) >= trailMinDistance)
+            if (Vector2.Distance(currentPos, _lastTrailPos) >= trailMinDistance)
             {
-                GameObject zone = Instantiate(trailPrefab, currentPos, Quaternion.identity);
-                if (zone.TryGetComponent(out QTrailZone qtz)) qtz.lifetime = trailLifetime;
-                _lastTrailPos = currentPos;
-                _hasLastTrailPos = true;
+                SpawnTrail(currentPos);
             }
             yield return null;
-            elapsed += Time.deltaTime;
         }
         _hasLastTrailPos = false;
+    }
+
+    private void SpawnTrail(Vector2 pos)
+    {
+        GameObject zone = Instantiate(trailPrefab, pos, Quaternion.identity);
+        if (zone.TryGetComponent(out QTrailZone qtz)) qtz.lifetime = trailLifetime;
+        _lastTrailPos = pos;
+        _hasLastTrailPos = true;
     }
 } 

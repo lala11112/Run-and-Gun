@@ -15,16 +15,23 @@ public class StyleHUD : MonoBehaviour
     {
         if (StyleManager.Instance == null) return;
 
-        // 점수 표시
+        StyleRank rank = StyleManager.Instance.CurrentRank;
+
+        // 점수 표시 (S 랭크일 때는 숨김)
         if (scoreText != null)
         {
-            scoreText.text = $"Score: {StyleManager.Instance.CurrentScore}";
+            if (rank == StyleRank.S)
+                scoreText.gameObject.SetActive(false);
+            else
+            {
+                scoreText.gameObject.SetActive(true);
+                scoreText.text = $"Score: {StyleManager.Instance.CurrentScore}";
+            }
         }
 
         // 랭크 표시 + 색상
         if (rankText != null)
         {
-            StyleRank rank = StyleManager.Instance.CurrentRank;
             rankText.text = $"Rank: {rank}";
             rankText.color = GetColorForRank(rank);
         }

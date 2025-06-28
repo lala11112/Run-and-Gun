@@ -29,6 +29,8 @@ public class EnemyTripleBarrage : MonoBehaviour
     {
         if (_player == null || _isFiring) return;
 
+        if (TryGetComponent(out Enemy enemyComp) && enemyComp.IsStunned) return;
+
         float dist = Vector2.Distance(transform.position, _player.position);
         if (dist <= detectionRange)
         {

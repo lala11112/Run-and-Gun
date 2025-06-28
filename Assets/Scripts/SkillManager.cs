@@ -12,7 +12,7 @@ public class SkillManager : MonoBehaviour
     public static SkillManager Instance { get; private set; }
 
     [Header("Skill Settings")]
-    [Tooltip("4개 스킬(Q,W,E,R)의 설정 데이터 리스트")]
+    [Tooltip("4개 스킬(Z,X,C,V)의 설정 데이터 리스트")]
     public List<SkillData> skills = new();
 
     [Header("Ultimate Settings")]
@@ -23,10 +23,10 @@ public class SkillManager : MonoBehaviour
     public float ultimateDuration = 8f;
 
     [Header("Input Actions")] 
-    [Tooltip("Q 스킬 발동 액션")] public InputActionReference qAction;
-    [Tooltip("W 스킬 발동 액션")] public InputActionReference wAction;
-    [Tooltip("E 스킬 발동 액션")] public InputActionReference eAction;
-    [Tooltip("R 스킬 발동 액션")] public InputActionReference rAction;
+    [Tooltip("Z 스킬 발동 액션")] public InputActionReference qAction;
+    [Tooltip("X 스킬 발동 액션")] public InputActionReference wAction;
+    [Tooltip("C 스킬 발동 액션")] public InputActionReference eAction;
+    [Tooltip("V 스킬 발동 액션")] public InputActionReference rAction;
 
     // 이벤트 시스템 - 다른 스크립트에서 스킬 사용/궁극기 상태를 감지할 수 있음
     public System.Action<SkillType, bool /*weakened*/> OnSkillActivated; // 스킬 사용 시 호출

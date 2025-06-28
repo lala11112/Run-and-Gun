@@ -183,4 +183,6 @@ public class PlayerController : MonoBehaviour
     {
         _rb.AddForce(force, ForceMode2D.Impulse);
     }
+
+    public bool IsDashing => _isDashing;
 } 

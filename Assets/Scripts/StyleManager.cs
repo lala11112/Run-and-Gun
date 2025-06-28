@@ -23,6 +23,7 @@ public class StyleManager : MonoBehaviour
     [Tooltip("C 랭크 임계값")] public int cThreshold = 100;
     [Tooltip("B 랭크 임계값")] public int bThreshold = 200;
     [Tooltip("A 랭크 임계값")] public int aThreshold = 350;
+    [Tooltip("S 랭크 임계값")] public int sThreshold = 600;
 
     [Header("Decay Settings")]
     [Tooltip("행동이 없을 때 점수가 감소하기까지 대기 시간(초)")] public float decayDelay = 2f;
@@ -33,10 +34,17 @@ public class StyleManager : MonoBehaviour
     [Tooltip("A 랭크에서 쿨타임에 곱해질 배수")] public float aCooldownMultiplier = 0.7f;
     [Tooltip("B 랭크 이동 속도 배수")] public float bMoveSpeedMultiplier = 1.1f;
     [Tooltip("A 랭크 이동 속도 배수")] public float aMoveSpeedMultiplier = 1.25f;
+    [Tooltip("S 랭크 쿨타임 배수")] public float sCooldownMultiplier = 0.5f;
+    [Tooltip("S 랭크 이동 속도 배수")] public float sMoveSpeedMultiplier = 1.4f;
+
+    [Header("S Rank Settings")]
+    [Tooltip("S 랭크 유지 시간(초)")] public float sDuration = 8f;
+    [Tooltip("S 랭크 종료 후 설정될 점수")] public int sExitScore = 400;
 
     private int _currentScore;
     private SkillType? _lastSkillHit; // 마지막으로 적중한 스킬
     private float _decayTimer;
+    private float _sTimer;
 
     public int CurrentScore => _currentScore;
     public StyleRank CurrentRank => GetRankByScore(_currentScore);
@@ -44,6 +52,8 @@ public class StyleManager : MonoBehaviour
     public System.Action<StyleRank> OnRankChanged; // 랭크 변화 이벤트
 
     private StyleRank _cachedRank = StyleRank.C;
+
+    public float SRemainingNormalized => (_cachedRank == StyleRank.S && sDuration > 0f) ? Mathf.Clamp01(_sTimer / sDuration) : 0f;
 
     private void Awake()
     {
@@ -67,6 +77,18 @@ public class StyleManager : MonoBehaviour
         else if (_currentScore > 0 && _cachedRank >= StyleRank.B)
         {
             _currentScore = Mathf.Max(0, _currentScore - Mathf.RoundToInt(decayPerSecond * Time.deltaTime));
+        }
+
+        // S 랭크 유지 시간 처리
+        if (_cachedRank == StyleRank.S)
+        {
+            _sTimer -= Time.deltaTime;
+            if (_sTimer <= 0f)
+            {
+                // 강제 점수 조정 후 랭크 재계산
+                _currentScore = sExitScore;
+                CheckRankChange();
+            }
         }
 
         CheckRankChange();
@@ -105,6 +127,7 @@ public class StyleManager : MonoBehaviour
 
     private StyleRank GetRankByScore(int score)
     {
+        if (score >= sThreshold) return StyleRank.S;
         if (score >= aThreshold) return StyleRank.A;
         if (score >= bThreshold) return StyleRank.B;
         if (score >= cThreshold) return StyleRank.C;
@@ -118,6 +141,11 @@ public class StyleManager : MonoBehaviour
         {
             _cachedRank = current;
             OnRankChanged?.Invoke(current);
+
+            if (current == StyleRank.S)
+            {
+                _sTimer = sDuration;
+            }
         }
     }
 
@@ -138,6 +166,7 @@ public class StyleManager : MonoBehaviour
     {
         return _cachedRank switch
         {
+            StyleRank.S => sCooldownMultiplier,
             StyleRank.A => aCooldownMultiplier,
             StyleRank.B => bCooldownMultiplier,
             _ => 1f,
@@ -148,6 +177,7 @@ public class StyleManager : MonoBehaviour
     {
         return _cachedRank switch
         {
+            StyleRank.S => sMoveSpeedMultiplier,
             StyleRank.A => aMoveSpeedMultiplier,
             StyleRank.B => bMoveSpeedMultiplier,
             _ => 1f,
@@ -158,4 +188,4 @@ public class StyleManager : MonoBehaviour
 /// <summary>
 /// 스타일 랭크 열거형
 /// </summary>
-public enum StyleRank { D, C, B, A } 
+public enum StyleRank { D, C, B, A, S } 

@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     private int _currentHealth;
     private float _invincibleTimer;
+    private PlayerController _pc;
 
     public int CurrentHealth => _currentHealth;
 
@@ -23,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         _currentHealth = maxHealth;
+        _pc = GetComponent<PlayerController>();
     }
 
     private void Update()
@@ -33,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (_pc != null && _pc.IsDashing) return;
         if (_invincibleTimer > 0f) return;
 
         _currentHealth -= dmg;
