@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6822239556541847786}
   - component: {fileID: 4323095935267216331}
   - component: {fileID: 7918012769589532413}
+  - component: {fileID: 6036669734778801591}
+  - component: {fileID: -6900957202829638890}
   m_Layer: 6
   m_Name: EnemyB
   m_TagString: Enemy
@@ -147,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700ed9f4bfe518d48a8ae53f2e0f04d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 100
+  detectionRange: 30
   bulletsPerRing: 5
   ringInterval: 1
   ringCount: 1
@@ -190,6 +192,41 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!195 &6036669734778801591
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 20
+  m_Acceleration: 40
+  avoidancePriority: 50
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-6900957202829638890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6d9452a78f9d04d85f630bf98eeda6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &6863605139688320171
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// 플레이어를 일정 사거리에서 추적하다가, 사거리 안에 들어오면 이동을 멈추고 플레이어를 향해 연속으로 투사체를 발사하는 적.
@@ -18,13 +19,13 @@ public class EnemyShooter : MonoBehaviour
 
     private Transform _player;
     private Enemy _enemy;
-    private Rigidbody2D _rb;
+    private NavMeshAgent _agent;
     private float _fireTimer;
 
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
-        _rb = GetComponent<Rigidbody2D>();
+        _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player")?.transform;
     }
 
@@ -32,19 +33,26 @@ public class EnemyShooter : MonoBehaviour
     {
         if (_player == null) return;
 
-        if (_enemy != null && _enemy.IsStunned) { if (_rb != null) _rb.linearVelocity = Vector2.zero; return; }
+        if (_enemy != null && _enemy.IsStunned) { if (_agent != null) _agent.isStopped = true; return; }
 
         float dist = Vector2.Distance(transform.position, _player.position);
 
         // 플레이어를 인식하지 못할 정도로 멀리 있으면 아무 것도 안 함
         if (dist > detectionRange) return;
 
-        // 사격 사거리 내에 있으면 적 이동 멈춤 후 사격
+        // 사격 사거리 내에 있으면 NavMeshAgent 정지 후 사격
         if (dist <= shootRange)
         {
-            // 이동 중이라면 멈춤
-            if (_rb != null) _rb.linearVelocity = Vector2.zero;
+            if (_agent != null) _agent.isStopped = true;
             HandleShooting();
+        }
+        else
+        {
+            if (_agent != null)
+            {
+                _agent.isStopped = false;
+                _agent.SetDestination(_player.position);
+            }
         }
     }
 

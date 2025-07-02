@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// 플레이어를 추적하면서 일정 간격으로 '탄산총' 버스트를 발사하는 적.
@@ -25,34 +26,38 @@ public class EnemySodaShooter : MonoBehaviour
 
     private Enemy _enemy;
     private Transform _player;
-    private Rigidbody2D _rb;
+    private NavMeshAgent _agent;
     private bool _isBursting;
 
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
         _player = GameObject.FindWithTag("Player")?.transform;
-        _rb = GetComponent<Rigidbody2D>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
         if (_player == null) return;
-        if (_enemy.IsStunned) { _rb.linearVelocity = Vector2.zero; return; }
+        if (_enemy.IsStunned) { if (_agent != null) _agent.isStopped = true; return; }
 
         float dist = Vector2.Distance(transform.position, _player.position);
         if (dist > detectionRange) return;
 
-        // 이동
-        if (dist > shootRange)
+        // 이동 및 사격 제어 (NavMeshAgent 사용)
+        if (_agent != null)
         {
-            Vector2 dir = (_player.position - transform.position).normalized;
-            _rb.linearVelocity = dir * moveSpeed;
-        }
-        else
-        {
-            _rb.linearVelocity = Vector2.zero;
-            if (!_isBursting) StartCoroutine(BurstRoutine());
+            if (dist > shootRange)
+            {
+                _agent.isStopped = false;
+                _agent.speed = moveSpeed;
+                _agent.SetDestination(_player.position);
+            }
+            else
+            {
+                _agent.isStopped = true;
+                if (!_isBursting) StartCoroutine(BurstRoutine());
+            }
         }
     }
 

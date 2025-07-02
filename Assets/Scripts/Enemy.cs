@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// 가장 기본적인 적 캐릭터: 플레이어를 추적하고 피해를 받으면 사망.
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
     public System.Action<int, int> OnHealthChanged;
 
     private Rigidbody2D _rb;
+    private NavMeshAgent _agent;
     private Transform _player;
 
     private bool _isStunned;
@@ -34,41 +36,25 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _agent = GetComponent<NavMeshAgent>();
+
         _player = GameObject.FindWithTag("Player")?.transform;
         _currentHealth = maxHealth;
         if (spriteRenderer != null) _originalColor = spriteRenderer.color;
+
+        // Rigidbody는 NavMeshAgent 위치 동기화를 위해 Kinematic 으로 설정하는 것을 권장
+        if (_rb != null)
+        {
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            // NavMeshAgent가 위치를 이동하지만, Collider 감지를 위해 시뮬레이션은 유지합니다.
+            _rb.simulated = true;
+        }
     }
 
     private void Update()
     {
         HandleStun();
-        HandleMovement();
-    }
-
-    /// <summary>
-    /// 플레이어를 향해 이동 (스턴 시 멈춤)
-    /// </summary>
-    private void HandleMovement()
-    {
-        if (_player == null || _isStunned) return;
-
-        Vector2 dir = (_player.position - transform.position).normalized;
-        _rb.linearVelocity = dir * moveSpeed;
-    }
-
-    /// <summary>
-    /// 스턴 타이머 처리
-    /// </summary>
-    private void HandleStun()
-    {
-        if (_isStunned)
-        {
-            _stunTimer -= Time.deltaTime;
-            if (_stunTimer <= 0f)
-            {
-                EndStun();
-            }
-        }
+        // 이동 로직은 NavMeshAgent(EnemyNavFollower)에서 처리하므로 여기서 직접 이동하지 않습니다.
     }
 
     /// <summary>
@@ -91,13 +77,26 @@ public class Enemy : MonoBehaviour
     {
         _isStunned = true;
         _stunTimer = duration;
-        _rb.linearVelocity = Vector2.zero;
+        if (_agent != null) _agent.isStopped = true;
         if (spriteRenderer != null) spriteRenderer.color = stunColor;
+    }
+
+    private void HandleStun()
+    {
+        if (_isStunned)
+        {
+            _stunTimer -= Time.deltaTime;
+            if (_stunTimer <= 0f)
+            {
+                EndStun();
+            }
+        }
     }
 
     private void EndStun()
     {
         _isStunned = false;
+        if (_agent != null) _agent.isStopped = false;
         if (spriteRenderer != null) spriteRenderer.color = _originalColor;
     }
 

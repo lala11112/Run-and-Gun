@@ -129,12 +129,16 @@ public class XSkill : PlayerSkillBase
     {
         Vector2 start = rb.position;
         float elapsed = 0f;
-        while (elapsed < dur)
+        while (elapsed < dur && rb != null)
         {
             elapsed += Time.deltaTime;
             rb.MovePosition(Vector2.Lerp(start, target, elapsed / dur));
             yield return null;
         }
-        rb.MovePosition(target);
+
+        if (rb != null)
+        {
+            rb.MovePosition(target);
+        }
     }
 } 

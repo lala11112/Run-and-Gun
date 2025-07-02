@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7918012769589532413}
   - component: {fileID: -4310778939701485564}
   - component: {fileID: 97180914055563041}
+  - component: {fileID: 7209328708316885578}
+  - component: {fileID: 5183739867659922218}
   m_Layer: 6
   m_Name: EnemyA
   m_TagString: Enemy
@@ -189,6 +191,41 @@ MonoBehaviour:
   moveSpeed: 30
   spriteRenderer: {fileID: 0}
   stunColor: {r: 0, g: 1, b: 1, a: 1}
+--- !u!195 &7209328708316885578
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 20
+  m_Acceleration: 40
+  avoidancePriority: 50
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &5183739867659922218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6d9452a78f9d04d85f630bf98eeda6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &7874384263292351639
 PrefabInstance:
   m_ObjectHideFlags: 0

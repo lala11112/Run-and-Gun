@@ -62,7 +62,7 @@ public class SkillManager : MonoBehaviour
 
         // 스킬 Behaviour 수집
         _skillBehaviours = new Dictionary<SkillType, PlayerSkillBase>();
-        var skillComps = FindObjectsOfType<PlayerSkillBase>();
+        var skillComps = Object.FindObjectsByType<PlayerSkillBase>(FindObjectsSortMode.None);
         foreach (var comp in skillComps)
         {
             if (!_skillBehaviours.ContainsKey(comp.skillType))

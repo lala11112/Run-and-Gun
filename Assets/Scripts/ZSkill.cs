@@ -25,7 +25,6 @@ public class ZSkill : PlayerSkillBase
     private int _speedBuffCount = 0;
     private float _baseMoveSpeed;
     private Vector2 _lastTrailPos;
-    private bool _hasLastTrailPos;
 
     protected override void Awake()
     {
@@ -116,7 +115,7 @@ public class ZSkill : PlayerSkillBase
 
     private IEnumerator TrailCoroutine(float duration)
     {
-        _hasLastTrailPos = false; // 새 트레일 시퀀스 초기화
+        // 새 트레일 시퀀스 초기화
 
         // 첫 지점 즉시 생성
         Vector2 startPos = transform.position;
@@ -133,7 +132,7 @@ public class ZSkill : PlayerSkillBase
             }
             yield return null;
         }
-        _hasLastTrailPos = false;
+        // 위치 기록 갱신
     }
 
     private void SpawnTrail(Vector2 pos)
@@ -141,6 +140,5 @@ public class ZSkill : PlayerSkillBase
         GameObject zone = Instantiate(trailPrefab, pos, Quaternion.identity);
         if (zone.TryGetComponent(out QTrailZone qtz)) qtz.lifetime = trailLifetime;
         _lastTrailPos = pos;
-        _hasLastTrailPos = true;
     }
 } 

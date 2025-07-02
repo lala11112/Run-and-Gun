@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4436459967063434947}
   - component: {fileID: 1244041966843448980}
   - component: {fileID: 7602166870801701168}
+  - component: {fileID: -8793276550864267037}
+  - component: {fileID: 7267083008907938659}
   m_Layer: 6
   m_Name: EnemyC
   m_TagString: Enemy
@@ -183,8 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47e891c5677c1489bfc95f889d65b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 100
-  shootRange: 10
+  detectionRange: 10
+  shootRange: 5
   moveSpeed: 30
   bubbleProjectilePrefab: {fileID: 6867986577864171439, guid: 63706e750d445bf419fa3d945111981b, type: 3}
   burstCount: 5
@@ -193,6 +195,41 @@ MonoBehaviour:
   projectileSpeed: 40
   spreadAngle: 20
   firePoint: {fileID: 5059976469593193003}
+--- !u!195 &-8793276550864267037
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396180094095165315}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 20
+  m_Acceleration: 40
+  avoidancePriority: 50
+  m_AngularSpeed: 1000
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7267083008907938659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3396180094095165315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6d9452a78f9d04d85f630bf98eeda6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &2579891424808109750
 PrefabInstance:
   m_ObjectHideFlags: 0
