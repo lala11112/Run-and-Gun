@@ -18,6 +18,9 @@ public class GiantProjectile : MonoBehaviour
     [Tooltip("적중 시 적을 끌어당기는지 여부")] public bool pullOnHit = false;
     [Tooltip("끌어당기는 힘(Impulse)")] public float pullForce = 10f;
 
+    [Header("충돌 처리")]
+    [Tooltip("거대 투사체를 파괴할 환경 레이어")] public LayerMask environmentLayers;
+
     private Vector2 _dir;
     private Rigidbody2D _rb;
 
@@ -29,6 +32,22 @@ public class GiantProjectile : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        // 레이어 설정 및 플레이어 충돌 무시
+        int projLayer = LayerMask.NameToLayer("PlayerProjectile");
+        if (projLayer != -1)
+        {
+            gameObject.layer = projLayer;
+            int playerLayer = LayerMask.NameToLayer("Player");
+            if (playerLayer != -1)
+            {
+                Physics2D.IgnoreLayerCollision(projLayer, playerLayer, true);
+            }
+
+            // 플레이어 투사체 간 충돌 무시
+            Physics2D.IgnoreLayerCollision(projLayer, projLayer, true);
+        }
+
         Destroy(gameObject, lifetime);
     }
 
@@ -52,10 +71,18 @@ public class GiantProjectile : MonoBehaviour
             return;
         }
 
-        // 벽 태그 처리: 환경에 충돌 시 즉시 파괴 (Wall/Obstacle)
-        if (other.CompareTag("Wall") || other.CompareTag("Obstacle"))
+        // 환경 레이어 충돌 시 파괴 (기본: Wall, Ground 등 설정)
+        if (((1 << other.gameObject.layer) & environmentLayers) != 0)
         {
             Destroy(gameObject);
+            return;
+        }
+
+        // 플레이어 또는 같은 투사체 레이어와의 충돌은 무시
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int projLayer = LayerMask.NameToLayer("PlayerProjectile");
+        if (other.gameObject.layer == playerLayer || other.gameObject.layer == projLayer)
+        {
             return;
         }
 
@@ -78,10 +105,6 @@ public class GiantProjectile : MonoBehaviour
             }
         }
 
-        // 기타 오브젝트에 충돌 시 파괴 (플레이어나 투사체 등은 제외)
-        if (!other.CompareTag("Enemy") && !other.CompareTag("EnemyBullet") && !other.TryGetComponent<EnemyProjectile>(out _))
-        {
-            Destroy(gameObject);
-        }
+        // 그 외 오브젝트와는 충돌해도 파괴되지 않음 (지속 진행)
     }
 } 

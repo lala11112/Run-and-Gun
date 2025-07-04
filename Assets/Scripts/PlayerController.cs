@@ -14,14 +14,6 @@ public class PlayerController : MonoBehaviour
     [Tooltip("플레이어 이동 속도 (단위/초)")]
     public float moveSpeed = 6f;
 
-    [Header("사격")]
-    [Tooltip("투사체가 발사될 위치 (플레이어의 자식 오브젝트)")]
-    public Transform firePoint;
-    [Tooltip("발사할 투사체 프리팹")]
-    public GameObject projectilePrefab;
-    [Tooltip("연사 속도 (초당 발사 횟수)")]
-    public float fireRate = 10f;
-
     [Header("대시")]
     [Tooltip("대시 지속 시간 (초)")]
     public float dashDuration = 0.2f;
@@ -30,8 +22,13 @@ public class PlayerController : MonoBehaviour
     [Tooltip("플레이어 이동(V2) 액션 (Input System)")]
     public InputActionReference moveAction;
 
+    [Header("투사체 정보")]
+    [Tooltip("투사체가 발사될 위치 (플레이어 무기 피봇 등)")]
+    public Transform firePoint;
+    [Tooltip("플레이어 기본 투사체 프리팹 (반사 등에 사용)")]
+    public GameObject projectilePrefab;
+
     // 내부 변수들
-    private float _fireTimer; // 발사 간격 계산용 타이머
     private Rigidbody2D _rb; // 2D 물리 컴포넌트
     private bool _isDashing; // 대시 중 이동 입력 무시
     private Vector2 _lastLookDir = Vector2.up; // 마지막으로 바라본 방향 (회전 유지)
@@ -55,8 +52,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        HandleMovement(); // 이동 및 회전 처리 (마우스 조준 제거)
-        HandleShooting(); // 사격 처리
+        HandleMovement(); // 이동 및 회전 처리
     }
 
     #region Movement
@@ -96,50 +92,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region Shooting
-    /// <summary>
-    /// 마우스 좌클릭 입력을 받아 연사 처리
-    /// fireRate에 따라 발사 간격을 조절
-    /// </summary>
-    private void HandleShooting()
-    {
-        // 필수 컴포넌트가 없으면 처리하지 않음
-        if (projectilePrefab == null || firePoint == null) return;
-
-        // 마우스 좌클릭 상태 확인
-        bool isFiring = Input.GetMouseButton(0);
-        
-        // 발사 타이머 업데이트
-        _fireTimer += Time.deltaTime;
-        
-        // 발사 간격 계산 (fireRate를 기준으로)
-        float timeBetweenShots = 1f / fireRate;
-
-        // 발사 조건 확인: 마우스를 누르고 있고, 발사 간격이 충분히 지났을 때
-        if (isFiring && _fireTimer >= timeBetweenShots)
-        {
-            _fireTimer = 0f; // 타이머 초기화
-            Shoot(); // 발사 실행
-        }
-    }
-
-    /// <summary>
-    /// 실제 투사체 발사를 처리하는 메서드
-    /// firePoint 위치에서 투사체를 생성하고 방향을 설정
-    /// </summary>
-    private void Shoot()
-    {
-        // 투사체 프리팹을 firePoint 위치와 회전으로 생성
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        
-        // 생성된 투사체에 Projectile 컴포넌트가 있다면 초기화
-        if (proj.TryGetComponent(out Projectile projectile))
-        {
-            // firePoint의 up 방향으로 투사체 방향 설정 (2D에서 up이 전방)
-            projectile.Init(firePoint.up);
-        }
-    }
-    #endregion
+    // 사격 기능 제거됨
 
     /// <summary>
     /// 대시 시작. 절대 속도를 직접 전달하여 PlayerController는 이동만 처리하도록 단일 책임화.

@@ -182,3 +182,6 @@ MonoBehaviour:
   stunDuration: 0.8
   pullOnHit: 0
   pullForce: 20
+  environmentLayers:
+    serializedVersion: 2
+    m_Bits: 1024

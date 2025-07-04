@@ -15,12 +15,7 @@ public class SkillManager : MonoBehaviour
     [Tooltip("4개 스킬(Z,X,C,V)의 설정 데이터 리스트")]
     public List<SkillData> skills = new();
 
-    [Header("궁극기 설정")]
-    [Tooltip("4가지 다른 스킬을 연속 사용해야 하는 시간 제한 (초)")]
-    public float comboWindow = 6f;
-    
-    [Tooltip("궁극기 상태 지속 시간 (초)")]
-    public float ultimateDuration = 8f;
+    // 궁극기 시스템 제거됨
 
     [Header("입력 액션")] 
     [Tooltip("Z 스킬 발동 액션")] public InputActionReference qAction;
@@ -33,20 +28,17 @@ public class SkillManager : MonoBehaviour
 
     // 내부 관리 변수들
     private readonly Dictionary<SkillType, float> _cooldowns = new(); // 각 스킬의 남은 쿨타임
-    private readonly List<(SkillType type, float time)> _skillHistory = new(); // 스킬 사용 이력
+    private SkillType? _lastSkillType = null; // 마지막 사용 스킬(연속 사용 패널티 판단용)
     private Dictionary<SkillType, PlayerSkillBase> _skillBehaviours; // 실제 스킬 동작
 
-    /// <summary>
-    /// 궁극기 시스템 제거 — 항상 false 반환
-    /// </summary>
-    public bool IsUltimateActive => false;
+    // 궁극기 시스템 완전 제거됨
 
     /// <summary>
-    /// 컴포넌트 초기화 및 싱글톤 설정
+    /// 컴포넌트 초기화 및 싱글톤, 스킬 데이터 초기 세팅
     /// </summary>
     private void Awake()
     {
-        // 싱글톤 패턴 구현 - 중복 인스턴스 방지
+        // 싱글톤 중복 검사
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -54,10 +46,11 @@ public class SkillManager : MonoBehaviour
         }
         Instance = this;
 
-        // 스킬별 쿨타임 딕셔너리 초기화
+        // 스킬별 쿨타임 딕셔너리 초기화 (0 = 즉시 사용 가능)
         foreach (var s in skills)
         {
-            _cooldowns[s.type] = 0f; // 게임 시작 시 모든 스킬 사용 가능
+            if (!_cooldowns.ContainsKey(s.type))
+                _cooldowns.Add(s.type, 0f);
         }
 
         // 스킬 Behaviour 수집
@@ -66,7 +59,9 @@ public class SkillManager : MonoBehaviour
         foreach (var comp in skillComps)
         {
             if (!_skillBehaviours.ContainsKey(comp.skillType))
+            {
                 _skillBehaviours.Add(comp.skillType, comp);
+            }
         }
     }
 
@@ -101,11 +96,13 @@ public class SkillManager : MonoBehaviour
         // 쿨타임 체크 - 아직 쿨타임이 남아있으면 사용 불가
         if (!_cooldowns.ContainsKey(type) || _cooldowns[type] > 0f) return false;
 
-        bool weakened = false;
-        // 연속 사용 패널티는 쿨타임에는 영향 X, 하지만 스킬 효과 약화 등 위해 플래그 유지
-        if (_skillHistory.Count > 0 && _skillHistory[_skillHistory.Count - 1].type == type)
+        // 연속 사용 패널티 판단
+        bool weakened = _lastSkillType.HasValue && _lastSkillType.Value == type;
+
+        // 같은 스킬 연속 사용 패널티: StyleManager 점수 차감
+        if (weakened && StyleManager.Instance != null)
         {
-            weakened = true;
+            StyleManager.Instance.ApplyRepeatSkillPenalty();
         }
         
         // 실제 스킬 효과 실행 (Behaviour 있으면)
@@ -122,8 +119,8 @@ public class SkillManager : MonoBehaviour
         // 쿨타임 설정
         SetCooldown(type, weakened);
         
-        // 스킬 사용 이력에 기록
-        RecordSkillHistory(type);
+        // 마지막 사용 스킬 갱신
+        _lastSkillType = type;
         
         return true; // 스킬 사용 성공
     }
@@ -170,19 +167,7 @@ public class SkillManager : MonoBehaviour
         _cooldowns[type] = cd;
     }
 
-    /// <summary>
-    /// 스킬 사용 이력을 기록하고 오래된 기록을 정리
-    /// 궁극기 조건 판단에 사용됨
-    /// </summary>
-    /// <param name="type">사용한 스킬 타입</param>
-    private void RecordSkillHistory(SkillType type)
-    {
-        // 현재 시간과 함께 스킬 사용 기록
-        _skillHistory.Add((type, Time.time));
-        
-        // 콤보 윈도우를 벗어난 오래된 기록들 제거
-        _skillHistory.RemoveAll(e => Time.time - e.time > comboWindow);
-    }
+    // 궁극기 시스템 삭제로 인한 스킬 사용 이력 기능 제거
 
     /// <summary>
     /// 모든 스킬의 쿨타임을 감소시키는 메서드

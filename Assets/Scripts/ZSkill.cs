@@ -15,6 +15,8 @@ public class ZSkill : PlayerSkillBase
     [Tooltip("속도 버프 지속 시간")] public float speedDuration = 3f;
     [Tooltip("적 탐색 최대 반경")] public float targetSearchRadius = 20f;
 
+    [Header("시야 판정 설정")] [Tooltip("시야를 차단하는 장애물 레이어 마스크")] public LayerMask obstacleLayers;
+
     [Header("트레일 설정")] [Tooltip("속도 버프 중 생성될 트레일 프리팹")] public GameObject trailPrefab;
     [Tooltip("트레일 유지 시간")] public float trailLifetime = 1.5f;
     [Tooltip("같은 위치 중복 생성을 막는 최소 거리")] public float trailMinDistance = 0.3f;
@@ -63,6 +65,8 @@ public class ZSkill : PlayerSkillBase
 
         // 대상 선정
         List<Enemy> targets = new List<Enemy>();
+        Vector2 originPos = pc.firePoint != null ? (Vector2)pc.firePoint.position : (Vector2)transform.position;
+
         if (rank == StyleRank.C)
         {
             Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
@@ -72,6 +76,9 @@ public class ZSkill : PlayerSkillBase
             {
                 if (h.TryGetComponent(out Enemy enemy))
                 {
+                    // 시야 차단 검사
+                    if (!HasLineOfSight(originPos, enemy.transform.position)) continue;
+
                     float d = Vector2.Distance(transform.position, enemy.transform.position);
                     if (d < minDist)
                     {
@@ -87,7 +94,11 @@ public class ZSkill : PlayerSkillBase
             Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
             foreach (var h in nearHits)
             {
-                if (h.TryGetComponent(out Enemy enemy)) targets.Add(enemy);
+                if (h.TryGetComponent(out Enemy enemy))
+                {
+                    if (HasLineOfSight(originPos, enemy.transform.position))
+                        targets.Add(enemy);
+                }
             }
         }
 
@@ -157,5 +168,23 @@ public class ZSkill : PlayerSkillBase
         GameObject zone = Instantiate(trailPrefab, pos, Quaternion.identity);
         if (zone.TryGetComponent(out QTrailZone qtz)) qtz.lifetime = trailLifetime;
         _lastTrailPos = pos;
+    }
+
+    /// <summary>
+    /// 플레이어(또는 발사 지점)와 대상 사이에 장애물이 있는지 검출하여 시야 여부를 판단합니다.
+    /// </summary>
+    /// <param name="origin">레이 시작점 (주로 firePoint)</param>
+    /// <param name="targetPos">대상 위치</param>
+    /// <returns>true = 시야 확보, false = 시야 차단</returns>
+    private bool HasLineOfSight(Vector2 origin, Vector2 targetPos)
+    {
+        Vector2 dir = targetPos - origin;
+        float dist = dir.magnitude;
+        if (dist <= 0.01f) return true;
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, dir.normalized, dist, obstacleLayers);
+
+        // hit.collider가 null이면 사이에 장애물이 없음 → 시야 O
+        return hit.collider == null;
     }
 } 

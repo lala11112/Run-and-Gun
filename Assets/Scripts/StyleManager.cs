@@ -12,6 +12,8 @@ public class StyleManager : MonoBehaviour
     [Header("점수 설정")]
     [Tooltip("스킬이 유효하게 적중할 때마다 증가하는 기본 점수")] public int baseScorePerHit = 30;
 
+    [Header("패널티 설정")] [Tooltip("같은 스킬을 연속 사용 시 차감될 점수")] public int repeatSkillPenalty = 20;
+
     [Header("스킬별 점수 설정")]
     [Tooltip("Z 스킬 적중 시 가산 점수")] public int zScore = 30;
     [Tooltip("X 스킬 적중 시 가산 점수")] public int xScore = 40;
@@ -100,10 +102,9 @@ public class StyleManager : MonoBehaviour
     /// <param name="type">적중한 스킬 타입</param>
     public void RegisterSkillHit(SkillType type)
     {
-        // 같은 스킬이 연속으로 적중하면 점수 증가 없음
+        // 같은 스킬이 연속으로 적중하면 점수 증가는 없음 (패널티는 SkillManager에서 처리)
         if (_lastSkillHit.HasValue && _lastSkillHit.Value == type)
         {
-            // 갱신만 하고 종료
             _decayTimer = decayDelay;
             return;
         }
@@ -158,6 +159,16 @@ public class StyleManager : MonoBehaviour
         if (amount <= 0) return;
         _currentScore = Mathf.Max(0, _currentScore - amount);
         _decayTimer = decayDelay; // 소모 시 디케이 타이머 초기화
+        CheckRankChange();
+    }
+
+    /// <summary>
+    /// 같은 스킬을 연속 사용했을 때 호출하여 점수를 차감하는 패널티 처리 메서드.
+    /// </summary>
+    public void ApplyRepeatSkillPenalty()
+    {
+        _currentScore = Mathf.Max(0, _currentScore - repeatSkillPenalty);
+        _decayTimer = decayDelay;
         CheckRankChange();
     }
 
