@@ -15,7 +15,7 @@ public class DashOrbitBullet : MonoBehaviour
     [HideInInspector] public float lifetime = 0.6f; // 유지 시간
     [HideInInspector] public float startAngleDeg;   // 초기 각도
 
-    [Header("Rank Effects")]
+    [Header("랭크 효과")]
     [Tooltip("B 랭크 크기 배수")] public float sizeBMultiplier = 1.4f;
     [Tooltip("A 랭크 크기 배수")] public float sizeAMultiplier = 1.8f;
     [Tooltip("A 랭크 적 끌어당기는 힘")] public float pullForce = 6f;

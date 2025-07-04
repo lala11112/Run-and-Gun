@@ -28,6 +28,10 @@ public class XSkill : PlayerSkillBase
     [Tooltip("내부 범위 추가 데미지")] public int innerBonusDamage = 2;
     [Tooltip("내부 범위 스턴 지속 시간")] public float innerStunDuration = 1f;
 
+    [Header("S 랭크 강화 설정")]
+    [Tooltip("S 랭크에서 반경 배수")] public float sRadiusMultiplier = 2f;
+    [Tooltip("S 랭크에서 데미지 배수")] public float sDamageMultiplier = 1.5f;
+
     [Header("이펙트 설정")]
     [Tooltip("외부 범위 이펙트 프리팹")] public GameObject outerEffectPrefab;
     [Tooltip("내부 범위 이펙트 프리팹")] public GameObject innerEffectPrefab;
@@ -49,9 +53,21 @@ public class XSkill : PlayerSkillBase
         float r = radius;
         if (rank == StyleRank.A) r *= aRankRadiusMultiplier;
 
+        // S 랭크 강화 적용
+        if (rank == StyleRank.S)
+        {
+            r *= sRadiusMultiplier;
+        }
+
+        int baseDmg = weakened ? damageWeakened : damage;
+        if (rank == StyleRank.S)
+        {
+            baseDmg = Mathf.RoundToInt(baseDmg * sDamageMultiplier);
+        }
+
         for (int i = 0; i < repeats; i++)
         {
-            DoSpin(r, weakened ? damageWeakened : damage, rank);
+            DoSpin(r, baseDmg, rank);
             yield return new WaitForSeconds(0.25f);
         }
     }

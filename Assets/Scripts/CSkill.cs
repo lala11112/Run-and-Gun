@@ -7,16 +7,21 @@ using UnityEngine;
 /// </summary>
 public class CSkill : PlayerSkillBase
 {
-    [Header("Dash Settings")] [Tooltip("연속 사용 시 대시 거리 감소 비율")] public float dashPenaltyStep = 0.2f;
+    [Header("대시 설정")] [Tooltip("연속 사용 시 대시 거리 감소 비율")] public float dashPenaltyStep = 0.2f;
     [Tooltip("대시 최소 거리 배수")] public float dashMinMultiplier = 0.4f;
 
-    [Header("Orbit Bullet Settings")] [Tooltip("대시 시 생성될 궤도 탄막 프리팹")] public GameObject orbitPrefab;
+    [Header("궤도 탄막 설정")] [Tooltip("대시 시 생성될 궤도 탄막 프리팹")] public GameObject orbitPrefab;
     [Tooltip("궤도 반경")] public float orbitRadius = 1.2f;
     [Tooltip("궤도 각속도(°/s)")] public float orbitAngularSpeedDeg = 360f;
     [Tooltip("대시 종료 후 궤도 유지 시간")] public float orbitExtraDuration = 0.3f;
     [Tooltip("궤도 탄막 데미지")] public int orbitDamage = 3;
 
-    [Header("Dash Speed")] [Tooltip("대시 기본 속도 (단위/초)")] public float baseDashSpeed = 20f;
+    [Header("S 랭크 강화 설정")]
+    [Tooltip("S 랭크 대시 속도 배수")] public float sDashSpeedMultiplier = 1.5f;
+    [Tooltip("S 랭크 궤도 반경 배수")] public float sOrbitRadiusMultiplier = 1.3f;
+    [Tooltip("S 랭크 궤도 탄막 데미지 배수")] public float sOrbitDamageMultiplier = 1.5f;
+
+    [Header("대시 속도")] [Tooltip("대시 기본 속도 (단위/초)")] public float baseDashSpeed = 20f;
 
     private float _baseMoveSpeed;
 
@@ -29,6 +34,8 @@ public class CSkill : PlayerSkillBase
 
     protected override IEnumerator Activate(bool weakened)
     {
+        StyleRank rank = StyleManager.Instance != null ? StyleManager.Instance.CurrentRank : StyleRank.C;
+
         float penaltyMultiplier = weakened ? Mathf.Max(dashMinMultiplier, 1f - dashPenaltyStep) : 1f;
 
         // 현재 이동 속도에 따른 추가 배수 (기본 속도 대비 비율)
@@ -36,14 +43,28 @@ public class CSkill : PlayerSkillBase
 
         float finalSpeed = baseDashSpeed * penaltyMultiplier * speedScale;
 
+        if (rank == StyleRank.S)
+        {
+            finalSpeed *= sDashSpeedMultiplier;
+        }
+
         Vector2 dashDir = pc.CurrentInputDir;
         pc.StartDash(dashDir, finalSpeed);
 
-        SpawnOrbitBullets();
+        // 궤도 탄막 파라미터 계산
+        float rad = orbitRadius;
+        int dmg = orbitDamage;
+        if (rank == StyleRank.S)
+        {
+            rad *= sOrbitRadiusMultiplier;
+            dmg = Mathf.RoundToInt(orbitDamage * sOrbitDamageMultiplier);
+        }
+
+        SpawnOrbitBullets(rad, dmg);
         yield break;
     }
 
-    private void SpawnOrbitBullets()
+    private void SpawnOrbitBullets(float radius, int dmg)
     {
         if (orbitPrefab == null) return;
 
@@ -51,15 +72,15 @@ public class CSkill : PlayerSkillBase
         for (int i = 0; i < 3; i++)
         {
             float angleDeg = i * 120f;
-            float rad = angleDeg * Mathf.Deg2Rad;
-            Vector2 offset = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * orbitRadius;
+            float angleRad = angleDeg * Mathf.Deg2Rad;
+            Vector2 offset = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * radius;
             GameObject obj = Instantiate(orbitPrefab, (Vector2)transform.position + offset, Quaternion.identity);
             if (obj.TryGetComponent(out DashOrbitBullet orb))
             {
                 orb.center = transform;
-                orb.radius = orbitRadius;
+                orb.radius = radius;
                 orb.angularSpeedDeg = orbitAngularSpeedDeg;
-                orb.damage = orbitDamage;
+                orb.damage = dmg;
                 orb.lifetime = totalDur;
                 orb.startAngleDeg = angleDeg;
             }

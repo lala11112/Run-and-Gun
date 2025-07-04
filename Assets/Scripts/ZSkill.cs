@@ -19,8 +19,13 @@ public class ZSkill : PlayerSkillBase
     [Tooltip("트레일 유지 시간")] public float trailLifetime = 1.5f;
     [Tooltip("같은 위치 중복 생성을 막는 최소 거리")] public float trailMinDistance = 0.3f;
 
-    [Header("Style Cost")]
+    [Header("스타일 비용 설정")]
     [Tooltip("스킬 사용 시 소비될 스타일 점수")] public int styleCost = 30;
+
+    [Header("S 랭크 강화 설정")]
+    [Tooltip("S 랭크에서 투사체 발사 횟수 배수")] public float sProjectileCountMultiplier = 2f;
+    [Tooltip("S 랭크에서 이동 속도 버프 배수")] public float sSpeedMultiplierMultiplier = 1.3f;
+    [Tooltip("S 랭크에서 투사체 간 발사 간격 배수 (0~1, 작을수록 빠름)")] public float sFireIntervalMultiplier = 0.5f;
 
     private int _speedBuffCount = 0;
     private float _baseMoveSpeed;
@@ -42,6 +47,18 @@ public class ZSkill : PlayerSkillBase
         if (StyleManager.Instance != null)
         {
             StyleManager.Instance.ConsumeScore(styleCost);
+        }
+
+        // S 랭크 강화 파라미터 계산
+        int projCount = projectileCount;
+        float fireInt = fireInterval;
+        float moveSpeedMult = speedMultiplier;
+
+        if (rank == StyleRank.S)
+        {
+            projCount = Mathf.RoundToInt(projectileCount * sProjectileCountMultiplier);
+            fireInt = fireInterval * sFireIntervalMultiplier;
+            moveSpeedMult = speedMultiplier * sSpeedMultiplierMultiplier;
         }
 
         // 대상 선정
@@ -78,7 +95,7 @@ public class ZSkill : PlayerSkillBase
         {
             foreach (var t in targets)
             {
-                StartCoroutine(FireBarrage(t));
+                StartCoroutine(FireBarrage(t, projCount, fireInt));
             }
         }
 
@@ -86,7 +103,7 @@ public class ZSkill : PlayerSkillBase
         _speedBuffCount++;
         if (_speedBuffCount == 1)
         {
-            pc.moveSpeed = _baseMoveSpeed * speedMultiplier;
+            pc.moveSpeed = _baseMoveSpeed * moveSpeedMult;
             if (rank != StyleRank.C && trailPrefab != null)
                 StartCoroutine(TrailCoroutine(speedDuration));
         }
@@ -101,15 +118,15 @@ public class ZSkill : PlayerSkillBase
         }
     }
 
-    private IEnumerator FireBarrage(Enemy target)
+    private IEnumerator FireBarrage(Enemy target, int count, float interval)
     {
-        for (int i = 0; i < projectileCount; i++)
+        for (int i = 0; i < count; i++)
         {
             if (target == null) break;
             Vector2 dir = (target.transform.position - pc.firePoint.position).normalized;
             GameObject obj = Instantiate(projectilePrefab, pc.firePoint.position, Quaternion.identity);
             if (obj.TryGetComponent(out QProjectile qp)) qp.Init(dir);
-            yield return new WaitForSeconds(fireInterval);
+            yield return new WaitForSeconds(interval);
         }
     }
 

@@ -11,18 +11,18 @@ public class SkillManager : MonoBehaviour
     // 싱글톤 패턴으로 전역 접근 허용
     public static SkillManager Instance { get; private set; }
 
-    [Header("Skill Settings")]
+    [Header("스킬 설정")]
     [Tooltip("4개 스킬(Z,X,C,V)의 설정 데이터 리스트")]
     public List<SkillData> skills = new();
 
-    [Header("Ultimate Settings")]
+    [Header("궁극기 설정")]
     [Tooltip("4가지 다른 스킬을 연속 사용해야 하는 시간 제한 (초)")]
     public float comboWindow = 6f;
     
     [Tooltip("궁극기 상태 지속 시간 (초)")]
     public float ultimateDuration = 8f;
 
-    [Header("Input Actions")] 
+    [Header("입력 액션")] 
     [Tooltip("Z 스킬 발동 액션")] public InputActionReference qAction;
     [Tooltip("X 스킬 발동 액션")] public InputActionReference wAction;
     [Tooltip("C 스킬 발동 액션")] public InputActionReference eAction;
@@ -159,6 +159,12 @@ public class SkillManager : MonoBehaviour
         if (StyleManager.Instance != null)
         {
             cd *= StyleManager.Instance.GetCooldownMultiplier();
+        }
+
+        // Z 스킬은 이동속도 버프가 끝날 때까지 재사용 불가하도록 쿨타임 최소값 보장
+        if (type == SkillType.Z && _skillBehaviours != null && _skillBehaviours.TryGetValue(type, out var beh) && beh is ZSkill zs)
+        {
+            cd = Mathf.Max(cd, zs.speedDuration);
         }
         
         _cooldowns[type] = cd;

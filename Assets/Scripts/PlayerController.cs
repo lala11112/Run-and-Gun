@@ -10,15 +10,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("이동")]
     [Tooltip("플레이어 이동 속도 (단위/초)")]
     public float moveSpeed = 6f;
 
-    [Header("Aiming")]
-    [Tooltip("마우스 레이캐스트가 충돌할 레이어마스크 (예: 지면 레이어)")]
-    public LayerMask aimLayerMask;
-
-    [Header("Shooting")]
+    [Header("사격")]
     [Tooltip("투사체가 발사될 위치 (플레이어의 자식 오브젝트)")]
     public Transform firePoint;
     [Tooltip("발사할 투사체 프리팹")]
@@ -26,11 +22,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("연사 속도 (초당 발사 횟수)")]
     public float fireRate = 10f;
 
-    [Header("Dash")]
+    [Header("대시")]
     [Tooltip("대시 지속 시간 (초)")]
     public float dashDuration = 0.2f;
 
-    [Header("Input Actions")]
+    [Header("입력 액션")]
     [Tooltip("플레이어 이동(V2) 액션 (Input System)")]
     public InputActionReference moveAction;
 

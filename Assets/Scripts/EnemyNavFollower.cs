@@ -8,9 +8,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyNavFollower : MonoBehaviour
 {
-    [Header("Target")]
+    [Header("타겟")]
     [Tooltip("추적할 대상 Transform. 비워두면 태그가 'Player' 인 오브젝트를 자동으로 찾습니다.")]
     [SerializeField] private Transform target;
+
+    [Header("추적 범위")]
+    [Tooltip("플레이어를 추적할 최대 거리(단위: 유닛). 0 이하이면 추적하지 않음.")]
+    public float followRange = 10f;
 
     private NavMeshAgent agent;
 
@@ -34,9 +38,30 @@ public class EnemyNavFollower : MonoBehaviour
     private void Update()
     {
         // 타겟이 유효하지 않으면 아무것도 하지 않음
-        if (target == null) return;
+        if (target == null)
+        {
+            if (agent != null) agent.isStopped = true;
+            return;
+        }
 
-        // 목표 지점 갱신
-        agent.SetDestination(target.position);
+        // 추적 범위가 설정되어 있고, 일정 거리 이상이면 추적 중단
+        if (followRange <= 0f)
+        {
+            if (agent != null) agent.isStopped = true;
+            return; // 추적 비활성화
+        }
+
+        float dist = Vector2.Distance(transform.position, target.position);
+        if (dist > followRange)
+        {
+            if (agent != null) agent.isStopped = true;
+            return;
+        }
+
+        if (agent != null)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(target.position);
+        }
     }
 } 

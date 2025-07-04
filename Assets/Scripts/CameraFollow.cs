@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
-    [Header("Follow Settings")]
+    [Header("추적 설정")]
     [Tooltip("따라갈 대상 오브젝트 (보통 플레이어)")]
     public Transform target;
     

@@ -9,9 +9,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Enemy))]
 public class EnemyShooter : MonoBehaviour
 {
-    [Header("Shooter Settings")]
+    [Header("슈터 설정")]
     [Tooltip("플레이어를 인식하는 거리")] public float detectionRange = 10f;
-    [Tooltip("사격을 시작하는 거리 (이 거리 이내로 들어오면 멈추고 사격)")] public float shootRange = 7f;
     [Tooltip("발사 간격(초)")] public float fireInterval = 0.4f;
     [Tooltip("발사할 투사체 프리팹 (EnemyProjectile)")] public GameObject projectilePrefab;
     [Tooltip("투사체 발사 속도, 0 이면 prefab 기본값 사용")] public float projectileSpeedOverride = 0f;
@@ -40,8 +39,9 @@ public class EnemyShooter : MonoBehaviour
         // 플레이어를 인식하지 못할 정도로 멀리 있으면 아무 것도 안 함
         if (dist > detectionRange) return;
 
-        // 사격 사거리 내에 있으면 NavMeshAgent 정지 후 사격
-        if (dist <= shootRange)
+        // 플레이어와 유지 거리 이내로 들어오면 정지 후 사격
+        float keepDist = _enemy != null ? _enemy.keepDistance : 5f;
+        if (dist <= keepDist)
         {
             if (_agent != null) _agent.isStopped = true;
             HandleShooting();

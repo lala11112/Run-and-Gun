@@ -9,12 +9,15 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
-    [Header("Stats")]
+    [Header("능력치")]
     [Tooltip("최대 체력")]
     public int maxHealth = 3;
 
     [Tooltip("이동 속도 (단위/초)")]
     public float moveSpeed = 2f;
+
+    [Header("전투")]
+    [Tooltip("플레이어와 유지할 최소 거리")] public float keepDistance = 6f;
 
     [Tooltip("스턴 시 색상 변경용 SpriteRenderer")] public SpriteRenderer spriteRenderer;
     [Tooltip("스턴 시 컬러")] public Color stunColor = Color.cyan;
@@ -42,12 +45,31 @@ public class Enemy : MonoBehaviour
         _currentHealth = maxHealth;
         if (spriteRenderer != null) _originalColor = spriteRenderer.color;
 
+        if (_agent != null)
+        {
+            _agent.speed = moveSpeed; // NavMeshAgent 속도 동기화
+            _agent.stoppingDistance = keepDistance; // 유지 거리 설정
+            _agent.updateUpAxis = false; // 2D 보정
+            _agent.updateRotation = false;
+        }
+
         // Rigidbody는 NavMeshAgent 위치 동기화를 위해 Kinematic 으로 설정하는 것을 권장
         if (_rb != null)
         {
             _rb.bodyType = RigidbodyType2D.Kinematic;
             // NavMeshAgent가 위치를 이동하지만, Collider 감지를 위해 시뮬레이션은 유지합니다.
             _rb.simulated = true;
+        }
+    }
+
+    private void OnValidate()
+    {
+        // 에디터 값 변경 시 NavMeshAgent 속도 동기화
+        if (_agent == null) _agent = GetComponent<NavMeshAgent>();
+        if (_agent != null)
+        {
+            _agent.speed = moveSpeed;
+            _agent.stoppingDistance = keepDistance;
         }
     }
 

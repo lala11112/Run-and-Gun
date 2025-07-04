@@ -9,7 +9,7 @@ public class StyleManager : MonoBehaviour
 {
     public static StyleManager Instance { get; private set; }
 
-    [Header("Score Settings")]
+    [Header("점수 설정")]
     [Tooltip("스킬이 유효하게 적중할 때마다 증가하는 기본 점수")] public int baseScorePerHit = 30;
 
     [Header("스킬별 점수 설정")]
@@ -18,18 +18,18 @@ public class StyleManager : MonoBehaviour
     [Tooltip("C 스킬 적중 시 가산 점수")] public int cScore = 25;
     [Tooltip("V 스킬 적중 시 가산 점수")] public int vScore = 35;
 
-    [Header("Rank Thresholds (수치 이상이 되면 해당 랭크)")]
+    [Header("랭크 임계값 설정")]
     [Tooltip("D 랭크 임계값")] public int dThreshold = 50;
     [Tooltip("C 랭크 임계값")] public int cThreshold = 100;
     [Tooltip("B 랭크 임계값")] public int bThreshold = 200;
     [Tooltip("A 랭크 임계값")] public int aThreshold = 350;
     [Tooltip("S 랭크 임계값")] public int sThreshold = 600;
 
-    [Header("Decay Settings")]
+    [Header("점수 감소 설정")]
     [Tooltip("행동이 없을 때 점수가 감소하기까지 대기 시간(초)")] public float decayDelay = 2f;
     [Tooltip("점수 감소 속도 (초당)")] public float decayPerSecond = 50f;
 
-    [Header("Rank Buff Settings")]
+    [Header("랭크 버프 설정")]
     [Tooltip("B 랭크에서 쿨타임에 곱해질 배수 (ex 0.9 = 10% 감소)")] public float bCooldownMultiplier = 0.9f;
     [Tooltip("A 랭크에서 쿨타임에 곱해질 배수")] public float aCooldownMultiplier = 0.7f;
     [Tooltip("B 랭크 이동 속도 배수")] public float bMoveSpeedMultiplier = 1.1f;
@@ -37,7 +37,7 @@ public class StyleManager : MonoBehaviour
     [Tooltip("S 랭크 쿨타임 배수")] public float sCooldownMultiplier = 0.5f;
     [Tooltip("S 랭크 이동 속도 배수")] public float sMoveSpeedMultiplier = 1.4f;
 
-    [Header("S Rank Settings")]
+    [Header("S 랭크 설정")]
     [Tooltip("S 랭크 유지 시간(초)")] public float sDuration = 8f;
     [Tooltip("S 랭크 종료 후 설정될 점수")] public int sExitScore = 400;
 

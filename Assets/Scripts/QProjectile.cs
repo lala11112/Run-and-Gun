@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class QProjectile : MonoBehaviour
 {
-    [Header("Projectile Settings")]
+    [Header("투사체 설정")]
     [Tooltip("투사체 속도 (단위/초)")]
     public float speed = 18f;
     [Tooltip("투사체 피해량")]

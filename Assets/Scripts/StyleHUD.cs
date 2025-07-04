@@ -7,7 +7,7 @@ using TMPro;
 /// </summary>
 public class StyleHUD : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("UI 참조")]
     [Tooltip("점수를 표시할 TextMeshProUGUI")] public TextMeshProUGUI scoreText;
     [Tooltip("랭크를 표시할 TextMeshProUGUI")] public TextMeshProUGUI rankText;
 

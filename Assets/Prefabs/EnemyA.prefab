@@ -169,8 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430274404081d1646a5a047dd804c11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 20
-  shootRange: 15
+  detectionRange: 15
   fireInterval: 0.4
   projectilePrefab: {fileID: 6867986577864171439, guid: 63706e750d445bf419fa3d945111981b, type: 3}
   projectileSpeedOverride: 20
@@ -188,7 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
-  moveSpeed: 30
+  moveSpeed: 40
+  keepDistance: 6
   spriteRenderer: {fileID: 0}
   stunColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!195 &7209328708316885578
@@ -201,11 +201,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 40
   m_Acceleration: 40
   avoidancePriority: 50
-  m_AngularSpeed: 1000
-  m_StoppingDistance: 1
+  m_AngularSpeed: 5000
+  m_StoppingDistance: 6
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  followRange: 60
 --- !u!1001 &7874384263292351639
 PrefabInstance:
   m_ObjectHideFlags: 0

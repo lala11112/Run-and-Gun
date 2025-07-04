@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("플레이어 최대 체력")] public int maxHealth = 5;
     [Tooltip("피격 후 무적 시간(초)")] public float invincibilityDuration = 0.5f;
 
-    [Header("Camera Shake on Hit")] public float shakeDuration = 0.15f; public float shakeMagnitude = 0.25f;
+    [Header("피격 시 카메라 흔들림")] public float shakeDuration = 0.15f; public float shakeMagnitude = 0.25f;
 
     private int _currentHealth;
     private float _invincibleTimer;

@@ -10,19 +10,17 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Enemy))]
 public class EnemySodaShooter : MonoBehaviour
 {
-    [Header("Detection & Movement")]
+    [Header("감지 및 이동")]
     [Tooltip("플레이어 인식 거리")] public float detectionRange = 10f;
-    [Tooltip("사격 사거리")] public float shootRange = 8f;
-    [Tooltip("이동 속도")] public float moveSpeed = 2f;
-
-    [Header("Soda Gun Settings")]
-    [Tooltip("발사할 투사체 프리팹 (EnemyProjectile)")] public GameObject bubbleProjectilePrefab;
     [Tooltip("버스트당 발사할 총알 개수")] public int burstCount = 5;
     [Tooltip("버스트 간격(초)")] public float burstInterval = 1.2f;
     [Tooltip("버스트 내부 총알 간 딜레이(초)")] public float intraDelay = 0.08f;
     [Tooltip("총알 속도")] public float projectileSpeed = 7f;
     [Tooltip("버스트 퍼짐 각도(°)")] public float spreadAngle = 20f;
     [Tooltip("발사 위치")] public Transform firePoint;
+
+    [Header("소다건 설정")]
+    [Tooltip("발사할 투사체 프리팹 (EnemyProjectile)")] public GameObject bubbleProjectilePrefab;
 
     private Enemy _enemy;
     private Transform _player;
@@ -47,10 +45,11 @@ public class EnemySodaShooter : MonoBehaviour
         // 이동 및 사격 제어 (NavMeshAgent 사용)
         if (_agent != null)
         {
-            if (dist > shootRange)
+            float keepDist = _enemy != null ? _enemy.keepDistance : 5f;
+            if (dist > keepDist)
             {
                 _agent.isStopped = false;
-                _agent.speed = moveSpeed;
+                _agent.speed = _enemy != null ? _enemy.moveSpeed : 2f;
                 _agent.SetDestination(_player.position);
             }
             else

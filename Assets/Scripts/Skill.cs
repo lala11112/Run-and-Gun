@@ -14,14 +14,14 @@ public enum SkillType { Z, X, C, V }
 [Serializable]
 public class SkillData
 {
-    [Header("Basic Settings")]
+    [Header("기본 설정")]
     [Tooltip("스킬 타입 (Z, X, C, V 중 하나)")]
     public SkillType type;
     
     [Tooltip("스킬의 기본 쿨타임 (초) - 연속 사용 시 패널티로 증가함")]
     public float baseCooldown = 3f;
     
-    [Header("Visual Effects")]
+    [Header("시각 효과")]
     [Tooltip("스킬 사용 시 생성할 프리팹 또는 이펙트 (선택사항)")]
     public GameObject skillPrefab;
 } 

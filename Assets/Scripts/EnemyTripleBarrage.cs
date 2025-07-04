@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyTripleBarrage : MonoBehaviour
 {
-    [Header("Barrage Settings")]
+    [Header("탄막 설정")]
     [Tooltip("플레이어 인식 거리")] public float detectionRange = 12f;
     [Tooltip("원형 탄막 1회당 발사할 총알 개수")] public int bulletsPerRing = 16;
     [Tooltip("탄막(원) 간 딜레이(초)")] public float ringInterval = 0.35f;
