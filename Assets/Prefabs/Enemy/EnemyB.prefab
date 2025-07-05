@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   moveSpeed: 30
-  keepDistance: 40
+  keepDistance: 20
   spriteRenderer: {fileID: 0}
   stunColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &4323095935267216331
@@ -207,7 +207,7 @@ NavMeshAgent:
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 100000
-  m_StoppingDistance: 40
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1

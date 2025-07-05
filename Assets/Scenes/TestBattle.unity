@@ -163,12 +163,10 @@ MonoBehaviour:
   decayPerSecond: 50
   bCooldownMultiplier: 0.9
   aCooldownMultiplier: 0.7
-  dCooldownMultiplier: 1.2
-  bMoveSpeedMultiplier: 1.1
-  aMoveSpeedMultiplier: 1.15
-  dMoveSpeedMultiplier: 0.8
+  bMoveSpeedMultiplier: 1.2
+  aMoveSpeedMultiplier: 1.4
   sCooldownMultiplier: 0.5
-  sMoveSpeedMultiplier: 1.3
+  sMoveSpeedMultiplier: 1.5
   sDuration: 8
   sExitScore: 300
 --- !u!4 &90743389
@@ -1544,10 +1542,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - type: 0
-    baseCooldown: 0.5
+    baseCooldown: 2
     skillPrefab: {fileID: 1372210804763385033, guid: dda2013ffd130984693cbc12d550b536, type: 3}
   - type: 1
-    baseCooldown: 0.5
+    baseCooldown: 1
     skillPrefab: {fileID: 7424926114400536075, guid: 6d6a91795ebe84f44808082b6ddc2b16, type: 3}
   - type: 2
     baseCooldown: 0.5
@@ -1826,6 +1824,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1380784096293302279, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449770560040434589, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: innerBonusDamage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207103468129514028, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: speedMultiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205651961669357033, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: projectileSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5205651961669357033, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: projectileDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6830059725556356813, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1869,6 +1887,14 @@ PrefabInstance:
     - target: {fileID: 7384793992021309107, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040513611936883275, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: orbitDamage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040513611936883275, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: baseDashSpeed
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
