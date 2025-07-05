@@ -16,7 +16,7 @@ public class SkillManager : MonoBehaviour
     public List<SkillData> skills = new();
 
     // 궁극기 시스템 제거됨
-
+    
     [Header("입력 액션")] 
     [Tooltip("Z 스킬 발동 액션")] public InputActionReference qAction;
     [Tooltip("X 스킬 발동 액션")] public InputActionReference wAction;

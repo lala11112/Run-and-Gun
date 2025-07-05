@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using PixelCrushers.DialogueSystem; // Dialogue System 네임스페이스 추가
 
 /// <summary>
 /// 테스트 전투를 관리하는 매니저.
@@ -30,6 +31,12 @@ public class TestBattleManager : MonoBehaviour
     [Tooltip("씬에 존재하는 플레이어를 참조하거나, 비워두면 자동으로 Player 태그를 검색")] public Transform playerTransform;
 
     [Tooltip("라운드가 진행될 때마다 적 수 증가량")] public int spawnIncrementPerRound = 0;
+
+    [Header("컷씬 대사 설정")]
+    [Tooltip("3라운드 시작 시 자동 재생할 대화 이름 (Dialogue System)")] public string round3Conversation = "Round3_Cutscene";
+
+    // 3라운드 대사가 이미 재생되었는지 확인하는 플래그
+    private bool _round3DialoguePlayed = false;
 
     [Header("디버그")]
     [Tooltip("현재 라운드 수 (읽기 전용)")]
@@ -80,6 +87,19 @@ public class TestBattleManager : MonoBehaviour
     private IEnumerator SetupRound()
     {
         currentRound++;
+
+        // 3라운드 컷씬 대사 재생
+        if (currentRound == 3 && !_round3DialoguePlayed && !string.IsNullOrEmpty(round3Conversation))
+        {
+            _round3DialoguePlayed = true;
+            // Dialogue System에 대화 시작 요청
+            DialogueManager.StartConversation(round3Conversation);
+            // 대사가 끝날 때까지 코루틴을 일시 대기 (전투 스폰 전)
+            while (DialogueManager.IsConversationActive)
+            {
+                yield return null;
+            }
+        }
 
         // 1. 맵 생성 및 플레이어 위치 초기화
         SpawnRandomMap();
