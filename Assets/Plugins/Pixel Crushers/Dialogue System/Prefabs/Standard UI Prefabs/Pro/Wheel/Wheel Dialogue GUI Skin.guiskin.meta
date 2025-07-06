@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: dbe874f440d0cf84cb5c28fd70e8123c
+guid: 2f4807e765879134a84f3cec7cc3127a
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Pro/Wheel/Wheel
-    Dialogue GUI Skin.guiskin
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

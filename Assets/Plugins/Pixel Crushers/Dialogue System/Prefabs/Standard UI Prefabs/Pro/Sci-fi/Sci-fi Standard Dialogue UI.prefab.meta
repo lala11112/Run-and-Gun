@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: d4435d68dd2fab14e933d23e59ac343f
+guid: 66e7b28df4dd4be4d85c5abe592e4e3c
 timeCreated: 1538429713
 licenseType: Store
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Pro/Sci-fi/Sci-fi
-    Standard Dialogue UI.prefab
-  uploadId: 766604

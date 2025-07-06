@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-guid: 23dc4f9bfdcb0984995e1a58909e85d2
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/UnityUI/Unity
-    - Check Mark.psd
-  uploadId: 766604
+guid: 15ea0f28447ec5a43b17bc7d73a8c142
 TextureImporter:
   internalIDToNameTable:
   - first:

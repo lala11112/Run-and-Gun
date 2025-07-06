@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bb55ab0249bcc8248aaaed1d16936353
+guid: 67cef9356f4a7f5448c451d74f31d8d2
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,10 +8,3 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 13804, guid: 0000000000000000e000000000000000, type: 0}
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/UIToolkit UI Prefabs/Basic/UIToolkitDialogueUIQTETemplate.uxml
-  uploadId: 766604

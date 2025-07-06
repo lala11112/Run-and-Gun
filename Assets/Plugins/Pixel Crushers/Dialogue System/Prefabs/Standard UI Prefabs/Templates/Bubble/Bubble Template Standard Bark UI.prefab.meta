@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: d5a18ab9ec93e0d4284d6fbae4f557e0
+guid: 607ad09c7d9b42e4fa5b9d12b03141d6
 timeCreated: 1526216174
 licenseType: Store
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Templates/Bubble/Bubble
-    Template Standard Bark UI.prefab
-  uploadId: 766604

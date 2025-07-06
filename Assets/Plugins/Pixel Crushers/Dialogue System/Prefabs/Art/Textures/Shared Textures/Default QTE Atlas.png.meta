@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55cedb0f46289194693d8f409d78e273
+guid: d6af862cfedecbc49a4b96bb4eb5d9c0
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,11 +43,3 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
-    Textures/Default QTE Atlas.png
-  uploadId: 766604

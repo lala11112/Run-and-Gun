@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fcf11074f7153284895a894ca44cc01a
+guid: 4e2ea1dc526ab8545add8bcd18c0362c
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,11 +43,3 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
-    Textures/Transparent Black.png
-  uploadId: 766604

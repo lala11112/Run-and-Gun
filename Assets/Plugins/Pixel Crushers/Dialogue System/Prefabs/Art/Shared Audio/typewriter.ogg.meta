@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f422aad134ac5542a4860dba28110f4
+guid: 817982ed52d67684bb3a0f896f56e2e7
 AudioImporter:
   serializedVersion: 4
   format: 0
@@ -10,10 +10,3 @@ AudioImporter:
   useHardware: 0
   loopable: 0
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Shared Audio/typewriter.ogg
-  uploadId: 766604

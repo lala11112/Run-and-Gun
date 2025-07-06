@@ -1,18 +1,8 @@
 fileFormatVersion: 2
-guid: e70e2505690b9d24fb7aa1fd037cea7e
-timeCreated: 1606703211
-licenseType: Store
+guid: 738e6406d8afc5d45b7b58013aeefaba
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Portrait
-    Animator/Focus Color.anim
-  uploadId: 766604

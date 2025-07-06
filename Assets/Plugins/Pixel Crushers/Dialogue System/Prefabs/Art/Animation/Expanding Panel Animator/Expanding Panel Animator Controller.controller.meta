@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: 8dd4b9820c16524499e82755e3b6bd56
-timeCreated: 1525446802
-licenseType: Store
+guid: 75d5cfd2dbd2e66489604016a89c600d
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Expanding
-    Panel Animator/Expanding Panel Animator Controller.controller
-  uploadId: 766604

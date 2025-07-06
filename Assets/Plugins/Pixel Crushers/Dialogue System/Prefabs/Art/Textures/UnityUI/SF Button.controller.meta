@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: c454080d636f840038dc8f37941751b3
+guid: c1aff6825fdbce64ea0ba0a3af027ae8
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/UnityUI/SF
-    Button.controller
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: c0c96af2230a56b45b77a95543e6ac50
+guid: f4c3db7d864c2244ebfcacf56dd10f4d
 timeCreated: 1525299410
 licenseType: Store
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Templates/WRPG/WRPG
-    Template Standard Dialogue UI.prefab
-  uploadId: 766604

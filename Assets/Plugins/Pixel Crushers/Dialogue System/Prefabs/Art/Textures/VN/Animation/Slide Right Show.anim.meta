@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: 53783d90e1ea9c44da6eea1c7fc32d33
+guid: 8cb2604e45851774c84aa05986b5ae73
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/VN/Animation/Slide
-    Right Show.anim
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

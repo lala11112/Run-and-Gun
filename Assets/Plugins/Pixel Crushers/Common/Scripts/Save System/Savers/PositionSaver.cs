@@ -1,6 +1,4 @@
-// Recompile at 2025-07-05 오후 8:14:51
-
-// Copyright (c) Pixel Crushers. All rights reserved.
+﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d90a2d7a4a84a15439fb9d36f7d41a43
+guid: 8e4c40fd015dec440b41abfdd76e1231
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,11 +43,3 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
-    Textures/Blank.png
-  uploadId: 766604

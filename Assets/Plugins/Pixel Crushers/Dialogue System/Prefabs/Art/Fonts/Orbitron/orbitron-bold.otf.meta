@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9eed32ec40f52745a3d3e3f770f5881
+guid: 94a0ee62b49f1ed46a61c2e871d60280
 TrueTypeFontImporter:
   serializedVersion: 2
   fontSize: 16
@@ -12,10 +12,3 @@ TrueTypeFontImporter:
   customCharacters: 
   fontRenderingMode: 0
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Fonts/Orbitron/orbitron-bold.otf
-  uploadId: 766604

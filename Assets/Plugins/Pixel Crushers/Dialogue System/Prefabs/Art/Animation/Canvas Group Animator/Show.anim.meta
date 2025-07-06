@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: 26b9ff14f098f4247a4857154f0a8264
+guid: 8bd10975f1f4bf54b983f0346a0c3cac
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Canvas
-    Group Animator/Show.anim
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

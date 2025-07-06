@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-guid: f2dbda1dd33cdf84a8bcc851190a1ab5
+guid: fcb6ffd8b9dd2c44d953107fc05d563e
 timeCreated: 1558984627
 licenseType: Store
 TextScriptImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Circle/_README.txt
-  uploadId: 766604

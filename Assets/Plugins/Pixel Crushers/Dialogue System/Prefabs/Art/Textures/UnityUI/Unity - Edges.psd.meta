@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-guid: 4de85c90bbe61ed4bb3d67de9ab26f64
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/UnityUI/Unity
-    - Edges.psd
-  uploadId: 766604
+guid: 3639c9fb5b0a835489b5a0fbe8e787f0
 TextureImporter:
   internalIDToNameTable:
   - first:

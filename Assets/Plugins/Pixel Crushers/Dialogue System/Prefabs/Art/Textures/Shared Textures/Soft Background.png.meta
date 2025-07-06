@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: deb1615199c34134fb7cf05b648c8e5f
+guid: 2e88476920a88b84da3264aa2569d8ff
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,11 +43,3 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
-    Textures/Soft Background.png
-  uploadId: 766604

@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: 8609510edf156cb41a7ad166e9310936
+guid: 641b436a06703d947a75274c8d812d01
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Portrait
-    Animator/Portrait Animator Controller.controller
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

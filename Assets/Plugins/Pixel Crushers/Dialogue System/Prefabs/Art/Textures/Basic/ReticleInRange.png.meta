@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5677bcbb7bf458a4e8ef5e6201c01738
+guid: eacb51239db7dd042bf26622c994a6e2
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,10 +43,3 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Basic/ReticleInRange.png
-  uploadId: 766604

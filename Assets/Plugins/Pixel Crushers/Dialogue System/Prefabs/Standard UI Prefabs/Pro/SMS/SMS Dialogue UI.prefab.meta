@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 110a7148858b6f74c87ceac031c8eaba
+guid: 33bfc0292cf7f5d4b94bf94845e8fefa
 timeCreated: 1602442203
 licenseType: Store
 NativeFormatImporter:
@@ -8,11 +8,3 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Pro/SMS/SMS
-    Dialogue UI.prefab
-  uploadId: 766604

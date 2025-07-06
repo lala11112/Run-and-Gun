@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 80a0137e3d8f78f41bfdb2aca0cfac44
+guid: cada51fe2c91e6445a80b1a2da6b8f92
 TrueTypeFontImporter:
   serializedVersion: 2
   fontSize: 16
@@ -12,10 +12,3 @@ TrueTypeFontImporter:
   customCharacters: 
   fontRenderingMode: 0
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Fonts/BKANT.TTF
-  uploadId: 766604

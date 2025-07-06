@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: 7657962a860b89047801d76052645133
-timeCreated: 1543457945
-licenseType: Store
+guid: ec3a7001d80d014478de0c566443d755
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Canvas
-    Group Animator/SceneFaderCanvas Animator Controller.controller
-  uploadId: 766604

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b85118f82c276504f859890a517fa02c
+guid: 3f0983e5e7ecc5549ae65b1864303807
 timeCreated: 1604883034
 licenseType: Store
 NativeFormatImporter:
@@ -8,11 +8,3 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard UI Prefabs/Pro/Scrolling/Scrolling
-    Dialogue UI.prefab
-  uploadId: 766604

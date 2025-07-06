@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-guid: 4e723352b8ebe9540a29335860b85a4a
+guid: dd23377d4ee67d14bab944d5b1a691d6
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Canvas
-    Group Animator/Hide.anim
-  uploadId: 766604
+  assetBundleName: 
+  assetBundleVariant: 

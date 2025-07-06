@@ -667,12 +667,13 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: TMP_PRESENT;USE_NEW_INPUT
+    Android: TMP_PRESENT;USE_NEW_INPUT;USE_YARN
     Standalone: TMP_PRESENT;USE_NEW_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
+    Standalone: 0
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}

@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: c15ba1dcb835b28498cc6239dc893a2e
-AssetOrigin:
-  serializedVersion: 1
-  productId: 11672
-  packageName: Dialogue System for Unity
-  packageVersion: 2.2.55
-  assetPath: Assets/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Mobile/Button_3x1.png
-  uploadId: 766604
+guid: e1bf914d1a5f3894489c31b8bfe12555
 TextureImporter:
   internalIDToNameTable:
   - first:
