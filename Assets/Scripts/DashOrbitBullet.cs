@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// E 대시 중·직후 플레이어 주변을 공전하는 탄막.
@@ -14,6 +15,7 @@ public class DashOrbitBullet : MonoBehaviour
     [HideInInspector] public int damage = 3;        // 기본 데미지
     [HideInInspector] public float lifetime = 0.6f; // 유지 시간
     [HideInInspector] public float startAngleDeg;   // 초기 각도
+    [HideInInspector] public CSkill parentSkill;     // Shake 제어용
 
     [Header("랭크 효과")]
     [Tooltip("B 랭크 크기 배수")] public float sizeBMultiplier = 1.4f;
@@ -73,6 +75,13 @@ public class DashOrbitBullet : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.TakeDamage(damage);
+
+            // 카메라 흔들림 (스킬당 최초 1회)
+            if (CameraShake.Instance != null && parentSkill != null && !parentSkill.BulletShakePlayed)
+            {
+                CameraShake.Instance.Shake(parentSkill.BulletShakeDuration, parentSkill.BulletShakeMagnitude);
+                parentSkill.MarkBulletShake();
+            }
 
             if (_rank == StyleRank.A && enemy.TryGetComponent(out Rigidbody2D erb))
             {

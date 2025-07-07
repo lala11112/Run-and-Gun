@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DarkTonic.MasterAudio;
 
 /// <summary>
 /// C 스킬 – 대시 + 궤도 탄막 (기존 E 스킬).
@@ -23,6 +24,15 @@ public class CSkill : PlayerSkillBase
 
     [Header("대시 속도")] [Tooltip("대시 기본 속도 (단위/초)")] public float baseDashSpeed = 20f;
 
+    [Header("카메라 흔들림 설정")] 
+    [Tooltip("대시 시작 시 카메라 흔들림 지속 시간")] public float dashShakeDuration = 0.12f;
+    [Tooltip("대시 시작 시 카메라 흔들림 강도")] public float dashShakeMagnitude = 0.18f;
+    [Tooltip("궤도 탄막 적중 시 카메라 흔들림 지속 시간")] public float bulletShakeDuration = 0.08f;
+    [Tooltip("궤도 탄막 적중 시 흔들림 강도")] public float bulletShakeMagnitude = 0.12f;
+
+    // 내부 상태: 이번 스킬 사용 중 탄막 shake 이미 플레이됐는지
+    internal bool BulletShakePlayed { get; private set; }
+    
     private float _baseMoveSpeed;
 
     protected override void Awake()
@@ -51,6 +61,13 @@ public class CSkill : PlayerSkillBase
         Vector2 dashDir = pc.CurrentInputDir;
         pc.StartDash(dashDir, finalSpeed);
 
+        // 대시 사운드 & 카메라 흔들림
+        MasterAudio.PlaySound3DAtTransform("Dash", transform);
+        if (CameraShake.Instance != null)
+        {
+            CameraShake.Instance.Shake(dashShakeDuration, dashShakeMagnitude);
+        }
+
         // 궤도 탄막 파라미터 계산
         float rad = orbitRadius;
         int dmg = orbitDamage;
@@ -60,6 +77,7 @@ public class CSkill : PlayerSkillBase
             dmg = Mathf.RoundToInt(orbitDamage * sOrbitDamageMultiplier);
         }
 
+        BulletShakePlayed = false; // 이번 스킬에서는 아직 흔들림 미발생
         SpawnOrbitBullets(rad, dmg);
         yield break;
     }
@@ -83,7 +101,15 @@ public class CSkill : PlayerSkillBase
                 orb.damage = dmg;
                 orb.lifetime = totalDur;
                 orb.startAngleDeg = angleDeg;
+                orb.parentSkill = this; // 한 번만 흔들리도록 레퍼런스 전달
             }
         }
     }
+
+    // 외부에서 첫 흔들림 시 호출
+    internal void MarkBulletShake() => BulletShakePlayed = true;
+
+    // BulletShakeDuration, BulletShakeMagnitude 프로퍼티는 그대로
+    public float BulletShakeDuration => bulletShakeDuration;
+    public float BulletShakeMagnitude => bulletShakeMagnitude;
 } 

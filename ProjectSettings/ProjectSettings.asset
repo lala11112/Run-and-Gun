@@ -667,8 +667,8 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: TMP_PRESENT;USE_NEW_INPUT;USE_YARN
-    Standalone: TMP_PRESENT;USE_NEW_INPUT
+    Android: TMP_PRESENT;USE_NEW_INPUT;PHY2D_ENABLED
+    Standalone: TMP_PRESENT;USE_NEW_INPUT;PHY2D_ENABLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTonic.MasterAudio;
 
 /// <summary>
 /// X 스킬 – 주변 스핀/폭발 공격 (기존 W 스킬)
@@ -36,6 +37,12 @@ public class XSkill : PlayerSkillBase
     [Tooltip("외부 범위 이펙트 프리팹")] public GameObject outerEffectPrefab;
     [Tooltip("내부 범위 이펙트 프리팹")] public GameObject innerEffectPrefab;
     [Tooltip("범위 이펙트 지속 시간")] public float effectDuration = 0.3f;
+
+    [Header("카메라 흔들림 설정")]
+    [Tooltip("바깥쪽(Outer) 적중 시 카메라 흔들림 지속 시간")] public float outerShakeDuration = 0.12f;
+    [Tooltip("바깥쪽(Outer) 적중 시 흔들림 강도")] public float outerShakeMagnitude = 0.15f;
+    [Tooltip("내부(Inner) 적중 시 카메라 흔들림 지속 시간")] public float innerShakeDuration = 0.17f;
+    [Tooltip("내부(Inner) 적중 시 흔들림 강도")] public float innerShakeMagnitude = 0.28f;
 
     protected override void Awake()
     {
@@ -75,6 +82,8 @@ public class XSkill : PlayerSkillBase
     private void DoSpin(float rad, int dmg, StyleRank rank)
     {
         float innerRad = rad * innerRadiusRatio;
+        bool innerHit = false; // Inner 범위 타격 여부
+        bool outerHit = false; // Outer 범위 타격 여부
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, rad);
         foreach (var h in hits)
         {
@@ -86,6 +95,11 @@ public class XSkill : PlayerSkillBase
                 {
                     dealt += innerBonusDamage;
                     enemy.Stun(innerStunDuration);
+                    innerHit = true; // inner 범위 타격 기록
+                }
+                else
+                {
+                    outerHit = true;
                 }
                 enemy.TakeDamage(dealt);
 
@@ -112,6 +126,22 @@ public class XSkill : PlayerSkillBase
             {
                 if (rank == StyleRank.A) ReflectProjectile(ep.gameObject, ep.transform.position);
                 else Destroy(ep.gameObject);
+            }
+        }
+
+        // 스핀 종료 후 범위에 따라 사운드 재생
+        MasterAudio.PlaySound3DAtTransform(innerHit ? "InSwords" : "Swords", transform);
+
+        // 카메라 흔들림 적용 (Inner > Outer)
+        if (CameraShake.Instance != null)
+        {
+            if (innerHit)
+            {
+                CameraShake.Instance.Shake(innerShakeDuration, innerShakeMagnitude);
+            }
+            else if (outerHit)
+            {
+                CameraShake.Instance.Shake(outerShakeDuration, outerShakeMagnitude);
             }
         }
 

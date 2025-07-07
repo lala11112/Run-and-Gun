@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTonic.MasterAudio;
 
 /// <summary>
 /// Z 스킬 – 기존 Q 스킬 기능 (적에게 탄막 연사 + 이동속도 버프)
@@ -21,6 +22,9 @@ public class ZSkill : PlayerSkillBase
     [Tooltip("트레일 유지 시간")] public float trailLifetime = 1.5f;
     [Tooltip("같은 위치 중복 생성을 막는 최소 거리")] public float trailMinDistance = 0.3f;
 
+    [Header("카메라 흔들림 설정")] [Tooltip("투사체 발사 시 카메라 흔들림 지속 시간")] public float shootShakeDuration = 0.05f;
+    [Tooltip("투사체 발사 시 카메라 흔들림 강도")] public float shootShakeMagnitude = 0.05f;
+
     [Header("스타일 비용 설정")]
     [Tooltip("스킬 사용 시 소비될 스타일 점수")] public int styleCost = 30;
 
@@ -32,6 +36,11 @@ public class ZSkill : PlayerSkillBase
     private int _speedBuffCount = 0;
     private float _baseMoveSpeed;
     private Vector2 _lastTrailPos;
+
+    // 사운드 중복 방지를 위한 정적 타임스탬프
+    private static float _lastShootSfxTime;
+    private static float _lastShootShakeTime;
+    private const float ShootSfxMinInterval = 0.02f; // 최소 간격 (초)
 
     protected override void Awake()
     {
@@ -137,6 +146,20 @@ public class ZSkill : PlayerSkillBase
             Vector2 dir = (target.transform.position - pc.firePoint.position).normalized;
             GameObject obj = Instantiate(projectilePrefab, pc.firePoint.position, Quaternion.identity);
             if (obj.TryGetComponent(out QProjectile qp)) qp.Init(dir);
+
+            // 효과음 (중복 방지)
+            if (Time.time - _lastShootSfxTime > ShootSfxMinInterval)
+            {
+                MasterAudio.PlaySound3DAtTransform("ZSkillShoot", pc.firePoint != null ? pc.firePoint : transform);
+                _lastShootSfxTime = Time.time;
+            }
+
+            // 카메라 흔들림 (중복 방지)
+            if (CameraShake.Instance != null && Time.time - _lastShootShakeTime > ShootSfxMinInterval)
+            {
+                CameraShake.Instance.Shake(shootShakeDuration, shootShakeMagnitude);
+                _lastShootShakeTime = Time.time;
+            }
             yield return new WaitForSeconds(interval);
         }
     }

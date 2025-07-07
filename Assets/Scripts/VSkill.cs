@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using DarkTonic.MasterAudio;
 
 /// <summary>
 /// V 스킬 – 네 방향 거대 투사체 발사 (기존 R 스킬)
@@ -45,6 +46,8 @@ public class VSkill : PlayerSkillBase
 
         // 랭크에 따른 방향 배열 (B 랭크 이상 8방향, 그 외 4방향)
         List<Vector2> dirList = new List<Vector2> { pc.transform.up, -pc.transform.up, pc.transform.right, -pc.transform.right };
+        // 발동 시 1회 Shoot 사운드 재생 (MasterAudio Sound Group 이름은 "Shoots" 로 가정)
+        MasterAudio.PlaySound3DAtTransform("Shoots", pc.firePoint != null ? pc.firePoint : pc.transform);
         if (rank >= StyleRank.B)
         {
             dirList.Add((pc.transform.up + pc.transform.right).normalized);
