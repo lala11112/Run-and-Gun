@@ -35,8 +35,16 @@ public class TestBattleManager : MonoBehaviour
     [Header("컷씬 대사 설정")]
     [Tooltip("3라운드 시작 시 자동 재생할 대화 이름 (Dialogue System)")] public string round3Conversation = "Round3_Cutscene";
 
+    [Tooltip("10라운드 돌파 시 자동 재생할 대화 이름 (Dialogue System)")] public string round10Conversation = "Round10_Cutscene";
+
     // 3라운드 대사가 이미 재생되었는지 확인하는 플래그
     private bool _round3DialoguePlayed = false;
+
+    // 10라운드 대사가 이미 재생되었는지 확인하는 플래그
+    private bool _round10DialoguePlayed = false;
+
+    [Header("튜토리얼 설정")]
+    [Tooltip("씬 시작 시 자동 재생할 튜토리얼 대화 이름 (Dialogue System)")] public string tutorialConversation = "Tutorial";
 
     [Header("디버그")]
     [Tooltip("현재 라운드 수 (읽기 전용)")]
@@ -50,7 +58,26 @@ public class TestBattleManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(RoundLoop());
+        StartCoroutine(GameFlow());
+    }
+
+    /// <summary>
+    /// 튜토리얼 → 라운드 루프 순으로 진행되는 메인 플로우 코루틴.
+    /// </summary>
+    private IEnumerator GameFlow()
+    {
+        // 0. 튜토리얼 대사 재생
+        if (!string.IsNullOrEmpty(tutorialConversation))
+        {
+            DialogueManager.StartConversation(tutorialConversation);
+            while (DialogueManager.IsConversationActive)
+            {
+                yield return null;
+            }
+        }
+
+        // 1. 본격적인 라운드 전투 루프 실행
+        yield return StartCoroutine(RoundLoop());
     }
 
     /// <summary>
@@ -92,9 +119,18 @@ public class TestBattleManager : MonoBehaviour
         if (currentRound == 3 && !_round3DialoguePlayed && !string.IsNullOrEmpty(round3Conversation))
         {
             _round3DialoguePlayed = true;
-            // Dialogue System에 대화 시작 요청
             DialogueManager.StartConversation(round3Conversation);
-            // 대사가 끝날 때까지 코루틴을 일시 대기 (전투 스폰 전)
+            while (DialogueManager.IsConversationActive)
+            {
+                yield return null;
+            }
+        }
+
+        // 10라운드 컷씬 대사 재생 (돌파 시)
+        if (currentRound == 10 && !_round10DialoguePlayed && !string.IsNullOrEmpty(round10Conversation))
+        {
+            _round10DialoguePlayed = true;
+            DialogueManager.StartConversation(round10Conversation);
             while (DialogueManager.IsConversationActive)
             {
                 yield return null;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PixelCrushers.DialogueSystem;
 
 /// <summary>
 /// 플레이어 캐릭터를 제어하는 스크립트
@@ -62,6 +63,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void HandleMovement()
     {
+        // 대화창이 열려 있으면 이동/회전 차단
+        if (DialogueManager.IsConversationActive)
+        {
+            _rb.linearVelocity = Vector2.zero;
+            return;
+        }
         if (_isDashing) return; // 대시 중엔 수동 입력 무시
 
         Vector2 inputDir = Vector2.zero;

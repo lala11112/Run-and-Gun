@@ -39,6 +39,10 @@ public class StyleManager : MonoBehaviour
     [Tooltip("S 랭크 쿨타임 배수")] public float sCooldownMultiplier = 0.5f;
     [Tooltip("S 랭크 이동 속도 배수")] public float sMoveSpeedMultiplier = 1.4f;
 
+    [Header("D 랭크 패널티 설정")]
+    [Tooltip("D 랭크에서 쿨타임에 곱해질 배수 (1보다 크면 증가)")] public float dCooldownMultiplier = 1.2f;
+    [Tooltip("D 랭크 이동 속도 배수 (1보다 작으면 감소)")] public float dMoveSpeedMultiplier = 0.8f;
+
     [Header("S 랭크 설정")]
     [Tooltip("S 랭크 유지 시간(초)")] public float sDuration = 8f;
     [Tooltip("S 랭크 종료 후 설정될 점수")] public int sExitScore = 400;
@@ -180,6 +184,7 @@ public class StyleManager : MonoBehaviour
             StyleRank.S => sCooldownMultiplier,
             StyleRank.A => aCooldownMultiplier,
             StyleRank.B => bCooldownMultiplier,
+            StyleRank.D => dCooldownMultiplier,
             _ => 1f,
         };
     }
@@ -191,6 +196,7 @@ public class StyleManager : MonoBehaviour
             StyleRank.S => sMoveSpeedMultiplier,
             StyleRank.A => aMoveSpeedMultiplier,
             StyleRank.B => bMoveSpeedMultiplier,
+            StyleRank.D => dMoveSpeedMultiplier,
             _ => 1f,
         };
     }

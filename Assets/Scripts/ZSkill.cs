@@ -33,6 +33,8 @@ public class ZSkill : PlayerSkillBase
     [Tooltip("S 랭크에서 이동 속도 버프 배수")] public float sSpeedMultiplierMultiplier = 1.3f;
     [Tooltip("S 랭크에서 투사체 간 발사 간격 배수 (0~1, 작을수록 빠름)")] public float sFireIntervalMultiplier = 0.5f;
 
+    [Tooltip("D 랭크에서 투사체 발사 횟수 배수 (0~1, 작을수록 적음)")] public float dProjectileCountMultiplier = 0.5f;
+
     private int _speedBuffCount = 0;
     private float _baseMoveSpeed;
     private Vector2 _lastTrailPos;
@@ -71,12 +73,16 @@ public class ZSkill : PlayerSkillBase
             fireInt = fireInterval * sFireIntervalMultiplier;
             moveSpeedMult = speedMultiplier * sSpeedMultiplierMultiplier;
         }
+        else if (rank == StyleRank.D)
+        {
+            projCount = Mathf.Max(1, Mathf.RoundToInt(projectileCount * dProjectileCountMultiplier));
+        }
 
         // 대상 선정
         List<Enemy> targets = new List<Enemy>();
         Vector2 originPos = pc.firePoint != null ? (Vector2)pc.firePoint.position : (Vector2)transform.position;
 
-        if (rank == StyleRank.C)
+        if (rank == StyleRank.C || rank == StyleRank.D)
         {
             Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
             float minDist = float.MaxValue;
@@ -98,7 +104,7 @@ public class ZSkill : PlayerSkillBase
             }
             if (closest != null) targets.Add(closest);
         }
-        else // B, A
+        else // B, A, S
         {
             Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
             foreach (var h in nearHits)
@@ -124,7 +130,7 @@ public class ZSkill : PlayerSkillBase
         if (_speedBuffCount == 1)
         {
             pc.moveSpeed = _baseMoveSpeed * moveSpeedMult;
-            if (rank != StyleRank.C && trailPrefab != null)
+            if (rank == StyleRank.B || rank == StyleRank.A || rank == StyleRank.S) // C, D는 트레일 없음
                 StartCoroutine(TrailCoroutine(speedDuration));
         }
 

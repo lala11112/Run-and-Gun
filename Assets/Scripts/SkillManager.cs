@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PixelCrushers.DialogueSystem;
 
 /// <summary>
 /// 플레이어의 스킬 시스템을 관리하는 핵심 스크립트
@@ -93,6 +94,8 @@ public class SkillManager : MonoBehaviour
     /// <returns>스킬 사용 성공 여부</returns>
     public bool TryUseSkill(SkillType type)
     {
+        // 대화 중에는 스킬 사용 불가
+        if (DialogueManager.IsConversationActive) return false;
         // 쿨타임 체크 - 아직 쿨타임이 남아있으면 사용 불가
         if (!_cooldowns.ContainsKey(type) || _cooldowns[type] > 0f) return false;
 

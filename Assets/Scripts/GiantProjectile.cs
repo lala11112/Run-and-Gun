@@ -20,9 +20,11 @@ public class GiantProjectile : MonoBehaviour
 
     [Header("충돌 처리")]
     [Tooltip("거대 투사체를 파괴할 환경 레이어")] public LayerMask environmentLayers;
+    [Tooltip("환경 충돌 무시 시간(초) – 발사 직후 벽에 겹쳐도 바로 사라지지 않도록 함")] public float ignoreEnvironmentTime = 0.12f;
 
     private Vector2 _dir;
     private Rigidbody2D _rb;
+    private float _spawnTime;
 
     public void Init(Vector2 dir)
     {
@@ -49,6 +51,8 @@ public class GiantProjectile : MonoBehaviour
         }
 
         Destroy(gameObject, lifetime);
+
+        _spawnTime = Time.time;
     }
 
     private void FixedUpdate()
@@ -74,6 +78,11 @@ public class GiantProjectile : MonoBehaviour
         // 환경 레이어 충돌 시 파괴 (기본: Wall, Ground 등 설정)
         if (((1 << other.gameObject.layer) & environmentLayers) != 0)
         {
+            // 발사 직후 유예시간 내에는 벽과 충돌해도 무시
+            if (Time.time - _spawnTime < ignoreEnvironmentTime)
+            {
+                return;
+            }
             Destroy(gameObject);
             return;
         }
