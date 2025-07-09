@@ -1,4 +1,5 @@
 using UnityEngine;
+using DarkTonic.MasterAudio;
 
 /// <summary>
 /// 스타일(콤보) 시스템을 관리하는 전역 매니저.
@@ -144,6 +145,15 @@ public class StyleManager : MonoBehaviour
         StyleRank current = GetRankByScore(_currentScore);
         if (current != _cachedRank)
         {
+            // 랭크 상승 여부 판단 (숫자가 클수록 높은 랭크)
+            bool isRankUp = (int)current > (int)_cachedRank;
+
+            // 캐시된 랭크 업데이트 전에 RankUp 사운드 처리
+            if (isRankUp)
+            {
+                PlayRankUpSFX(current);
+            }
+
             _cachedRank = current;
             OnRankChanged?.Invoke(current);
 
@@ -152,6 +162,29 @@ public class StyleManager : MonoBehaviour
                 _sTimer = sDuration;
             }
         }
+    }
+
+    /// <summary>
+    /// 랭크가 상승했을 때 호출되어 RankUp 사운드를 재생한다.
+    /// 랭크가 높을수록 피치가 조금씩 상승해 더욱 짜릿한 피드백을 준다.
+    /// </summary>
+    /// <param name="rank">상승 후 랭크</param>
+    private void PlayRankUpSFX(StyleRank rank)
+    {
+        // RankUp이라는 Sound Group을 미리 Master Audio에 세팅해 두어야 합니다.
+        // 피치는 D(1.00) → C(1.05) → B(1.10) → A(1.15) → S(1.20)로 점증적으로 상승합니다.
+        float pitch = rank switch
+        {
+            StyleRank.D => 0.8f,
+            StyleRank.C => 1.0f,
+            StyleRank.B => 1.0f,
+            StyleRank.A => 1.2f,
+            StyleRank.S => 1.5f,
+            _ => 1f
+        };
+
+        // 2D 사운드로 재생하여 거리 및 도플러 영향을 제거합니다.
+        MasterAudio.PlaySoundAndForget("RankUp", 1.5f, pitch);
     }
 
     /// <summary>

@@ -8,30 +8,37 @@ using DarkTonic.MasterAudio;
 /// </summary>
 public class CSkill : PlayerSkillBase
 {
-    [Header("대시 설정")] [Tooltip("연속 사용 시 대시 거리 감소 비율")] public float dashPenaltyStep = 0.2f;
+    [Header("대시 설정")]
+    [Tooltip("연속 사용 시 대시 거리 감소 비율")] public float dashPenaltyStep = 0.2f;
     [Tooltip("대시 최소 거리 배수")] public float dashMinMultiplier = 0.4f;
+    [Tooltip("대시 기본 속도 (단위/초)")] public float baseDashSpeed = 20f;
 
-    [Header("궤도 탄막 설정")] [Tooltip("대시 시 생성될 궤도 탄막 프리팹")] public GameObject orbitPrefab;
-    [Tooltip("궤도 반경")] public float orbitRadius = 1.2f;
-    [Tooltip("궤도 각속도(°/s)")] public float orbitAngularSpeedDeg = 360f;
-    [Tooltip("대시 종료 후 궤도 유지 시간")] public float orbitExtraDuration = 0.3f;
-    [Tooltip("궤도 탄막 데미지")] public int orbitDamage = 3;
+    [Header("실드 설정")]
+    [Tooltip("대시 방향 앞을 막을 실드 프리팹")] public GameObject shieldPrefab;
+    [Tooltip("실드가 생성될 거리")] public float shieldDistance = 1f;
+    [Tooltip("실드 유지 시간")] public float shieldLifetime = 0.5f;
+
+    [Header("실드 랭크별 설정")]
+    [Tooltip("D, C, B, A, S 순으로 실드 개수 설정")] public int[] shieldCounts = {1, 3, 5, 7, 9};
+    [Tooltip("D, C, B, A, S 순으로 실드 각도 설정")] public float[] shieldArcAngles = {40f, 70f, 100f, 130f, 160f};
+    [Tooltip("D, C, B, A, S 순으로 실드가 적에게 입힐 데미지")] public int[] shieldDamagePerRank = {1, 2, 3, 4, 5};
 
     [Header("S 랭크 강화 설정")]
     [Tooltip("S 랭크 대시 속도 배수")] public float sDashSpeedMultiplier = 1.5f;
-    [Tooltip("S 랭크 궤도 반경 배수")] public float sOrbitRadiusMultiplier = 1.3f;
-    [Tooltip("S 랭크 궤도 탄막 데미지 배수")] public float sOrbitDamageMultiplier = 1.5f;
 
-    [Header("대시 속도")] [Tooltip("대시 기본 속도 (단위/초)")] public float baseDashSpeed = 20f;
-
-    [Header("카메라 흔들림 설정")] 
+    [Header("카메라 흔들림 설정")]
     [Tooltip("대시 시작 시 카메라 흔들림 지속 시간")] public float dashShakeDuration = 0.12f;
     [Tooltip("대시 시작 시 카메라 흔들림 강도")] public float dashShakeMagnitude = 0.18f;
-    [Tooltip("궤도 탄막 적중 시 카메라 흔들림 지속 시간")] public float bulletShakeDuration = 0.08f;
-    [Tooltip("궤도 탄막 적중 시 흔들림 강도")] public float bulletShakeMagnitude = 0.12f;
-
-    // 내부 상태: 이번 스킬 사용 중 탄막 shake 이미 플레이됐는지
-    internal bool BulletShakePlayed { get; private set; }
+    // bulletShake 변수 제거 (궤도 탄막 폐기)
+    
+    [Header("실드 피격 카메라 흔들림")]
+    [Tooltip("실드가 적을 맞췄을 때 카메라 흔들림 지속 시간")] public float shieldHitShakeDuration = 0.08f;
+    [Tooltip("실드가 적을 맞췄을 때 카메라 흔들림 강도")] public float shieldHitShakeMagnitude = 0.12f;
+    
+    [Header("실드 투사체 설정 (B랭크 이상)")]
+    [Tooltip("실드가 날아갈 속도")] public float shieldProjectileSpeed = 14f;
+    [Tooltip("A 랭크 이상에서 실드가 적에게 줄 넉백 힘")] public float shieldKnockbackForce = 8f;
+    [Tooltip("A 랭크 이상에서 실드가 적을 밀어낼 거리")] public float shieldKnockbackDistance = 1.2f;
     
     private float _baseMoveSpeed;
 
@@ -68,48 +75,69 @@ public class CSkill : PlayerSkillBase
             CameraShake.Instance.Shake(dashShakeDuration, dashShakeMagnitude);
         }
 
-        // 궤도 탄막 파라미터 계산
-        float rad = orbitRadius;
-        int dmg = orbitDamage;
-        if (rank == StyleRank.S)
-        {
-            rad *= sOrbitRadiusMultiplier;
-            dmg = Mathf.RoundToInt(orbitDamage * sOrbitDamageMultiplier);
-        }
-
-        BulletShakePlayed = false; // 이번 스킬에서는 아직 흔들림 미발생
-        SpawnOrbitBullets(rad, dmg);
+        // 랭크별 전방 실드 생성
+        SpawnShieldObjects(dashDir, rank);
         yield break;
     }
 
-    private void SpawnOrbitBullets(float radius, int dmg)
+    /// <summary>
+    /// 랭크에 따라 전방 실드를 생성합니다.
+    /// </summary>
+    private void SpawnShieldObjects(Vector2 dashDir, StyleRank rank)
     {
-        if (orbitPrefab == null) return;
+        if (shieldPrefab == null) return;
 
-        float totalDur = pc.dashDuration + orbitExtraDuration;
-        for (int i = 0; i < 3; i++)
+        // 랭크별 개수 및 각도는 인스펙터에서 설정한 배열을 사용
+        int idx = (int)rank;
+        int count = (shieldCounts != null && shieldCounts.Length > idx) ? shieldCounts[idx] : 1;
+        float arcDeg = (shieldArcAngles != null && shieldArcAngles.Length > idx) ? shieldArcAngles[idx] : 40f;
+        int damageVal = (shieldDamagePerRank != null && shieldDamagePerRank.Length > idx) ? shieldDamagePerRank[idx] : 1;
+
+        Vector2 centerDir = dashDir == Vector2.zero ? (Vector2)transform.up : dashDir.normalized;
+
+        for (int i = 0; i < count; i++)
         {
-            float angleDeg = i * 120f;
-            float angleRad = angleDeg * Mathf.Deg2Rad;
-            Vector2 offset = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * radius;
-            GameObject obj = Instantiate(orbitPrefab, (Vector2)transform.position + offset, Quaternion.identity);
-            if (obj.TryGetComponent(out DashOrbitBullet orb))
+            float t = count == 1 ? 0f : (float)i / (count - 1);
+            float angleOffset = -arcDeg * 0.5f + t * arcDeg;
+            float baseAngle = Mathf.Atan2(centerDir.y, centerDir.x) * Mathf.Rad2Deg;
+            float finalAngle = baseAngle + angleOffset;
+            Vector2 dir = new Vector2(Mathf.Cos(finalAngle * Mathf.Deg2Rad), Mathf.Sin(finalAngle * Mathf.Deg2Rad));
+            Vector2 offset = dir.normalized * shieldDistance;
+            Vector2 spawnPos = (Vector2)transform.position + offset;
+
+            GameObject obj = Instantiate(shieldPrefab, spawnPos, Quaternion.identity);
+            if (obj.TryGetComponent(out Shield shield))
             {
-                orb.center = transform;
-                orb.radius = radius;
-                orb.angularSpeedDeg = orbitAngularSpeedDeg;
-                orb.damage = dmg;
-                orb.lifetime = totalDur;
-                orb.startAngleDeg = angleDeg;
-                orb.parentSkill = this; // 한 번만 흔들리도록 레퍼런스 전달
+                shield.lifetime = shieldLifetime;
+                shield.target = transform; // 플레이어를 따라다님
+                shield.localOffset = offset;
+                shield.damage = damageVal;
+                shield.shakeDuration = shieldHitShakeDuration;
+                shield.shakeMagnitude = shieldHitShakeMagnitude;
+
+                // B 랭크 이상: 실드 투사체로 날아감
+                if (rank >= StyleRank.B)
+                {
+                    shield.followTarget = false;
+                    shield.moveDir = centerDir;
+                    shield.moveSpeed = shieldProjectileSpeed;
+                }
+
+                // A 랭크 이상: 넉백 효과 추가
+                if (rank >= StyleRank.A)
+                {
+                    shield.applyKnockback = true;
+                    shield.knockbackForce = shieldKnockbackForce;
+                    shield.knockbackDistance = shieldKnockbackDistance;
+                }
+            }
+            else
+            {
+                // 파괴 예약만 적용
+                Destroy(obj, shieldLifetime);
             }
         }
     }
 
-    // 외부에서 첫 흔들림 시 호출
-    internal void MarkBulletShake() => BulletShakePlayed = true;
-
-    // BulletShakeDuration, BulletShakeMagnitude 프로퍼티는 그대로
-    public float BulletShakeDuration => bulletShakeDuration;
-    public float BulletShakeMagnitude => bulletShakeMagnitude;
+    // --- 궤도 탄막 관련 메서드 제거 완료 ---
 } 

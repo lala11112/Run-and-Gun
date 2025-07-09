@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 291235128610808456}
   - component: {fileID: 6922389991820034861}
   - component: {fileID: 4186868105860446642}
-  - component: {fileID: 1254871236761581014}
+  - component: {fileID: 3752556213266788841}
   m_Layer: 0
   m_Name: DashOrbitBullet
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1254871236761581014
+--- !u!114 &3752556213266788841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,16 +144,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1968394711282716621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a665a38fcbd7f459d8d1ead2218a0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 14548e3462fda274d8ad107ee4bf885b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {fileID: 0}
-  radius: 1
-  angularSpeedDeg: 360
-  damage: 3
-  lifetime: 0.6
-  startAngleDeg: 0
-  sizeBMultiplier: 1.5
-  sizeAMultiplier: 2
-  pullForce: 6
-  reflectSpeed: 14
+  lifetime: 0.5
+  target: {fileID: 0}
+  localOffset: {x: 0, y: 0}
+  damage: 1
+  shakeDuration: 0.08
+  shakeMagnitude: 0.12
+  followTarget: 1
+  moveDir: {x: 0, y: 0}
+  moveSpeed: 0
+  applyKnockback: 0
+  knockbackForce: 6

@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -11,6 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("피격 후 무적 시간(초)")] public float invincibilityDuration = 0.5f;
 
     [Header("피격 시 카메라 흔들림")] public float shakeDuration = 0.15f; public float shakeMagnitude = 0.25f;
+
+    [Header("피격 시 플레이어 깜빡임")]
+    [Tooltip("플레이어 SpriteRenderer")] public SpriteRenderer spriteRenderer;
+    [Tooltip("깜빡임 반복 횟수")] public int flashLoops = 4;
+    [Tooltip("깜빡임 알파 값")] [Range(0f,1f)] public float flashAlpha = 0.2f;
 
     private int _currentHealth;
     private float _invincibleTimer;
@@ -45,6 +51,14 @@ public class PlayerHealth : MonoBehaviour
         _invincibleTimer = invincibilityDuration;
 
         CameraShake.Instance?.Shake(shakeDuration, shakeMagnitude);
+
+        // DOTween 깜빡임
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.DOKill();
+            Color c = spriteRenderer.color;
+            spriteRenderer.DOFade(flashAlpha, 0.08f).SetLoops(flashLoops * 2, LoopType.Yoyo).OnComplete(() => spriteRenderer.color = c);
+        }
 
         if (_currentHealth <= 0)
         {

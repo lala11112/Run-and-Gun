@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 using TMPro;
 
 /// <summary>
@@ -10,6 +11,35 @@ public class StyleHUD : MonoBehaviour
     [Header("UI 참조")]
     [Tooltip("점수를 표시할 TextMeshProUGUI")] public TextMeshProUGUI scoreText;
     [Tooltip("랭크를 표시할 TextMeshProUGUI")] public TextMeshProUGUI rankText;
+
+    [Header("랭크 팝업 설정")]
+    [Tooltip("플레이어 머리 위에 띄울 랭크 팝업 프리팹 (TextMeshProUGUI 포함)")] public GameObject rankPopupPrefab;
+    [Tooltip("플레이어 위치 기준 오프셋")] public Vector3 popupOffset = new Vector3(0f, 1.5f, 0f);
+    [Tooltip("팝업이 상승할 높이")] public float popupRise = 1f;
+    [Tooltip("팝업 전체 재생 시간")] public float popupDuration = 1f;
+
+    private Transform _player;
+
+    private void Awake()
+    {
+        _player = GameObject.FindWithTag("Player")?.transform;
+    }
+
+    private void OnEnable()
+    {
+        if (StyleManager.Instance != null)
+        {
+            StyleManager.Instance.OnRankChanged += HandleRankChanged;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (StyleManager.Instance != null)
+        {
+            StyleManager.Instance.OnRankChanged -= HandleRankChanged;
+        }
+    }
 
     private void Update()
     {
@@ -47,5 +77,58 @@ public class StyleHUD : MonoBehaviour
             StyleRank.A => new Color(0.9f, 0.4f, 1f),
             _ => Color.white,
         };
+    }
+
+    private void HandleRankChanged(StyleRank newRank)
+    {
+        if (rankPopupPrefab == null || _player == null) return;
+
+        Vector3 startPos = _player.position + popupOffset;
+        // 팝업 프리팹은 World Space Canvas 권장. Canvas가 Overlay인 경우 화면 좌표로 변환.
+        GameObject obj = Instantiate(rankPopupPrefab, Vector3.zero, Quaternion.identity);
+
+        // RectTransform 위치 결정
+        if (obj.TryGetComponent(out RectTransform rt))
+        {
+            Canvas popupCanvas = obj.GetComponentInParent<Canvas>();
+            if (popupCanvas != null && popupCanvas.renderMode != RenderMode.WorldSpace)
+            {
+                // Overlay / ScreenSpaceCamera: 월드 → 스크린 좌표 변환
+                Vector2 screenPos = Camera.main.WorldToScreenPoint(startPos);
+                rt.position = screenPos;
+            }
+            else
+            {
+                // WorldSpace: 직접 월드 좌표 사용
+                obj.transform.position = startPos;
+            }
+        }
+        else
+        {
+            obj.transform.position = startPos;
+        }
+
+        // 텍스트 설정 (프리팹 내부 어디에 있어도 검색)
+        TMPro.TMP_Text tmp = obj.GetComponentInChildren<TMPro.TMP_Text>(true);
+        if (tmp != null)
+        {
+            tmp.text = newRank.ToString();
+            tmp.color = GetColorForRank(newRank);
+        }
+
+        // CanvasGroup 확보
+        CanvasGroup cg = obj.GetComponent<CanvasGroup>();
+        if (cg == null) cg = obj.AddComponent<CanvasGroup>();
+        cg.alpha = 0f;
+
+        obj.transform.localScale = Vector3.zero;
+
+        // 트윈 시퀀스
+        cg.DOFade(1f, 0.15f).SetLink(obj)
+            .OnComplete(() => cg.DOFade(0f, 0.3f).SetDelay(popupDuration - 0.3f).SetLink(obj));
+
+        obj.transform.DOScale(1.2f, 0.25f).SetEase(Ease.OutBack).SetLink(obj);
+        obj.transform.DOMoveY(startPos.y + popupRise, popupDuration).SetEase(Ease.OutQuad).SetLink(obj)
+            .OnComplete(() => Destroy(obj));
     }
 } 
