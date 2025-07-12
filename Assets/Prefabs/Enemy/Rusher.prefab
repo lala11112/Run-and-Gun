@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7209328708316885578}
   - component: {fileID: 5183739867659922218}
   - component: {fileID: 3887536839294130484}
+  - component: {fileID: 493918985266668728}
   m_Layer: 6
   m_Name: Rusher
   m_TagString: Enemy
@@ -169,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd6b77f5551e8649a7682894d1c3d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
   moveSpeed: 30
   keepDistance: 10
   spriteRenderer: {fileID: 0}
@@ -236,12 +236,32 @@ MonoBehaviour:
   obstacleTags:
   - Wall
   - Obstacle
-  contactDamage: 1
-  explodeDamage: 2
+  contactDamage: 2
+  explodeDamage: 5
+  explodeRadius: 10
   preExplodeBulletPrefab: {fileID: 6867986577864171439, guid: 63706e750d445bf419fa3d945111981b, type: 3}
   preBulletSpeed: 40
   preExplodeTime: 0.2
   explodeEffectPrefab: {fileID: 883207111704488293, guid: d5741ac19dc2d844d913f4267693e1e1, type: 3}
+--- !u!114 &493918985266668728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6764c6f7cfae8409e2ec8412ad33e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  currentHealth: 0
+  dieSfx: EnemyDie
+  dieShakeDuration: 0.25
+  dieShakeMagnitude: 0.3
+  dieSlowScale: 0.2
+  dieSlowDuration: 0.15
 --- !u!1001 &7874384263292351639
 PrefabInstance:
   m_ObjectHideFlags: 0

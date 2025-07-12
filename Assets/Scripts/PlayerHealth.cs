@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 /// 플레이어 체력 관리 및 피격 시 처리.
 /// </summary>
 [RequireComponent(typeof(PlayerController))]
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : LivingEntity
 {
-    [Tooltip("플레이어 최대 체력")] public int maxHealth = 5;
     [Tooltip("피격 후 무적 시간(초)")] public float invincibilityDuration = 0.5f;
 
     [Header("피격 시 카메라 흔들림")] public float shakeDuration = 0.15f; public float shakeMagnitude = 0.25f;
@@ -23,18 +22,17 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("피격 시 적용될 Time.timeScale 배수 (0~1)")] [Range(0.05f,1f)] public float hitStopScale = 0.25f;
     [Tooltip("슬로우 모션 지속 시간(실시간 초)")] public float hitStopDuration = 0.1f;
 
-    private int _currentHealth;
+    // 무적 시간 관리용 타이머
     private float _invincibleTimer;
+
     private PlayerController _pc;
 
-    public int CurrentHealth => _currentHealth;
-
-    public System.Action<int, int> OnHealthChanged; // current, max
+    // 플레이어가 사망했을 때 호출되는 이벤트 (UI, 게임 오버 처리 등에서 구독)
     public System.Action OnPlayerDied;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _currentHealth = maxHealth;
+        base.Awake(); // LivingEntity 초기화
         _pc = GetComponent<PlayerController>();
     }
 
@@ -44,14 +42,10 @@ public class PlayerHealth : MonoBehaviour
             _invincibleTimer -= Time.deltaTime;
     }
 
-    public void TakeDamage(int dmg)
+    public override void TakeDamage(int dmg)
     {
         if (_pc != null && _pc.IsDashing) return;
         if (_invincibleTimer > 0f) return;
-
-        _currentHealth -= dmg;
-        if (_currentHealth < 0) _currentHealth = 0;
-        OnHealthChanged?.Invoke(_currentHealth, maxHealth);
 
         _invincibleTimer = invincibilityDuration;
 
@@ -76,13 +70,11 @@ public class PlayerHealth : MonoBehaviour
             spriteRenderer.DOFade(flashAlpha, 0.08f).SetLoops(flashLoops * 2, LoopType.Yoyo).OnComplete(() => spriteRenderer.color = c);
         }
 
-        if (_currentHealth <= 0)
-        {
-            Die();
-        }
+        // 실제 체력 감소 및 사망 판정은 LivingEntity에 위임
+        base.TakeDamage(dmg);
     }
 
-    private void Die()
+    protected override void Die()
     {
         OnPlayerDied?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

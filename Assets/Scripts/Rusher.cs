@@ -30,6 +30,7 @@ public class Rusher : MonoBehaviour
     [Header("데미지 설정")]
     [Tooltip("돌진 중 직접 충돌 데미지")] public int contactDamage = 1;
     [Tooltip("폭발 데미지")] public int explodeDamage = 1;
+    [Tooltip("자폭 폭발 범위")] public float explodeRadius = 1.2f;
 
     [Header("프리-폭발 탄막 설정")]
     [Tooltip("폭발 직전 발사할 총알 프리팹")] public GameObject preExplodeBulletPrefab;
@@ -168,16 +169,23 @@ public class Rusher : MonoBehaviour
 
     private void Explode()
     {
-        // 이펙트
+        // 이펙트 (폭발 범위에 비례하여 스케일 조정)
         if (explodeEffectPrefab != null)
         {
-            Instantiate(explodeEffectPrefab, transform.position, Quaternion.identity);
+            GameObject fx = Instantiate(explodeEffectPrefab, transform.position, Quaternion.identity);
+            fx.transform.localScale *= explodeRadius;
         }
-        // 자폭 데미지 처리 – 플레이어가 가까이 있으면 피해
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.2f);
+        // 자폭 데미지 처리 – 폭발 범위 내 모든 LivingEntity 피해
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, explodeRadius);
+        System.Collections.Generic.HashSet<LivingEntity> damaged = new System.Collections.Generic.HashSet<LivingEntity>();
         foreach (var c in cols)
         {
-            if (c.TryGetComponent(out PlayerHealth ph)) ph.TakeDamage(explodeDamage);
+            LivingEntity le = c.GetComponentInParent<LivingEntity>();
+            if (le != null && !damaged.Contains(le))
+            {
+                le.TakeDamage(explodeDamage);
+                damaged.Add(le);
+            }
         }
         // 자신 파괴
         if (_enemy != null)
@@ -224,4 +232,13 @@ public class Rusher : MonoBehaviour
         // 스턴 중엔 즉시 폭발
         Explode();
     }
+
+    // Scene 뷰에서 폭발 범위를 시각화
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
+        Gizmos.DrawSphere(transform.position, explodeRadius);
+    }
+#endif
 } 
