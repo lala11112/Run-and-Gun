@@ -55,7 +55,7 @@ public class StyleHUD : MonoBehaviour
             else
             {
                 scoreText.gameObject.SetActive(true);
-                scoreText.text = $"Score: {StyleManager.Instance.CurrentScore}";
+            scoreText.text = $"Score: {StyleManager.Instance.CurrentScore}";
             }
         }
 
