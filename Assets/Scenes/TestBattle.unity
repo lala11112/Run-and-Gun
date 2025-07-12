@@ -5033,6 +5033,7 @@ MonoBehaviour:
   - {fileID: 9142883972293441753, guid: 80eca2e558991dd47929153d31e20a32, type: 3}
   - {fileID: 9142883972293441753, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
   - {fileID: 3396180094095165315, guid: 2b64b7af4c3c58d4792aad52cbffda61, type: 3}
+  - {fileID: 9142883972293441753, guid: 5715686bda50ea2449368d2960ae6987, type: 3}
   spawnCountRange: {x: 1, y: 2}
   spawnAreaSize: {x: 250, y: 250}
   nextRoundDelay: 0.2
@@ -6536,6 +6537,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3739599114281978809, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: flashAlpha
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739599114281978809, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: flashLoops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739599114281978809, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: hitStopScale
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739599114281978809, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: hitStopDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6830059725556356813, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

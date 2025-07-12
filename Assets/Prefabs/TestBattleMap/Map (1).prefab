@@ -160,9 +160,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3654940963556748341}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Map (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 2060437528025034328}
   - component: {fileID: 1706956496585511186}
   - component: {fileID: 1723688353453661159}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1229,7 +1229,7 @@ GameObject:
   - component: {fileID: 8020932074279774039}
   - component: {fileID: 2973192604304769362}
   - component: {fileID: 3152954308116561932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'NavigationSurface '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

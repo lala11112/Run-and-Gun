@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,10 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("플레이어 SpriteRenderer")] public SpriteRenderer spriteRenderer;
     [Tooltip("깜빡임 반복 횟수")] public int flashLoops = 4;
     [Tooltip("깜빡임 알파 값")] [Range(0f,1f)] public float flashAlpha = 0.2f;
+
+    [Header("Hit Stop 설정")]
+    [Tooltip("피격 시 적용될 Time.timeScale 배수 (0~1)")] [Range(0.05f,1f)] public float hitStopScale = 0.25f;
+    [Tooltip("슬로우 모션 지속 시간(실시간 초)")] public float hitStopDuration = 0.1f;
 
     private int _currentHealth;
     private float _invincibleTimer;
@@ -52,6 +57,17 @@ public class PlayerHealth : MonoBehaviour
 
         CameraShake.Instance?.Shake(shakeDuration, shakeMagnitude);
 
+        // Hit Stop (TimeScaleController 활용)
+        if (TimeScaleController.Instance != null)
+        {
+            TimeScaleController.Instance.RequestSlow(hitStopScale, hitStopDuration);
+        }
+        else
+        {
+            // 백업: 컨트롤러가 없을 때 직접 처리
+            StartCoroutine(HitStopRoutine(hitStopScale, hitStopDuration));
+        }
+
         // DOTween 깜빡임
         if (spriteRenderer != null)
         {
@@ -70,5 +86,20 @@ public class PlayerHealth : MonoBehaviour
     {
         OnPlayerDied?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator HitStopRoutine(float scale, float dur)
+    {
+        scale = Mathf.Clamp(scale, 0.05f, 1f);
+        float originalScale = Time.timeScale;
+        float originalFixed = Time.fixedDeltaTime;
+        Time.timeScale = scale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        yield return new WaitForSecondsRealtime(dur);
+        if (Mathf.Approximately(Time.timeScale, scale))
+        {
+            Time.timeScale = originalScale;
+            Time.fixedDeltaTime = originalFixed;
+        }
     }
 } 
