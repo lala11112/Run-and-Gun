@@ -47,6 +47,12 @@ public class PlayerHealth : LivingEntity
         if (_pc != null && _pc.IsDashing) return;
         if (_invincibleTimer > 0f) return;
 
+        // S 랭크 무적: 체력 감소 및 피격 연출 무시
+        if (StyleManager.Instance != null && StyleManager.Instance.CurrentRank == StyleRank.S)
+        {
+            return;
+        }
+
         _invincibleTimer = invincibilityDuration;
 
         CameraShake.Instance?.Shake(shakeDuration, shakeMagnitude);
