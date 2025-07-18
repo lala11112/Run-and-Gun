@@ -344,8 +344,8 @@ MonoBehaviour:
   innerStunDuration: 2
   sRadiusMultiplier: 1.8
   sDamageMultiplier: 1.5
-  outerEffectPrefab: {fileID: 6890366280087930663, guid: 475fdec9048e0ef49a1986312df5ea19, type: 3}
-  innerEffectPrefab: {fileID: 6890366280087930663, guid: e644ec69f9446294eaa4f762819f4892, type: 3}
+  outerEffectPrefab: {fileID: 6329113440936734665, guid: d6cd933a03f756e4b97ba6600cc26fb8, type: 3}
+  innerEffectPrefab: {fileID: 1064867209193409781, guid: 62244e38d7433774386d800c96ed8e09, type: 3}
   effectDuration: 0.3
   outerShakeDuration: 0.07
   outerShakeMagnitude: 0.08
@@ -400,10 +400,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 3
   giantProjectilePrefab: {fileID: 6188139445992187909, guid: e952bc900afdd9b4c9cd4080244120d6, type: 3}
-  projectileSpeed: 40
+  projectileSpeed: 50
   projectileDamage: 15
   sProjectileSpeedMultiplier: 1.5
   sProjectileDamageMultiplier: 2
   sProjectileScaleMultiplier: 1.2
   aStunDuration: 1
   sPullForce: 12
+  projectileLifetime: 4
+  curveDegreesPerSecond: 90
+  jumpForce: 8
+  airTime: 0.4
+  slamShakeDuration: 0.2
+  slamShakeMagnitude: 0.3
+  trailParticlePrefab: {fileID: 2242000200254754010, guid: 4f6a94928439cc041aa55ce780141b13, type: 3}
+  particlesPerPath: 10
+  particleSpacing: 5

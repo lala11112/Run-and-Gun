@@ -49,10 +49,25 @@ public class Shield : MonoBehaviour
         if (followTarget && target != null)
         {
             transform.position = (Vector2)target.position + localOffset;
+
+            // 플레이어 기준 offset 방향으로 회전
+            Vector2 dir = ((Vector2)transform.position - (Vector2)target.position);
+            if (dir.sqrMagnitude > 0.0001f)
+            {
+                float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, ang - 90f);
+            }
         }
         else if (!followTarget)
         {
             transform.position += (Vector3)(moveDir * moveSpeed * Time.deltaTime);
+
+            // 이동 방향으로 회전 (2D: Z축 회전)
+            if (moveDir.sqrMagnitude > 0.0001f)
+            {
+                float ang = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, ang - 90f);
+            }
         }
     }
 

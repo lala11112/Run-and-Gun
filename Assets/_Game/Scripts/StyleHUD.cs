@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// StyleManager의 현재 점수와 랭크를 화면 UI(TextMeshPro)로 표시하는 간단한 HUD 스크립트.
@@ -9,8 +10,10 @@ using TMPro;
 public class StyleHUD : MonoBehaviour
 {
     [Header("UI 참조")]
-    [Tooltip("점수를 표시할 TextMeshProUGUI")] public TextMeshProUGUI scoreText;
     [Tooltip("랭크를 표시할 TextMeshProUGUI")] public TextMeshProUGUI rankText;
+
+    [Tooltip("스타일 게이지 Slider (0 ~ S 랭크 임계값)")] public Slider gaugeSlider;
+    [Tooltip("Slider Fill Image – 색상 그라디언트 적용 대상")] public Image gaugeFill;
 
     [Header("랭크 팝업 설정")]
     [Tooltip("플레이어 머리 위에 띄울 랭크 팝업 프리팹 (TextMeshProUGUI 포함)")] public GameObject rankPopupPrefab;
@@ -40,18 +43,24 @@ public class StyleHUD : MonoBehaviour
         if (StyleManager.Instance == null) return;
 
         StyleRank rank = StyleManager.Instance.CurrentRank;
+        int curScore = StyleManager.Instance.CurrentScore;
 
-        // 점수 표시 (S 랭크일 때는 숨김)
-        if (scoreText != null)
+        // 구간 기반 게이지 값 업데이트 (랭크별 0~segmentLength)
+        if (gaugeSlider != null)
         {
-            if (rank == StyleRank.S)
-                scoreText.gameObject.SetActive(false);
-            else
-            {
-                scoreText.gameObject.SetActive(true);
-            scoreText.text = $"Score: {StyleManager.Instance.CurrentScore}";
-            }
+            int prev = GetPrevThreshold(rank);
+            int next = GetNextThreshold(rank);
+            int segLen = next - prev;
+            gaugeSlider.maxValue = segLen;
+            gaugeSlider.value = Mathf.Clamp(curScore - prev, 0, segLen);
         }
+
+        // 색상 그라디언트 (랭크별)
+        if (gaugeFill != null)
+        {
+            gaugeFill.color = GetColorForRank(rank);
+            }
+        
 
         // 랭크 표시 + 색상
         if (rankText != null)
@@ -71,6 +80,33 @@ public class StyleHUD : MonoBehaviour
             StyleRank.A => new Color(0.9f, 0.4f, 1f),
             _ => Color.white,
         };
+    }
+
+    // 점수 기준으로 색상을 반환 (D→C→B→A→S 구간에서 점진 변화)
+    private Color GetGradientColor(int score)
+    {
+        // 랭크 컬러 테이블
+        Color d = new Color(0.5f,0.5f,0.5f);
+        Color c = new Color(0.3f, 0.9f, 0.3f);
+        Color b = Color.cyan;
+        Color a = new Color(0.9f, 0.4f, 1f);
+        Color s = Color.yellow;
+
+        int dT = StyleManager.Instance.dThreshold;
+        int cT = StyleManager.Instance.cThreshold;
+        int bT = StyleManager.Instance.bThreshold;
+        int aT = StyleManager.Instance.aThreshold;
+        int sT = StyleManager.Instance.sThreshold;
+
+        if (score < cT)
+            return Color.Lerp(d,c, Mathf.InverseLerp(dT,cT,score));
+        if (score < bT)
+            return Color.Lerp(c,b, Mathf.InverseLerp(cT,bT,score));
+        if (score < aT)
+            return Color.Lerp(b,a, Mathf.InverseLerp(bT,aT,score));
+        if (score < sT)
+            return Color.Lerp(a,s, Mathf.InverseLerp(aT,sT,score));
+        return s;
     }
 
     private void HandleRankChanged(StyleRank newRank)
@@ -124,5 +160,29 @@ public class StyleHUD : MonoBehaviour
         obj.transform.DOScale(1.2f, 0.25f).SetEase(Ease.OutBack).SetLink(obj);
         obj.transform.DOMoveY(startPos.y + popupRise, popupDuration).SetEase(Ease.OutQuad).SetLink(obj)
             .OnComplete(() => Destroy(obj));
+    }
+
+    private int GetPrevThreshold(StyleRank rank)
+    {
+        return rank switch
+        {
+            StyleRank.D => 0,
+            StyleRank.C => StyleManager.Instance.cThreshold,
+            StyleRank.B => StyleManager.Instance.bThreshold,
+            StyleRank.A => StyleManager.Instance.aThreshold,
+            _ => StyleManager.Instance.sThreshold, // S 랭크는 꽉 찬 상태 유지
+        };
+    }
+
+    private int GetNextThreshold(StyleRank rank)
+    {
+        return rank switch
+        {
+            StyleRank.D => StyleManager.Instance.cThreshold,
+            StyleRank.C => StyleManager.Instance.bThreshold,
+            StyleRank.B => StyleManager.Instance.aThreshold,
+            StyleRank.A => StyleManager.Instance.sThreshold,
+            _ => StyleManager.Instance.sThreshold,
+        };
     }
 } 
