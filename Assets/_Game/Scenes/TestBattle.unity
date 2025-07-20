@@ -6568,6 +6568,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2449770560040434589, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: sRadiusMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449770560040434589, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: aRankRadiusMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6830059725556356813, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6611,6 +6619,14 @@ PrefabInstance:
     - target: {fileID: 7384793992021309107, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040513611936883275, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: 'shieldCounts.Array.data[3]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040513611936883275, guid: 907d333613a8a494fa6d9d5b32534c3d, type: 3}
+      propertyPath: 'shieldCounts.Array.data[4]'
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

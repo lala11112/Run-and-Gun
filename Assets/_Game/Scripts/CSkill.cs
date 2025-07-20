@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DarkTonic.MasterAudio;
+using System.Collections.Generic; // Added for List
 
 /// <summary>
 /// C 스킬 – 대시 + 궤도 탄막 (기존 E 스킬).
@@ -25,6 +26,7 @@ public class CSkill : PlayerSkillBase
 
     [Header("S 랭크 강화 설정")]
     [Tooltip("S 랭크 대시 속도 배수")] public float sDashSpeedMultiplier = 1.5f;
+    [Tooltip("S 랭크 실드 지속 시간 배수")] public float sShieldLifetimeMultiplier = 1.5f;
 
     [Header("카메라 흔들림 설정")]
     [Tooltip("대시 시작 시 카메라 흔들림 지속 시간")] public float dashShakeDuration = 0.12f;
@@ -95,6 +97,9 @@ public class CSkill : PlayerSkillBase
 
         Vector2 centerDir = dashDir == Vector2.zero ? (Vector2)transform.up : dashDir.normalized;
 
+        // A/S 랭크에서 딜레이 후 퍼질 실드 저장
+        List<(Shield sh, Vector2 dir)> delayedSpread = new List<(Shield, Vector2)>();
+
         for (int i = 0; i < count; i++)
         {
             float t = count == 1 ? 0f : (float)i / (count - 1);
@@ -119,8 +124,24 @@ public class CSkill : PlayerSkillBase
                 if (rank >= StyleRank.B)
                 {
                     shield.followTarget = false;
-                    shield.moveDir = centerDir;
+
+                    // A랭크 이상: 처음엔 중심 방향, 나중에 퍼짐
+                    if (rank >= StyleRank.A)
+                    {
+                        shield.moveDir = centerDir;
+                        delayedSpread.Add((shield, dir.normalized));
+                    }
+                    else
+                    {
+                        shield.moveDir = centerDir;
+                    }
                     shield.moveSpeed = shieldProjectileSpeed;
+
+                    // S 랭크 – 실드 지속 시간 증가
+                    if (rank == StyleRank.S)
+                    {
+                        shield.lifetime *= sShieldLifetimeMultiplier;
+                    }
                 }
 
                 // A 랭크 이상: 넉백 효과 추가
@@ -135,6 +156,24 @@ public class CSkill : PlayerSkillBase
             {
                 // 파괴 예약만 적용
                 Destroy(obj, shieldLifetime);
+            }
+        }
+
+        // 딜레이 후 퍼지 코루틴 시작
+        if (rank >= StyleRank.A && delayedSpread.Count > 0)
+        {
+            StartCoroutine(SpreadShieldsAfterDelay(delayedSpread, pc.dashDuration));
+        }
+    }
+
+    private IEnumerator SpreadShieldsAfterDelay(List<(Shield sh, Vector2 dir)> list, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        foreach (var tup in list)
+        {
+            if (tup.sh != null)
+            {
+                tup.sh.moveDir = tup.dir;
             }
         }
     }
