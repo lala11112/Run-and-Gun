@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a7b6d513edb61b4f8fe065b853958be
+guid: db2594dbf980d344eb86ef53b93320af
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,3 +43,11 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
+    Textures/Progress Bar Full.png
+  uploadId: 771598

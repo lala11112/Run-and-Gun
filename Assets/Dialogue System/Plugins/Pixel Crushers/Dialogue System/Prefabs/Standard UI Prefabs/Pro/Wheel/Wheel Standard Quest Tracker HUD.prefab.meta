@@ -1,8 +1,16 @@
 fileFormatVersion: 2
-guid: 22f6ecfcecc98784d8cb73479e6d1f83
+guid: 1faea9b6a0e6e5544bcc70c3c4579717
 timeCreated: 1526676081
 licenseType: Store
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard
+    UI Prefabs/Pro/Wheel/Wheel Standard Quest Tracker HUD.prefab
+  uploadId: 771598

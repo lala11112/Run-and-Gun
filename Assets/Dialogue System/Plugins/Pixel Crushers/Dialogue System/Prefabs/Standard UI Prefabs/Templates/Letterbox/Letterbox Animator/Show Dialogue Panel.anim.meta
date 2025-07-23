@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 51c3a027be618be41a7d5b56b03cf21a
+guid: 8b821d8a7b221c044be815172007a2fd
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard
+    UI Prefabs/Templates/Letterbox/Letterbox Animator/Show Dialogue Panel.anim
+  uploadId: 771598

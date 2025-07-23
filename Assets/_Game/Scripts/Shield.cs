@@ -74,7 +74,7 @@ public class Shield : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 적에게 피해
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out SimpleEnemy enemy))
         {
             if (_hitEnemies.Contains(enemy.GetInstanceID())) return;
             _hitEnemies.Add(enemy.GetInstanceID());

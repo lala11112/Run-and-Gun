@@ -53,7 +53,7 @@ public class TestBattleManager : MonoBehaviour
     [Tooltip("현재 라운드 수 (읽기 전용)")]
     public int currentRound = 0;
 
-    private readonly List<Enemy> _aliveEnemies = new();
+    private readonly List<SimpleEnemy> _aliveEnemies = new();
     private GameObject _currentMap;
     private bool _isRoundRunning;
     private Bounds _groundBounds;
@@ -296,7 +296,7 @@ public class TestBattleManager : MonoBehaviour
 
         // 3. 적 생성 및 목록에 추가
         GameObject go = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-        Enemy enemy = go.GetComponent<Enemy>();
+        SimpleEnemy enemy = go.GetComponent<SimpleEnemy>();
         if (enemy != null) _aliveEnemies.Add(enemy);
         else Debug.LogWarning("[TestBattleManager] 적 프리팹에 Enemy 컴포넌트가 없습니다.");
     }

@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: d112531645e65c948bd8a9762b050ea1
+guid: b3fa0fe5e93106c4ab262395c9ca1493
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/VN/Animation/Slide
+    Right Canvas Group Animator Controller.controller
+  uploadId: 771598

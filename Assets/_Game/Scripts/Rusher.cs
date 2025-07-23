@@ -7,7 +7,7 @@ using UnityEngine.AI;
 /// 탐지 → 경고 → 돌진 → 폭발 사이클을 반복합니다.
 /// 돌진 중 X 스킬(넉백) / C 스킬(돌진) 등에 맞으면 스턴 후 즉시 자폭합니다.
 /// </summary>
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(SimpleEnemy))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public class Rusher : MonoBehaviour
@@ -41,7 +41,7 @@ public class Rusher : MonoBehaviour
     [Header("폭발 이펙트")]
     [Tooltip("자폭 이펙트 프리팹 (선택)")] public GameObject explodeEffectPrefab;
 
-    private Enemy _enemy;
+    private SimpleEnemy _enemy;
     private Rigidbody2D _rb;
     private NavMeshAgent _agent;
     private Transform _player;
@@ -51,7 +51,7 @@ public class Rusher : MonoBehaviour
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemy = GetComponent<SimpleEnemy>();
         _rb = GetComponent<Rigidbody2D>();
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player")?.transform;
@@ -124,7 +124,7 @@ public class Rusher : MonoBehaviour
     {
         if (_agent != null) _agent.isStopped = true; // 경로 계산 중단
         Vector2 dir = (_player != null ? (_player.position - transform.position) : Vector3.up).normalized;
-        _rb.linearVelocity = dir * (_enemy != null ? _enemy.moveSpeed * chargeSpeedMultiplier : 8f);
+        _rb.linearVelocity = dir * (_enemy != null ? _enemy.MoveSpeed * chargeSpeedMultiplier : 8f);
         float chargeTimer = 0f;
         bool bulletsFired = false;
         while (chargeTimer < maxChargeTime)

@@ -121,7 +121,7 @@ public class GiantProjectile : MonoBehaviour
         if (other.CompareTag("Player")) return;
 
         // 적에게 피해
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out SimpleEnemy enemy))
         {
             enemy.TakeDamage(damage);
 

@@ -96,7 +96,7 @@ public class QProjectile : MonoBehaviour
             return;
         }
 
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out SimpleEnemy enemy))
         {
             enemy.TakeDamage(damage);
             if (StyleManager.Instance != null && StyleManager.Instance.CurrentRank == StyleRank.A)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 259273e4c67ccc746baba0617255cd3e
+guid: cdebbd691d1e7c748955b62cef466831
 AudioImporter:
   serializedVersion: 4
   format: 0
@@ -10,3 +10,11 @@ AudioImporter:
   useHardware: 0
   loopable: 0
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Shared
+    Audio/hover.ogg
+  uploadId: 771598

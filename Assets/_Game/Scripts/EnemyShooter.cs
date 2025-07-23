@@ -6,7 +6,7 @@ using UnityEngine.AI;
 /// 플레이어를 일정 사거리에서 추적하다가, 사거리 안에 들어오면 이동을 멈추고 플레이어를 향해 연속으로 투사체를 발사하는 적.
 /// Enemy.cs 와 함께 동일 오브젝트에 부착하여 사용한다.
 /// </summary>
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(SimpleEnemy))]
 public class EnemyShooter : MonoBehaviour
 {
     [Header("슈터 설정")]
@@ -17,13 +17,13 @@ public class EnemyShooter : MonoBehaviour
     [Tooltip("투사체를 발사할 위치 (Enemy 기준 상대 위치)")] public Transform firePoint;
 
     private Transform _player;
-    private Enemy _enemy;
+    private SimpleEnemy _enemy;
     private NavMeshAgent _agent;
     private float _fireTimer;
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemy = GetComponent<SimpleEnemy>();
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindWithTag("Player")?.transform;
     }
@@ -40,7 +40,7 @@ public class EnemyShooter : MonoBehaviour
         if (dist > detectionRange) return;
 
         // 플레이어와 유지 거리 이내로 들어오면 정지 후 사격
-        float keepDist = _enemy != null ? _enemy.keepDistance : 5f;
+        float keepDist = _enemy != null ? _enemy.KeepDistance : 5f;
         if (dist <= keepDist)
         {
             if (_agent != null) _agent.isStopped = true;

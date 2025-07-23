@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 8545061957541432109}
   - component: {fileID: 7918012769589532413}
   - component: {fileID: 7209328708316885578}
+  - component: {fileID: 3512756425638129346}
+  - component: {fileID: 6437875089201941433}
+  - component: {fileID: 6716559850780231285}
+  - component: {fileID: 2348673159742212867}
   m_Layer: 6
   m_Name: EnemyA
   m_TagString: Enemy
@@ -99,7 +103,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9142883972293441753}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -164,11 +168,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 40
+  m_Speed: 2
   m_Acceleration: 40
   avoidancePriority: 50
   m_AngularSpeed: 100000
-  m_StoppingDistance: 30
+  m_StoppingDistance: 6
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -176,6 +180,70 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3512756425638129346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66028ed621c79c44a28fbe51b52dc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statData: {fileID: 11400000, guid: 7fc88d020de3d8c4689746e055ea14d2, type: 2}
+  baseMaxHp: 5
+--- !u!114 &6437875089201941433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53e38dc9cc0fbc4e82cecd66803e3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 40
+  keepDistance: 15
+--- !u!114 &6716559850780231285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6764c6f7cfae8409e2ec8412ad33e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  currentHealth: 0
+  dieSfx: EnemyDie
+  dieShakeDuration: 0.25
+  dieShakeMagnitude: 0.3
+  dieSlowScale: 0.2
+  dieSlowDuration: 0.15
+--- !u!114 &2348673159742212867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430274404081d1646a5a047dd804c11a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 40
+  fireInterval: 0.4
+  projectilePrefab: {fileID: 531329835914582313, guid: d8f47ac669e5376489c484d404e3a898, type: 3}
+  projectileSpeedOverride: 40
+  firePoint: {fileID: 1557753661566689637}
 --- !u!1001 &7874384263292351639
 PrefabInstance:
   m_ObjectHideFlags: 0

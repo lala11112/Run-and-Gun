@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d50847452b8d159408f4037d676eefcb
+guid: ead3fd45dba6a1c4a8cf5d6238b62307
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,3 +43,10 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Basic/ReticleOutOfRange.png
+  uploadId: 771598

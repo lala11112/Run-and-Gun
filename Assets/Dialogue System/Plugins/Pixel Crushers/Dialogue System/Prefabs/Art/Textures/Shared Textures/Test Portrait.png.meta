@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a74a6e629ae581143b5ab4b2b7bd7d21
+guid: 0dc3cb24472312b4bbe22e50041d6c7b
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,3 +43,11 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
+    Textures/Test Portrait.png
+  uploadId: 771598

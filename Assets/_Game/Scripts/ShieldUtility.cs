@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class ShieldUtility
 {
-    public static bool IsBlockedByShield(Vector2 attackOrigin, Enemy target, out ShieldDrone drone)
+    public static bool IsBlockedByShield(Vector2 attackOrigin, SimpleEnemy target, out ShieldDrone drone)
     {
         drone = target.GetComponent<ShieldDrone>();
         if (drone == null) return false;

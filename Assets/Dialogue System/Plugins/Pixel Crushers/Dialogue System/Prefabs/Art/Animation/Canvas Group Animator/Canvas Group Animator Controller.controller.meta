@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 0019e8244daa0db46be62ebe08306226
+guid: 62b8011547f389344ba48f87b2ada51c
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Animation/Canvas
+    Group Animator/Canvas Group Animator Controller.controller
+  uploadId: 771598

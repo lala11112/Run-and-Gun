@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 4640831b122400e459147047fda2e68f
+guid: e52d31c8074423e45ad74b2353412eaa
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard
+    UI Prefabs/Templates/Letterbox/Letterbox Animator/Show Alert Panel.anim
+  uploadId: 771598

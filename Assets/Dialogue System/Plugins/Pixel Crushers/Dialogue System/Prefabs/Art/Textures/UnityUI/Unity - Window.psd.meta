@@ -1,5 +1,13 @@
 fileFormatVersion: 2
-guid: 96c4084987d966145b74c8ac49faee2e
+guid: 56f0487aa75c16442b6a6997355c3bda
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/UnityUI/Unity
+    - Window.psd
+  uploadId: 771598
 TextureImporter:
   internalIDToNameTable:
   - first:

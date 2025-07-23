@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 1557753661566689637}
   - component: {fileID: 4852626425538832837}
   - component: {fileID: 8545061957541432109}
-  - component: {fileID: 6822239556541847786}
   - component: {fileID: 4323095935267216331}
   - component: {fileID: 7918012769589532413}
   - component: {fileID: 6036669734778801591}
-  - component: {fileID: -6900957202829638890}
   - component: {fileID: 493918985266668728}
+  - component: {fileID: 8819926729355834334}
+  - component: {fileID: 3240899919951640052}
   m_Layer: 6
   m_Name: EnemyB
   m_TagString: Enemy
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9142883972293441753}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -122,28 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6822239556541847786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9142883972293441753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dd6b77f5551e8649a7682894d1c3d68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statData: {fileID: 11400000, guid: a812d7c7d8a175740bd75c13c468ff70, type: 2}
-  moveSpeed: 20
-  keepDistance: 20
-  spriteRenderer: {fileID: 0}
-  stunColor: {r: 0, g: 1, b: 1, a: 1}
-  dieSfx: EnemyDie
-  dieShakeDuration: 0.1
-  dieShakeMagnitude: 0.2
-  dieSlowScale: 0.2
-  dieSlowDuration: 0.15
 --- !u!114 &4323095935267216331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,12 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700ed9f4bfe518d48a8ae53f2e0f04d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 30
-  bulletsPerRing: 5
+  detectionRange: 40
+  bulletsPerRing: 6
   ringInterval: 1
-  ringCount: 1
+  ringCount: 2
   projectilePrefab: {fileID: 6867986577864171439, guid: 63706e750d445bf419fa3d945111981b, type: 3}
-  projectileSpeedOverride: 10
+  projectileSpeedOverride: 20
   firePoint: {fileID: 1557753661566689637}
 --- !u!58 &7918012769589532413
 CircleCollider2D:
@@ -221,20 +199,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &-6900957202829638890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9142883972293441753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6d9452a78f9d04d85f630bf98eeda6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  followRange: 200
 --- !u!114 &493918985266668728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,10 +214,39 @@ MonoBehaviour:
   maxHealth: 40
   currentHealth: 0
   dieSfx: EnemyDie
-  dieShakeDuration: 0.25
-  dieShakeMagnitude: 0.3
+  dieShakeDuration: 0.1
+  dieShakeMagnitude: 0.2
   dieSlowScale: 0.2
   dieSlowDuration: 0.15
+--- !u!114 &8819926729355834334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53e38dc9cc0fbc4e82cecd66803e3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 30
+  keepDistance: 30
+--- !u!114 &3240899919951640052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142883972293441753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66028ed621c79c44a28fbe51b52dc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statData: {fileID: 11400000, guid: a812d7c7d8a175740bd75c13c468ff70, type: 2}
+  baseMaxHp: 5
+  statData: {fileID: 0}
 --- !u!1001 &6863605139688320171
 PrefabInstance:
   m_ObjectHideFlags: 0

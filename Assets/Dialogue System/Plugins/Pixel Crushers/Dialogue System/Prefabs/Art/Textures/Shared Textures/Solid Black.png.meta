@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d0c4383b9ea76ee4f9919ffceed3585a
+guid: c4119e9b4f34c524484cf7eeedd058fb
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,3 +43,11 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
+    Textures/Solid Black.png
+  uploadId: 771598

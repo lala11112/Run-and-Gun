@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38564bb0ed977f94ea739a8a8e1227c3
+guid: 37cc5c4c34e880e4ea94f0daa8bb4aef
 AudioImporter:
   serializedVersion: 4
   format: 0
@@ -10,3 +10,11 @@ AudioImporter:
   useHardware: 0
   loopable: 0
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Shared
+    Audio/click.ogg
+  uploadId: 771598

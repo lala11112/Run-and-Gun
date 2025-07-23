@@ -29,7 +29,7 @@ public class QTrailZone : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile"))
             return;
 
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out SimpleEnemy enemy))
         {
             enemy.TakeDamage(damage);
         }

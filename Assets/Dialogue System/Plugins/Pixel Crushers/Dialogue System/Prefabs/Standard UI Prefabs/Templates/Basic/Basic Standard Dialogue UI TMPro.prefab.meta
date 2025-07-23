@@ -1,8 +1,16 @@
 fileFormatVersion: 2
-guid: c271cdd1525848f478f01a8caa3a399f
+guid: a5b4dc18ac65b8d4aa58af9b95d65f77
 timeCreated: 1525036672
 licenseType: Store
 NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard
+    UI Prefabs/Templates/Basic/Basic Standard Dialogue UI TMPro.prefab
+  uploadId: 771598

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8d772106d14b3f49974ec49a6db317a
+guid: 0fe180d56a536db45aca9b54c8c198f8
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -43,3 +43,11 @@ TextureImporter:
     sprites: []
   spritePackingTag: 
   userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/Shared
+    Textures/Hard Background.png
+  uploadId: 771598

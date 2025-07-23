@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// 정면 실드로 공격을 막고, 실드 피격 시 3연속 돌진으로 반격합니다.
 /// C 스킬 등 특정 충격에 실드가 파괴(Break)되면 일정 시간 무방비 상태.
 /// </summary>
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(SimpleEnemy))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShieldDrone : MonoBehaviour
 {
@@ -41,11 +41,12 @@ public class ShieldDrone : MonoBehaviour
     private float _cooldownTimer = 0f;
 
     private State _state = State.Idle;
-    private Enemy _enemy;
+    private SimpleEnemy _enemy;
     private NavMeshAgent _agent;
     private Rigidbody2D _rb;
     private Transform _player;
-    private EnemyNavFollower _follower;
+    // NavMeshMovement가 이동을 담당하므로 별도 Follower 필요 없음
+    private IMovement _move;
     private readonly List<GameObject> _activeTelegraphs = new();
     
     // ↳ 남아있는 텔레그래프 라인을 일괄 정리하는 메서드
@@ -61,13 +62,13 @@ public class ShieldDrone : MonoBehaviour
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemy = GetComponent<SimpleEnemy>();
         _agent = GetComponent<NavMeshAgent>();
         if (_agent != null) { _agent.updateUpAxis=false; _agent.updateRotation=false; }
         _rb = GetComponent<Rigidbody2D>();
         _player = GameObject.FindWithTag("Player")?.transform;
 
-        _follower = GetComponent<EnemyNavFollower>();
+        _move = GetComponent<IMovement>();
     }
 
     private void Update()
@@ -154,7 +155,8 @@ public class ShieldDrone : MonoBehaviour
         // 준비 단계에서 완전히 정지 및 NavFollower 비활성
         if (_rb != null) _rb.linearVelocity = Vector2.zero;
         if (_agent != null) _agent.isStopped = true;
-        if (_follower != null) _follower.enabled = false;
+        // 이동 중지
+        _move?.Stop();
 
         // 3연속 돌진
         for(int i=0;i<3;i++)
@@ -162,7 +164,7 @@ public class ShieldDrone : MonoBehaviour
 			// 먼저 완전히 정지시킨 뒤 방향 계산 (미끄러짐 방지)
 			if (_rb != null) _rb.linearVelocity = Vector2.zero;
 			if (_agent != null) _agent.isStopped = true;
-			if (_follower != null) _follower.enabled = false;
+			_move?.Stop();
 			// 준비 경고 – 경로 표시
             Vector2 dir = (_player.position-transform.position).normalized;
             Vector3 lockPos = transform.position;
@@ -212,6 +214,8 @@ public class ShieldDrone : MonoBehaviour
             float speed = dashSpeed[Mathf.Clamp(i,0,dashSpeed.Length-1)];
             float dist = dashDistance;
             float traveled=0f;
+            // Dash state 설정 (충돌 판정용)
+            _state = (State)((int)State.Dash1 + i);
             _rb.linearVelocity = dir*speed;
             while(traveled<dist)
             {
@@ -223,7 +227,7 @@ public class ShieldDrone : MonoBehaviour
             if(i<dashDelays.Length) yield return new WaitForSeconds(dashDelays[i]);
         }
         // 돌진 일괄 종료 후 쿨다운으로
-        if (_follower != null) _follower.enabled = true;
+        // 이동 재개 (NavMeshMovement에서 자동)
         StartCoroutine(CooldownRoutine());
     }
 
@@ -255,6 +259,12 @@ public class ShieldDrone : MonoBehaviour
     private void OnDestroy()
     {
         // 보스/드론 파괴 시 남아있는 텔레그래프 정리
+        ClearTelegraphs();
+    }
+
+    private void OnDisable()
+    {
+        // 비활성화될 때도 텔레그래프 정리
         ClearTelegraphs();
     }
 } 

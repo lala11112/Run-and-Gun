@@ -93,7 +93,7 @@ public class ZSkill : PlayerSkillBase
             foreach (var h in nearHits)
             {
                 Transform t = null;
-                if (h.TryGetComponent(out Enemy enemy))
+                if (h.TryGetComponent(out SimpleEnemy enemy))
                 {
                     t = enemy.transform;
                 }
@@ -121,7 +121,7 @@ public class ZSkill : PlayerSkillBase
             foreach (var h in nearHits)
             {
                 Transform t = null;
-                if (h.TryGetComponent(out Enemy enemy))
+                if (h.TryGetComponent(out SimpleEnemy enemy))
                 {
                     t = enemy.transform;
                 }

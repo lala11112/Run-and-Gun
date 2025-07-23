@@ -88,7 +88,7 @@ public class XSkill : PlayerSkillBase
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, rad);
         foreach (var h in hits)
         {
-            if (h.TryGetComponent(out Enemy enemy))
+            if (h.TryGetComponent(out SimpleEnemy enemy))
             {
                 int dealt = dmg;
                 float dist = Vector2.Distance(transform.position, enemy.transform.position);

@@ -5,7 +5,7 @@ using UnityEngine;
 /// 플레이어가 인식 범위에 들어오면 제자리에서 플레이어를 중심으로 탄막을 세 번 발사하는 적.
 /// Enemy.cs와 함께 사용하며, EnemyProjectile을 이용해 탄막을 구성.
 /// </summary>
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(SimpleEnemy))]
 public class EnemyTripleBarrage : MonoBehaviour
 {
     [Header("탄막 설정")]
@@ -29,7 +29,7 @@ public class EnemyTripleBarrage : MonoBehaviour
     {
         if (_player == null || _isFiring) return;
 
-        if (TryGetComponent(out Enemy enemyComp) && enemyComp.IsStunned) return;
+        if (TryGetComponent(out SimpleEnemy enemyComp) && enemyComp.IsStunned) return;
 
         float dist = Vector2.Distance(transform.position, _player.position);
         if (dist <= detectionRange)
@@ -52,16 +52,20 @@ public class EnemyTripleBarrage : MonoBehaviour
     private void FireRing()
     {
         if (projectilePrefab == null) return;
+        if (_player == null) return;
 
         Vector2 center = firePoint != null ? (Vector2)firePoint.position : (Vector2)transform.position;
+        Vector2 toPlayer = ((Vector2)_player.position - center).normalized;
+        float baseAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg; // 0° = +X 방향
+
         float angleStep = 360f / bulletsPerRing;
-        float currentAngle = 0f;
+        float currentAngle = baseAngle;
 
         for (int i = 0; i < bulletsPerRing; i++)
         {
             float rad = currentAngle * Mathf.Deg2Rad;
             Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)).normalized;
-            Vector2 spawnPos = center + dir * 0.1f; // 플레이어 바로 근처에서 생성
+            Vector2 spawnPos = center + dir * 0.1f;
 
             GameObject obj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
             if (obj.TryGetComponent(out EnemyProjectile ep))

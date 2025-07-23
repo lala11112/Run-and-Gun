@@ -7,7 +7,7 @@ using UnityEngine.AI;
 /// - Enemy.cs 와 함께 동일 오브젝트에 부착.
 /// - 스턴 시 사격 중지.
 /// </summary>
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(SimpleEnemy))]
 public class EnemySodaShooter : MonoBehaviour
 {
     [Header("감지 및 이동")]
@@ -22,14 +22,14 @@ public class EnemySodaShooter : MonoBehaviour
     [Header("소다건 설정")]
     [Tooltip("발사할 투사체 프리팹 (EnemyProjectile)")] public GameObject bubbleProjectilePrefab;
 
-    private Enemy _enemy;
+    private SimpleEnemy _enemy;
     private Transform _player;
     private NavMeshAgent _agent;
     private bool _isBursting;
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _enemy = GetComponent<SimpleEnemy>();
         _player = GameObject.FindWithTag("Player")?.transform;
         _agent = GetComponent<NavMeshAgent>();
     }
@@ -45,11 +45,11 @@ public class EnemySodaShooter : MonoBehaviour
         // 이동 및 사격 제어 (NavMeshAgent 사용)
         if (_agent != null)
         {
-            float keepDist = _enemy != null ? _enemy.keepDistance : 5f;
+            float keepDist = _enemy != null ? _enemy.KeepDistance : 5f;
             if (dist > keepDist)
             {
                 _agent.isStopped = false;
-                _agent.speed = _enemy != null ? _enemy.moveSpeed : 2f;
+                _agent.speed = _enemy != null ? _enemy.MoveSpeed : 2f;
                 _agent.SetDestination(_player.position);
             }
             else

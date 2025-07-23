@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: 67eeeffc216fec4459f9b1aa19f8b180
+guid: ab8e54a30d440774e8bb19917c4b221d
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Art/Textures/VN/Animation/Slide
+    Right Hide.anim
+  uploadId: 771598

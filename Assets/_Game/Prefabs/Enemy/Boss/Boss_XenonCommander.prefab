@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1385904201, guid: 0e0c49562085468e8b180291b8414bf8, type: 3}
+  m_Sprite: {fileID: 7683567802946276634, guid: 36b039bef48e4ab09266db321091f96f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -372,8 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpread: {fileID: 981965173163617904}
   rotary: {fileID: 590758749468595639}
-  chargeDistance: 100
-  chargeSpeed: 50
+  chargeDistance: 50
+  chargeSpeed: 100
   weakDuration: 3
   weakPoint: {fileID: 0}
 --- !u!114 &3271469186101840774

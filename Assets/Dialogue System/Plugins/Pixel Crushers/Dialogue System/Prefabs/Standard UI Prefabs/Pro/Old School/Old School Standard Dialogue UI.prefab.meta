@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f66264ea49466347b5fe71c669d908f
+guid: 48c4026eae2c41d4a8767272f2830356
 timeCreated: 1602430394
 licenseType: Store
 NativeFormatImporter:
@@ -8,3 +8,11 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 11672
+  packageName: Dialogue System for Unity
+  packageVersion: 2.2.56
+  assetPath: Assets/Dialogue System/Plugins/Pixel Crushers/Dialogue System/Prefabs/Standard
+    UI Prefabs/Pro/Old School/Old School Standard Dialogue UI.prefab
+  uploadId: 771598
