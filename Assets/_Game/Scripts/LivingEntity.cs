@@ -46,4 +46,16 @@ public abstract class LivingEntity : MonoBehaviour
     /// 사망 처리. 구체적인 연출은 파생 클래스에서 구현합니다.
     /// </summary>
     protected abstract void Die();
+}
+
+public class GenericLivingEntity : LivingEntity
+{
+    [Header("사망 시 Destroy 여부")]
+    public bool destroyOnDeath = true;
+
+    protected override void Die()
+    {
+        // 추가 연출이 필요하면 여기서 호출
+        if (destroyOnDeath) Destroy(gameObject);
+    }
 } 

@@ -391,17 +391,20 @@ MonoBehaviour:
   shieldTurnSpeed: 500
   shieldTransform: {fileID: 7937742055223085923}
   breakDuration: 2.5
-  shieldOffset: 2
+  shieldOffset: 4
   dashDistance: 30
   dashSpeed:
-  - 30
-  - 50
-  - 60
-  dashPrepTime: 0.3
+  - 100
+  - 80
+  - 100
+  dashPrepTime: 0.5
   dashDelays:
-  - 0.4
-  - 0.3
+  - 0.2
+  - 0.2
   dashDamage: 2
+  telegraphPrefab: {fileID: 0}
+  telegraphColor: {r: 1, g: 0, b: 0, a: 0.5529412}
+  telegraphWidth: 3
   reactCooldown: 3
 --- !u!1001 &4464644613506074698
 PrefabInstance:

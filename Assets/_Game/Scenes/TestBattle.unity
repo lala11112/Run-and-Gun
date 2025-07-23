@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
       propertyPath: areGroupsExpanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
       propertyPath: playlistsExpanded
@@ -396,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
       propertyPath: showGroupCreation
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
       propertyPath: useTextGroupFilter
@@ -843,8 +843,8 @@ MonoBehaviour:
   dThreshold: 250
   cThreshold: 500
   bThreshold: 1000
-  aThreshold: 2000
-  sThreshold: 3000
+  aThreshold: 1500
+  sThreshold: 2000
   decayDelay: 2
   decayPerSecond: 50
   bCooldownMultiplier: 0.9
@@ -2901,7 +2901,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5073,6 +5073,7 @@ MonoBehaviour:
   - {fileID: 3396180094095165315, guid: 2b64b7af4c3c58d4792aad52cbffda61, type: 3}
   - {fileID: 9142883972293441753, guid: 5715686bda50ea2449368d2960ae6987, type: 3}
   - {fileID: 9142883972293441753, guid: 4d157a6c7b87b8d40a36b299c259b3ed, type: 3}
+  bossPrefab: {fileID: 7843133874035476649, guid: 9b130361d6e8ba847a94a95ffe2568ca, type: 3}
   spawnCountRange: {x: 1, y: 2}
   spawnAreaSize: {x: 250, y: 250}
   nextRoundDelay: 0.2
@@ -8172,7 +8173,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: bd4b58abb7d26244ab138806ae84f9b2, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -12510,9 +12511,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d2cdca2db4d39e489d501f8408f229b, type: 3}
+  m_Sprite: {fileID: -4549871927518758641, guid: 0a02a38cc342d304f9466e668f865222, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

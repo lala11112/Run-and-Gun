@@ -133,7 +133,7 @@ public class CSkill : PlayerSkillBase
                     }
                     else
                     {
-                        shield.moveDir = centerDir;
+                    shield.moveDir = centerDir;
                     }
                     shield.moveSpeed = shieldProjectileSpeed;
 

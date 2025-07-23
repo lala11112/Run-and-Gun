@@ -19,6 +19,9 @@ public class TestBattleManager : MonoBehaviour
     [Tooltip("스폰될 적 프리팹 목록")]
     public GameObject[] enemyPrefabs;
 
+    [Header("보스 설정")]
+    [Tooltip("9라운드에 등장할 보스 프리팹")] public GameObject bossPrefab;
+
     [Tooltip("라운드마다 소환될 적 수 (최소, 최대)")]
     public Vector2Int spawnCountRange = new Vector2Int(5, 10);
 
@@ -95,7 +98,10 @@ public class TestBattleManager : MonoBehaviour
             {
                 // 리스트에서 파괴된 Enemy 레퍼런스 제거
                 _aliveEnemies.RemoveAll(e => e == null);
-                if (_aliveEnemies.Count == 0)
+
+                bool bossAlive = FindObjectsByType<BossHealth>(FindObjectsSortMode.None).Length > 0;
+
+                if (_aliveEnemies.Count == 0 && !bossAlive)
                 {
                     _isRoundRunning = false;
                 }
@@ -143,15 +149,23 @@ public class TestBattleManager : MonoBehaviour
         // NavMeshSurface2D를 사용할 경우, 프리팹 내부에 이미 베이크된 데이터가 있어 즉시 사용 가능.
         // 만약 베이크가 필요하면 여기서 Surface2D.BuildNavMesh() 호출 가능.
 
-        // 2. 적 스폰
-        int min = spawnCountRange.x + spawnIncrementPerRound * (currentRound - 1);
-        int max = spawnCountRange.y + spawnIncrementPerRound * (currentRound - 1);
-        int enemyCount = Random.Range(min, max + 1);
-        for (int i = 0; i < enemyCount; i++)
+        // 2. 적 또는 보스 스폰
+        if (currentRound == 3 && bossPrefab != null)
         {
-            SpawnRandomEnemy();
-            // 프레임 분산을 위해 한 프레임에 한 마리씩 스폰 (과도한 GC 방지)
-            yield return null;
+            // NavMesh 상의 플레이어 앞 위치에 보스 배치 (간단 예시)
+            Vector3 spawnPos = transform.position + Vector3.up * 4f;
+            Instantiate(bossPrefab, spawnPos, Quaternion.identity);
+        }
+        else
+        {
+            int min = spawnCountRange.x + spawnIncrementPerRound * (currentRound - 1);
+            int max = spawnCountRange.y + spawnIncrementPerRound * (currentRound - 1);
+            int enemyCount = Random.Range(min, max + 1);
+            for (int i = 0; i < enemyCount; i++)
+            {
+                SpawnRandomEnemy();
+                yield return null; // 프레임 분산 (GC 방지)
+            }
         }
     }
 

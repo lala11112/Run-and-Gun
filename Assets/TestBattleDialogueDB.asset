@@ -57,8 +57,8 @@ MonoBehaviour:
       value: "\uC5F0\uAD6C\uC6D0A"
       type: 0
       typeString: CustomFieldType_Text
-    portrait: {fileID: 2800000, guid: 9d2cdca2db4d39e489d501f8408f229b, type: 3}
-    spritePortrait: {fileID: 21300000, guid: 9d2cdca2db4d39e489d501f8408f229b, type: 3}
+    portrait: {fileID: 2800000, guid: 817551e8670474947b5f1ebd35ff9a9d, type: 3}
+    spritePortrait: {fileID: -4549871927518758641, guid: 0a02a38cc342d304f9466e668f865222, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 2
@@ -105,6 +105,10 @@ MonoBehaviour:
       value: True
       type: 2
       typeString: CustomFieldType_Boolean
+    - title: Display Name
+      value: ' '
+      type: 0
+      typeString: 
     portrait: {fileID: 0}
     spritePortrait: {fileID: 0}
     alternatePortraits: []
