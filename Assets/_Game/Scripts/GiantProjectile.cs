@@ -118,6 +118,8 @@ public class GiantProjectile : MonoBehaviour
             return;
         }
 
+        if (other.CompareTag("Player")) return;
+
         // 적에게 피해
         if (other.TryGetComponent(out Enemy enemy))
         {
@@ -135,6 +137,11 @@ public class GiantProjectile : MonoBehaviour
                 Vector2 dir = (Vector2)transform.position - erb.position;
                 erb.AddForce(dir.normalized * pullForce, ForceMode2D.Impulse);
             }
+        }
+
+        else if (other.TryGetComponent(out IDamageable dmg))
+        {
+            dmg.TakeDamage(damage);
         }
 
         // 그 외 오브젝트와는 충돌해도 파괴되지 않음 (지속 진행)

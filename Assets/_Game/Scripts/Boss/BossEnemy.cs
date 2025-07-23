@@ -1,24 +1,50 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
-/// 보스용 Enemy 파생 클래스.
-/// 이동 AI를 비활성화하여 NavMeshAgent 경로 탐색을 사용하지 않고,
-/// TestBattleManager 에서는 Enemy 로 인식되도록만 기능을 유지합니다.
+/// EnemyCore 파생 보스 래퍼. 이동 모듈이 없으며 데미지는 BossHealth 로 위임된다.
 /// </summary>
-public class BossEnemy : Enemy
+[DisallowMultipleComponent]
+[RequireComponent(typeof(BossHealth))]
+public class BossEnemy : EnemyCore
 {
-    private void Awake()
-    {
-        // base Enemy.Awake() 이미 실행됨 (Unity는 상속 체인의 모든 Awake 호출)
-        // 보스는 자리 고정 – NavMeshAgent 중지
-        var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        if (agent != null) agent.isStopped = true;
+    private BossHealth bossHp;
 
-        // Enemy.Awake 에서 moveSpeed 적용 전에 필드를 덮어쓰면 무시되므로 Start 에서 보정
+    protected override void Awake()
+    {
+        base.Awake();
+        bossHp = GetComponent<BossHealth>();
+        // 이동 모듈 사용 안 함
+        movement = null;
+
+        // 2D NavMesh 사용 시 Z(깊이) 값이 변하지 않도록 NavMeshAgent 설정
+        var agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.updateUpAxis   = false; // 월드 Z 축 고정
+            agent.updateRotation = false; // 에이전트가 회전값을 제어하지 않음
+        }
     }
 
-    private void Start()
+    private void LateUpdate()
     {
-        moveSpeed = 0f;
+        // NavMeshAgent나 기타 요인으로 Z 값이 변했을 경우 다시 0으로 고정합니다.
+        if (Mathf.Abs(transform.position.z) > Mathf.Epsilon)
+        {
+            Vector3 p = transform.position;
+            p.z = 0f;
+            transform.position = p;
+        }
+    }
+
+    public override void TakeDamage(int dmg)
+    {
+        // EnemyCore 내부 HP 사용하지 않고 BossHealth 관리 사용
+        bossHp?.TakeDamage(dmg);
+    }
+
+    protected override void Die()
+    {
+        // 실제 사망 로직은 BossHealth.OnBossDead → BossPresentation 의 사망 연출로 처리
     }
 } 

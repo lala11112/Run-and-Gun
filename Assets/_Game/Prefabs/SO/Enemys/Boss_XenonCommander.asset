@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59727ad7df118148bcbf4815dd8d8b1, type: 3}
   m_Name: Boss_XenonCommander
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 300
   moveSpeed: 0
   keepDistance: 6
   damage: 2

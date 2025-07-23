@@ -20,9 +20,11 @@ public class BreakPhasePattern : MonoBehaviour, IBossPattern
         if (forwardSpread != null) yield return forwardSpread.ExecutePattern();
         if (rotary != null) yield return rotary.ExecutePattern();
 
-        // 돌진 – 간단히 위치 보간
+        // 돌진 – 플레이어 방향으로
+        Transform player = GameObject.FindWithTag("Player")?.transform;
+        Vector3 dir = player != null ? (player.position - transform.position).normalized : Vector3.down;
         Vector3 start = transform.position;
-        Vector3 target = start + Vector3.down * chargeDistance;
+        Vector3 target = start + dir * chargeDistance;
         float t = 0f;
         while (t < 1f)
         {

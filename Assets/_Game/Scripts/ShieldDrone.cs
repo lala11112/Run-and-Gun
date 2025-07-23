@@ -47,6 +47,16 @@ public class ShieldDrone : MonoBehaviour
     private Transform _player;
     private EnemyNavFollower _follower;
     private readonly List<GameObject> _activeTelegraphs = new();
+    
+    // ↳ 남아있는 텔레그래프 라인을 일괄 정리하는 메서드
+    private void ClearTelegraphs()
+    {
+        foreach (var go in _activeTelegraphs)
+        {
+            if (go != null) Destroy(go);
+        }
+        _activeTelegraphs.Clear();
+    }
     private bool _shieldActive = true;
 
     private void Awake()
@@ -91,6 +101,7 @@ public class ShieldDrone : MonoBehaviour
     private void SwitchState(State next)
     {
         StopAllCoroutines();
+        ClearTelegraphs(); // 상태 전환 시 남아 있는 텔레그래프 제거
         _state = next;
         if (_agent!=null) _agent.isStopped = (next!=State.Idle);
 
@@ -153,7 +164,7 @@ public class ShieldDrone : MonoBehaviour
 			if (_agent != null) _agent.isStopped = true;
 			if (_follower != null) _follower.enabled = false;
 			// 준비 경고 – 경로 표시
-			Vector2 dir = (_player.position-transform.position).normalized;
+            Vector2 dir = (_player.position-transform.position).normalized;
             Vector3 lockPos = transform.position;
 
             LineRenderer lr = null;
@@ -244,10 +255,6 @@ public class ShieldDrone : MonoBehaviour
     private void OnDestroy()
     {
         // 보스/드론 파괴 시 남아있는 텔레그래프 정리
-        foreach (var go in _activeTelegraphs)
-        {
-            if (go != null) Destroy(go);
-        }
-        _activeTelegraphs.Clear();
+        ClearTelegraphs();
     }
 } 

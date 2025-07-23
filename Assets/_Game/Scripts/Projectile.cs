@@ -67,10 +67,12 @@ public class Projectile : MonoBehaviour
             return; // 충돌 처리하지 않고 종료
         }
 
-        // 적 캐릭터 피해 처리
-        if (other.TryGetComponent(out Enemy enemy))
+        // 적 캐릭터 피해 처리(IDamageable)
+        if (other.CompareTag("Player")) return;
+
+        if (other.TryGetComponent(out IDamageable target))
         {
-            enemy.TakeDamage(damage);
+            target.TakeDamage(damage);
         }
 
         // 충돌 후 투사체 반환

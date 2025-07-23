@@ -117,5 +117,13 @@ public class Shield : MonoBehaviour
         {
             Destroy(ep.gameObject);
         }
+        // 기타 IDamageable
+        if (other.CompareTag("Player"))
+            return;
+
+        else if (other.TryGetComponent(out IDamageable dmg))
+        {
+            dmg.TakeDamage(damage);
+        }
     }
 } 

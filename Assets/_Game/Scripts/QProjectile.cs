@@ -108,6 +108,21 @@ public class QProjectile : MonoBehaviour
             return;
         }
 
+        // 기타 IDamageable
+        if (other.CompareTag("Player"))
+        {
+            Despawn();
+            return;
+        }
+
+        else if (other.TryGetComponent(out IDamageable dmg))
+        {
+            dmg.TakeDamage(damage);
+            StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
+            Despawn();
+            return;
+        }
+
         // 벽 등
         Despawn();
     }

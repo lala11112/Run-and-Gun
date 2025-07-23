@@ -6,7 +6,7 @@ using UnityEngine;
 /// 최대 체력, 피해 처리, 사망 처리 등 기본 로직을 제공합니다.
 /// 파생 클래스는 <see cref="Die"/> 를 구현해 개별 연출을 처리하세요.
 /// </summary>
-public abstract class LivingEntity : MonoBehaviour
+public abstract class LivingEntity : MonoBehaviour, IDamageable
 {
     [Header("공통 체력 설정")]
     [Tooltip("최대 체력")] public int maxHealth = 5;

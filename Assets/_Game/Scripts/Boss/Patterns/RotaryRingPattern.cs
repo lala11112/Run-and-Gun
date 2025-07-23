@@ -16,11 +16,14 @@ public class RotaryRingPattern : MonoBehaviour, IBossPattern
 
     public IEnumerator ExecutePattern()
     {
+        Transform player = GameObject.FindWithTag("Player")?.transform;
+        Vector2 baseDir = player != null ? (player.position - transform.position).normalized : Vector2.down;
+        float baseAngle = Mathf.Atan2(baseDir.y, baseDir.x) * Mathf.Rad2Deg - 90f; // Vector2.down 기준
         float curAngle = 0f;
         int totalShots = rounds * bulletsPerRound;
         for (int i = 0; i < totalShots; i++)
         {
-            Vector2 dir = Quaternion.Euler(0, 0, curAngle) * Vector2.down;
+            Vector2 dir = Quaternion.Euler(0, 0, baseAngle + curAngle) * Vector2.down;
             GameObject obj = SimplePool.Spawn(bulletPrefab, transform.position, Quaternion.identity);
             if (obj.TryGetComponent(out EnemyProjectile ep))
             {

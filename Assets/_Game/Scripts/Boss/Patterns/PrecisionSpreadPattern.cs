@@ -16,13 +16,18 @@ public class PrecisionSpreadPattern : MonoBehaviour, IBossPattern
     public IEnumerator ExecutePattern()
     {
         Transform origin = transform;
+        Transform player = GameObject.FindWithTag("Player")?.transform;
+        Vector2 baseDir = player != null ? (player.position - origin.position).normalized : Vector2.down;
         for (int v = 0; v < volleyCount; v++)
         {
+            // 발사 전 매 volley마다 최신 플레이어 방향 갱신 (이동 대응)
+            if (player != null) baseDir = ((Vector2)(player.position - origin.position)).normalized;
+
             for (int i = 0; i < bulletPerVolley; i++)
             {
                 float t = bulletPerVolley == 1 ? 0 : (float)i / (bulletPerVolley - 1);
-                float ang = -spreadAngle * 0.5f + t * spreadAngle;
-                Vector2 dir = Quaternion.Euler(0, 0, ang) * Vector2.down; // 보스가 위에 있다고 가정
+                float angOffset = -spreadAngle * 0.5f + t * spreadAngle;
+                Vector2 dir = Quaternion.AngleAxis(angOffset, Vector3.forward) * baseDir;
 
                 GameObject obj = SimplePool.Spawn(bulletPrefab, origin.position, Quaternion.identity);
                 if (obj.TryGetComponent(out EnemyProjectile ep))

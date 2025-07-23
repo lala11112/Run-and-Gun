@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DarkTonic.MasterAudio;
+using System.Linq;
 // SimplePool 사용
 
 /// <summary>
@@ -80,41 +81,58 @@ public class ZSkill : PlayerSkillBase
         }
 
         // 대상 선정
-        List<Enemy> targets = new List<Enemy>();
+        List<Transform> targets = new List<Transform>();
         Vector2 originPos = pc.firePoint != null ? (Vector2)pc.firePoint.position : (Vector2)transform.position;
+
+        Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
 
         if (rank == StyleRank.C || rank == StyleRank.D)
         {
-            Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
             float minDist = float.MaxValue;
-            Enemy closest = null;
+            Transform closest = null;
             foreach (var h in nearHits)
             {
+                Transform t = null;
                 if (h.TryGetComponent(out Enemy enemy))
                 {
-                    // 시야 차단 검사
-                    if (!HasLineOfSight(originPos, enemy.transform.position)) continue;
+                    t = enemy.transform;
+                }
+                else if (h.TryGetComponent(out IDamageable dmg))
+                {
+                    // 플레이어 자신 제외
+                    if (h.CompareTag("Player")) continue;
+                    t = h.transform;
+                }
 
-                    float d = Vector2.Distance(transform.position, enemy.transform.position);
+                if (t != null && HasLineOfSight(originPos, t.position))
+                {
+                    float d = Vector2.Distance(transform.position, t.position);
                     if (d < minDist)
                     {
                         minDist = d;
-                        closest = enemy;
+                        closest = t;
                     }
                 }
             }
             if (closest != null) targets.Add(closest);
         }
-        else // B, A, S
+        else // B, A, S – 범위 내 모든 대상
         {
-            Collider2D[] nearHits = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
             foreach (var h in nearHits)
             {
+                Transform t = null;
                 if (h.TryGetComponent(out Enemy enemy))
                 {
-                    if (HasLineOfSight(originPos, enemy.transform.position))
-                        targets.Add(enemy);
+                    t = enemy.transform;
                 }
+                else if (h.TryGetComponent(out IDamageable dmg))
+                {
+                    if (h.CompareTag("Player")) continue;
+                    t = h.transform;
+                }
+
+                if (t != null && HasLineOfSight(originPos, t.position))
+                    targets.Add(t);
             }
         }
 
@@ -145,12 +163,12 @@ public class ZSkill : PlayerSkillBase
         }
     }
 
-    private IEnumerator FireBarrage(Enemy target, int count, float interval)
+    private IEnumerator FireBarrage(Transform target, int count, float interval)
     {
         for (int i = 0; i < count; i++)
         {
             if (target == null) break;
-            Vector2 dir = (target.transform.position - pc.firePoint.position).normalized;
+            Vector2 dir = ((Vector2)target.position - (Vector2)pc.firePoint.position).normalized;
             GameObject obj = SimplePool.Spawn(projectilePrefab, pc.firePoint.position, Quaternion.identity);
             if (obj.TryGetComponent(out QProjectile qp)) qp.Init(dir);
 
