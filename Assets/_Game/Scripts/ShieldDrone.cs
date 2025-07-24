@@ -183,6 +183,7 @@ public class ShieldDrone : MonoBehaviour
                 lr.startColor = lr.endColor = telegraphColor;
                 lr.startWidth = lr.endWidth = telegraphWidth;
                 lr.positionCount = 2;
+                _activeTelegraphs.Add(lr.gameObject); // fallback 생성도 리스트에 추가
             }
 
             Vector3 startPos = transform.position;

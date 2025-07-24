@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8056211736041793460}
   - component: {fileID: 7715025764996128037}
   m_Layer: 0
-  m_Name: Rockets
+  m_Name: VRam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

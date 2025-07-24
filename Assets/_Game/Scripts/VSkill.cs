@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using DarkTonic.MasterAudio;
+using DG.Tweening;
 
 /// <summary>
 /// V 스킬 – 네 방향 거대 투사체 발사 (기존 R 스킬)
@@ -29,10 +30,12 @@ public class VSkill : PlayerSkillBase
     public float curveDegreesPerSecond = 120f;
 
     [Header("점프/내리치기 설정")]
-    [Tooltip("점프 힘(임펄스)")] public float jumpForce = 8f;
+    [Tooltip("점프 높이 (월드 Y 오프셋)")] public float jumpHeight = 1.2f;
     [Tooltip("공중 체공 시간(초)")] public float airTime = 0.4f;
     [Tooltip("땅 충돌 시 카메라 흔들림 지속 시간")] public float slamShakeDuration = 0.2f;
     [Tooltip("땅 충돌 시 카메라 흔들림 세기")] public float slamShakeMagnitude = 0.3f;
+
+    [Header("착지 이펙트")] [Tooltip("착지 시 생성할 파티클 프리팹")] public GameObject landingEffectPrefab;
 
     [Header("파티클 설정")] [Tooltip("투사체 궤도에 생성할 파티클 프리팹")] public GameObject trailParticlePrefab;
     [Tooltip("궤도당 파티클 개수")] public int particlesPerPath = 6;
@@ -51,17 +54,16 @@ public class VSkill : PlayerSkillBase
         if (_isRunning || giantProjectilePrefab == null || pc.firePoint == null) yield break;
         _isRunning = true;
 
-        // 1) 점프 (임펄스) + 무적
+        // 1) DOTween 점프 연출 + 무적
         var cols = pc.GetComponentsInChildren<Collider2D>(true);
         foreach (var c in cols) c.enabled = false;
 
-        if (pc.Rigidbody2D != null)
-        {
-            pc.Rigidbody2D.linearVelocity = Vector2.zero;
-            pc.Rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+        // BlendableMoveBy 를 사용해 플레이어 이동 입력과 독립적으로 Y 오프셋만 추가
+        Sequence jumpSeq = DOTween.Sequence();
+        jumpSeq.Append(pc.transform.DOBlendableMoveBy(Vector3.up * jumpHeight, airTime * 0.5f).SetEase(Ease.OutQuad));
+        jumpSeq.Append(pc.transform.DOBlendableMoveBy(Vector3.down * jumpHeight, airTime * 0.5f).SetEase(Ease.InQuad));
 
-        yield return new WaitForSeconds(airTime);
+        yield return jumpSeq.WaitForCompletion();
 
         // 2) 내리치기 – 카메라 흔들림
         if (CameraShake.Instance != null)
@@ -69,8 +71,13 @@ public class VSkill : PlayerSkillBase
             CameraShake.Instance.Shake(slamShakeDuration, slamShakeMagnitude);
         }
 
-        // 플레이어 제자리 고정
-        if (pc.Rigidbody2D != null) pc.Rigidbody2D.linearVelocity = Vector2.zero;
+        // 착지 이펙트
+        if (landingEffectPrefab != null)
+        {
+            Instantiate(landingEffectPrefab, pc.transform.position, Quaternion.identity);
+        }
+
+        // 위치를 되돌리지 않고, 실제 착지 지점(현재 위치)을 기준으로 투사체를 발사
 
         // 충돌 다시 활성
         foreach (var c in cols) c.enabled = true;

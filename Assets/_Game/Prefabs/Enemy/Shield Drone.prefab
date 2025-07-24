@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldHalfAngle: 100
-  shieldTurnSpeed: 100
+  shieldTurnSpeed: 500
   shieldTransform: {fileID: 7937742055223085923}
   breakDuration: 2.5
   shieldOffset: 4
@@ -369,7 +369,7 @@ MonoBehaviour:
   telegraphPrefab: {fileID: 0}
   telegraphColor: {r: 1, g: 0, b: 0, a: 0.5529412}
   telegraphWidth: 3
-  reactCooldown: 3
+  reactCooldown: 2
 --- !u!114 &5051736629541422792
 MonoBehaviour:
   m_ObjectHideFlags: 0
