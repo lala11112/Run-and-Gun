@@ -113,6 +113,32 @@ MonoBehaviour:
     spritePortrait: {fileID: 0}
     alternatePortraits: []
     spritePortraits: []
+  - id: 4
+    fields:
+    - title: Name
+      value: BackGround
+      type: 0
+      typeString: CustomFieldType_Text
+    - title: Pictures
+      value: '[]'
+      type: 3
+      typeString: CustomFieldType_Files
+    - title: Description
+      value: 4
+      type: 5
+      typeString: CustomFieldType_Actor
+    - title: IsPlayer
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Display Name
+      value: 
+      type: 0
+      typeString: CustomFieldType_Text
+    portrait: {fileID: 0}
+    spritePortrait: {fileID: 0}
+    alternatePortraits: []
+    spritePortraits: []
   items: []
   locations: []
   variables:
@@ -283,7 +309,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 149.96906
+        x: 153.06183
         y: 169.77518
         width: 160
         height: 30
@@ -549,11 +575,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 2
+        value: 1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 2
+        value: -1
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -579,7 +605,7 @@ MonoBehaviour:
       - originConversationID: 3
         originDialogueID: 0
         destinationConversationID: 3
-        destinationDialogueID: 1
+        destinationDialogueID: 22
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -589,8 +615,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 538.8458
-        y: 54.999977
+        x: 551.52454
+        y: 1
         width: 160
         height: 30
     - id: 1
@@ -621,7 +647,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: SetSprite(BG, BG1)
+        value: 
         type: 0
         typeString: CustomFieldType_Text
       - title: Response Menu Sequence
@@ -649,8 +675,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 540.476
-        y: 129.36984
+        x: 550.6026
+        y: 140.76225
         width: 160
         height: 30
     - id: 2
@@ -811,7 +837,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 613.8498
-        y: 1086.7384
+        y: 1084.2384
         width: 160
         height: 30
     - id: 7
@@ -1662,9 +1688,68 @@ MonoBehaviour:
         y: 898.0456
         width: 160
         height: 30
+    - id: 22
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 4
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: -1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: AnimatorPlay( , BG1, 0.4)
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Response Menu Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      conversationID: 3
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 3
+        originDialogueID: 22
+        destinationConversationID: 3
+        destinationDialogueID: 1
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 563.6802
+        y: 69.143684
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 229.70126, y: 27.568745}
-    canvasZoom: 0.42999998
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.3099999
   - id: 4
     fields:
     - title: Title
