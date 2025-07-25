@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadbc127ef296144fbb9a429a00a387a, type: 3}
+  m_Name: RankConfig
+  m_EditorClassIdentifier: 
+  dThreshold: 120
+  cThreshold: 250
+  bThreshold: 500
+  aThreshold: 1000
+  sThreshold: 2000
+  dCooldownMultiplier: 1.2
+  bCooldownMultiplier: 0.9
+  aCooldownMultiplier: 0.7
+  sCooldownMultiplier: 0.5
+  dMoveSpeedMultiplier: 0.8
+  bMoveSpeedMultiplier: 1.1
+  aMoveSpeedMultiplier: 1.25
+  sMoveSpeedMultiplier: 1.4
+  sDuration: 8
+  sExitScore: 400

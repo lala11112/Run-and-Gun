@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #333; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #555; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .small-text { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+      .box { fill: #f0f8ff; stroke: #4682b4; stroke-width: 2; }
+      .player-box { fill: #e6f3ff; stroke: #0066cc; stroke-width: 2; }
+      .enemy-box { fill: #ffe6e6; stroke: #cc0000; stroke-width: 2; }
+      .manager-box { fill: #f0fff0; stroke: #228b22; stroke-width: 2; }
+      .ui-box { fill: #fff8dc; stroke: #daa520; stroke-width: 2; }
+      .skill-box { fill: #f5f5dc; stroke: #8b4513; stroke-width: 2; }
+      .arrow { stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #666; stroke-width: 1.5; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- 배경 -->
+  <rect width="1200" height="800" fill="#fafafa"/>
+  
+  <!-- 제목 -->
+  <text x="600" y="30" text-anchor="middle" class="title">Run and Gun Unity 프로젝트 아키텍처</text>
+  
+  <!-- 플레이어 시스템 -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="200" height="120" class="player-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">플레이어 시스템</text>
+    <text x="10" y="40" class="text">• PlayerController</text>
+    <text x="10" y="55" class="text">• PlayerHealth</text>
+    <text x="10" y="70" class="text">• PlayerSkills</text>
+    <text x="10" y="85" class="text">• ShieldDrone</text>
+    <text x="10" y="100" class="text">• ShieldUtility</text>
+  </g>
+  
+  <!-- 스킬 시스템 -->
+  <g transform="translate(300, 80)">
+    <rect x="0" y="0" width="200" height="140" class="skill-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">스킬 시스템</text>
+    <text x="10" y="40" class="text">• SkillManager (싱글톤)</text>
+    <text x="10" y="55" class="text">• ZSkill (대시)</text>
+    <text x="10" y="70" class="text">• XSkill (투사체)</text>
+    <text x="10" y="85" class="text">• CSkill (원형 공격)</text>
+    <text x="10" y="100" class="text">• VSkill (방패)</text>
+    <text x="10" y="115" class="text">• PlayerSkillBase</text>
+  </g>
+  
+  <!-- 스타일 시스템 -->
+  <g transform="translate(550, 80)">
+    <rect x="0" y="0" width="200" height="100" class="manager-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">스타일 시스템</text>
+    <text x="10" y="40" class="text">• StyleManager (싱글톤)</text>
+    <text x="10" y="55" class="text">• 콤보 점수 관리</text>
+    <text x="10" y="70" class="text">• 랭크별 버프/패널티</text>
+    <text x="10" y="85" class="text">• D, C, B, A, S 랭크</text>
+  </g>
+  
+  <!-- 적 시스템 -->
+  <g transform="translate(800, 80)">
+    <rect x="0" y="0" width="200" height="140" class="enemy-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">적 시스템</text>
+    <text x="10" y="40" class="text">• Enemy (기본)</text>
+    <text x="10" y="55" class="text">• EnemyHealth</text>
+    <text x="10" y="70" class="text">• EnemyShooter</text>
+    <text x="10" y="85" class="text">• EnemyNavFollower</text>
+    <text x="10" y="100" class="text">• EnemyProjectile</text>
+    <text x="10" y="115" class="text">• Rusher (특수 적)</text>
+  </g>
+  
+  <!-- 게임 매니저 -->
+  <g transform="translate(50, 250)">
+    <rect x="0" y="0" width="200" height="100" class="manager-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">게임 매니저</text>
+    <text x="10" y="40" class="text">• TestBattleManager</text>
+    <text x="10" y="55" class="text">• 라운드 관리</text>
+    <text x="10" y="70" class="text">• 맵/적 스폰</text>
+    <text x="10" y="85" class="text">• 컷씬 대화</text>
+  </g>
+  
+  <!-- UI 시스템 -->
+  <g transform="translate(300, 250)">
+    <rect x="0" y="0" width="200" height="120" class="ui-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">UI 시스템</text>
+    <text x="10" y="40" class="text">• HealthHUD</text>
+    <text x="10" y="55" class="text">• StyleHUD</text>
+    <text x="10" y="70" class="text">• RoundHUD</text>
+    <text x="10" y="85" class="text">• SkillCooldownDisplay</text>
+    <text x="10" y="100" class="text">• SRankTimerHUD</text>
+  </g>
+  
+  <!-- 투사체 시스템 -->
+  <g transform="translate(550, 250)">
+    <rect x="0" y="0" width="200" height="100" class="skill-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">투사체 시스템</text>
+    <text x="10" y="40" class="text">• Projectile (기본)</text>
+    <text x="10" y="55" class="text">• QProjectile</text>
+    <text x="10" y="70" class="text">• GiantProjectile</text>
+    <text x="10" y="85" class="text">• DashOrbitBullet</text>
+  </g>
+  
+  <!-- 카메라 시스템 -->
+  <g transform="translate(800, 250)">
+    <rect x="0" y="0" width="200" height="80" class="manager-box" rx="10"/>
+    <text x="100" y="20" text-anchor="middle" class="subtitle">카메라 시스템</text>
+    <text x="10" y="40" class="text">• CameraFollow</text>
+    <text x="10" y="55" class="text">• CameraShake</text>
+    <text x="10" y="70" class="text">• TimeScaleController</text>
+  </g>
+  
+  <!-- 외부 시스템 -->
+  <g transform="translate(50, 400)">
+    <rect x="0" y="0" width="950" height="120" class="box" rx="10"/>
+    <text x="475" y="20" text-anchor="middle" class="subtitle">외부 시스템 및 플러그인</text>
+    
+    <g transform="translate(20, 30)">
+      <text x="0" y="0" class="text">• MasterAudio (사운드 시스템)</text>
+      <text x="0" y="20" class="text">• Dialogue System (대화 시스템)</text>
+      <text x="0" y="40" class="text">• DOTween (애니메이션)</text>
+      <text x="0" y="60" class="text">• NavMeshPlus (AI 네비게이션)</text>
+      <text x="0" y="80" class="text">• Input System (입력 처리)</text>
+    </g>
+    
+    <g transform="translate(300, 30)">
+      <text x="0" y="0" class="text">• Unity 2D Renderer</text>
+      <text x="0" y="20" class="text">• Rigidbody2D (물리)</text>
+      <text x="0" y="40" class="text">• Collider2D (충돌 감지)</text>
+      <text x="0" y="60" class="text">• NavMeshAgent (AI 이동)</text>
+      <text x="0" y="80" class="text">• SpriteRenderer (렌더링)</text>
+    </g>
+  </g>
+  
+  <!-- 데이터 흐름 -->
+  <g transform="translate(50, 550)">
+    <rect x="0" y="0" width="950" height="120" class="box" rx="10"/>
+    <text x="475" y="20" text-anchor="middle" class="subtitle">데이터 흐름 및 의존성</text>
+    
+    <g transform="translate(20, 30)">
+      <text x="0" y="0" class="text">• PlayerController → SkillManager (스킬 사용)</text>
+      <text x="0" y="20" class="text">• SkillManager → StyleManager (스킬 적중 시 점수)</text>
+      <text x="0" y="40" class="text">• StyleManager → PlayerController (이동 속도 버프)</text>
+      <text x="0" y="60" class="text">• TestBattleManager → Dialogue System (컷씬)</text>
+      <text x="0" y="80" class="text">• Enemy → PlayerHealth (피해 처리)</text>
+    </g>
+    
+    <g transform="translate(500, 30)">
+      <text x="0" y="0" class="text">• 싱글톤 패턴: SkillManager, StyleManager</text>
+      <text x="0" y="20" class="text">• 이벤트 시스템: OnRankChanged, OnSkillActivated</text>
+      <text x="0" y="40" class="text">• 컴포넌트 기반 설계</text>
+      <text x="0" y="60" class="text">• 코루틴을 활용한 비동기 처리</text>
+      <text x="0" y="80" class="text">• NavMesh 기반 AI 네비게이션</text>
+    </g>
+  </g>
+  
+  <!-- 화살표들 -->
+  <!-- 플레이어 → 스킬 매니저 -->
+  <line x1="250" y1="140" x2="300" y2="140" class="arrow"/>
+  <text x="275" y="135" text-anchor="middle" class="small-text">사용</text>
+  
+  <!-- 스킬 매니저 → 스타일 매니저 -->
+  <line x1="500" y1="140" x2="550" y2="140" class="arrow"/>
+  <text x="525" y="135" text-anchor="middle" class="small-text">적중</text>
+  
+  <!-- 스타일 매니저 → 플레이어 -->
+  <path d="M 250 180 Q 400 200 250 200" class="dashed-arrow"/>
+  <text x="325" y="195" text-anchor="middle" class="small-text">버프</text>
+  
+  <!-- 게임 매니저 → 적 시스템 -->
+  <line x1="250" y1="300" x2="800" y2="220" class="arrow"/>
+  <text x="525" y="260" text-anchor="middle" class="small-text">스폰</text>
+  
+  <!-- 적 → 플레이어 -->
+  <path d="M 800 180 Q 600 150 250 180" class="arrow"/>
+  <text x="525" y="160" text-anchor="middle" class="small-text">공격</text>
+  
+  <!-- 플레이어 → 적 -->
+  <path d="M 250 160 Q 600 140 800 160" class="arrow"/>
+  <text x="525" y="140" text-anchor="middle" class="small-text">스킬</text>
+  
+  <!-- UI 업데이트 화살표들 -->
+  <line x1="250" y1="350" x2="300" y2="350" class="dashed-arrow"/>
+  <text x="275" y="345" text-anchor="middle" class="small-text">상태</text>
+  
+  <line x1="500" y1="350" x2="550" y2="350" class="dashed-arrow"/>
+  <text x="525" y="345" text-anchor="middle" class="small-text">점수</text>
+  
+  <line x1="750" y1="350" x2="800" y2="350" class="dashed-arrow"/>
+  <text x="775" y="345" text-anchor="middle" class="small-text">흔들림</text>
+  
+  <!-- 범례 -->
+  <g transform="translate(50, 700)">
+    <text x="0" y="0" class="subtitle">범례:</text>
+    <rect x="0" y="10" width="15" height="15" class="player-box"/>
+    <text x="20" y="22" class="text">플레이어 관련</text>
+    
+    <rect x="120" y="10" width="15" height="15" class="skill-box"/>
+    <text x="140" y="22" class="text">스킬/투사체</text>
+    
+    <rect x="240" y="10" width="15" height="15" class="manager-box"/>
+    <text x="260" y="22" class="text">매니저/시스템</text>
+    
+    <rect x="360" y="10" width="15" height="15" class="enemy-box"/>
+    <text x="380" y="22" class="text">적 관련</text>
+    
+    <rect x="480" y="10" width="15" height="15" class="ui-box"/>
+    <text x="500" y="22" class="text">UI</text>
+    
+    <line x1="600" y1="17" x2="620" y2="17" class="arrow"/>
+    <text x="630" y="22" class="text">직접 의존성</text>
+    
+    <line x1="720" y1="17" x2="740" y2="17" class="dashed-arrow"/>
+    <text x="750" y="22" class="text">간접 의존성</text>
+  </g>
+</svg> 
