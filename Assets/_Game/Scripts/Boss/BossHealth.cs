@@ -46,6 +46,8 @@ public class BossHealth : LivingEntity
     protected override void Die()
     {
         OnBossDead?.Invoke();
+        GameEvents.RaiseEnemyDied(true);
+        Destroy(gameObject);
     }
 
     public override void TakeDamage(int dmg)

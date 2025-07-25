@@ -55,7 +55,10 @@ public class EnemyHealth : LivingEntity
             }
         }
 
-        // 4) 실제 파괴
+        // 4) GameEvents 알림
+        GameEvents.RaiseEnemyDied(false);
+
+        // 5) 실제 파괴
         Destroy(gameObject);
     }
 } 

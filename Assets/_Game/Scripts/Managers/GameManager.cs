@@ -31,8 +31,13 @@ public class GameManager : MonoBehaviour
     public bool IsPaused { get; private set; }
     public event Action<bool> OnPauseToggled;
 
+    /// <summary>직전 런(플레이) 결과 승리 여부</summary>
+    public bool LastRunVictory { get; set; }
+
     [Header("Input")]
     [Tooltip("일시정지에 사용할 InputActionReference (Button)")] public InputActionReference pauseAction;
+
+    private StateMachine _stateMachine;
 
     private void Awake()
     {
@@ -50,9 +55,13 @@ public class GameManager : MonoBehaviour
             pauseAction.action.Enable();
         }
 
-        RegisterModes(); // 모드 전략 객체 등록 (빈 구현, 이후 Step에서 채움)
-        StartCoroutine(SceneLoader.LoadSceneAsync(titleSceneName));
-        ChangeState(GameState.Title);
+        RegisterModes();
+
+        _stateMachine = new StateMachine();
+        _stateMachine.ChangeState(new BootState(_stateMachine, this));
+
+        GameEvents.StateChanged += OnGlobalStateChanged;
+        GameEvents.PlayerDied += OnPlayerDied;
     }
 
     private void OnDestroy()
@@ -61,17 +70,30 @@ public class GameManager : MonoBehaviour
         {
             pauseAction.action.performed -= OnPausePerformed;
         }
+
+        GameEvents.StateChanged -= OnGlobalStateChanged;
+        GameEvents.PlayerDied -= OnPlayerDied;
     }
 
     private void Update()
     {
+        _stateMachine?.Tick();
+
         // 구 InputManager 대비 – 새 Input System은 이벤트로 처리, 이 Update 백업키는 삭제 가능합니다.
     }
 
     private void OnPausePerformed(InputAction.CallbackContext ctx)
     {
-        if (CurrentState == GameState.InGame || CurrentState == GameState.Paused)
-            TogglePause();
+        if (_stateMachine == null) return;
+
+        if (_stateMachine.CurrentState is GameplayState gameplay)
+        {
+            _stateMachine.ChangeState(new PausedState(_stateMachine, this, gameplay));
+        }
+        else if (_stateMachine.CurrentState is PausedState paused)
+        {
+            paused.Resume();
+        }
     }
 
     /// <summary>
@@ -156,4 +178,43 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.GameOver);
     }
 #endif
+
+    private void OnGlobalStateChanged(IState st)
+    {
+        // GameState 프로퍼티 갱신 (HUD, UI 등에서 사용)
+        if      (st is BootState)      CurrentState = GameState.Boot;
+        else if (st is TitleState)     CurrentState = GameState.Title;
+        else if (st is GameplayState)  CurrentState = GameState.InGame;
+        else if (st is PausedState)    CurrentState = GameState.Paused;
+        else if (st is ResultState)    CurrentState = GameState.GameOver;
+    }
+
+    private void OnPlayerDied()
+    {
+        LastRunVictory = false;
+        _stateMachine?.ChangeState(new ResultState(_stateMachine, this, false));
+    }
+
+    /// <summary>
+    /// UI 버튼 등에서 호출 – 타이틀 화면으로 복귀
+    /// </summary>
+    public void ReturnToTitle()
+    {
+        // Pause 해제
+        Time.timeScale = 1f;
+        IsPaused = false;
+        // 상태 머신을 타이틀로 전환
+        _stateMachine?.ChangeState(new TitleState(_stateMachine, this));
+    }
+
+    /// <summary>
+    /// Pause 메뉴의 Resume 버튼에서 호출 – PausedState 를 종료하고 Gameplay 로 복귀합니다.
+    /// </summary>
+    public void ResumeFromPause()
+    {
+        if (_stateMachine?.CurrentState is PausedState paused)
+        {
+            paused.Resume();
+        }
+    }
 } 

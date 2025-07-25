@@ -83,7 +83,8 @@ public class PlayerHealth : LivingEntity
     protected override void Die()
     {
         OnPlayerDied?.Invoke();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameEvents.RaisePlayerDied(); // 전역 플레이어 사망 이벤트 발행
+        // 씬 리로드 대신 상위 상태 머신에서 결과 처리
     }
 
     private IEnumerator HitStopRoutine(float scale, float dur)

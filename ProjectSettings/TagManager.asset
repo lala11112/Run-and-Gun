@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - PlayerProjectile
   - Obstacle
+  - GameplayHUD
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,15 @@ public static class GameEvents
     // 스타일 랭크 변경: (StyleRank newRank)
     public static event Action<StyleRank> StyleRankChanged;
 
+    // 상태 변경: (IState newState)
+    public static event Action<IState> StateChanged;
+
+    // 플레이어 사망
+    public static event Action PlayerDied;
+
+    // 적 사망: (bool isBoss)
+    public static event Action<bool> EnemyDied;
+
     /// <summary>
     /// SkillManager 등에서 호출 – 스킬 사용 이벤트 브로드캐스트
     /// </summary>
@@ -26,5 +35,20 @@ public static class GameEvents
     public static void RaiseStyleRankChanged(StyleRank newRank)
     {
         StyleRankChanged?.Invoke(newRank);
+    }
+
+    public static void RaiseStateChanged(IState newState)
+    {
+        StateChanged?.Invoke(newState);
+    }
+
+    public static void RaisePlayerDied()
+    {
+        PlayerDied?.Invoke();
+    }
+
+    public static void RaiseEnemyDied(bool isBoss)
+    {
+        EnemyDied?.Invoke(isBoss);
     }
 } 
