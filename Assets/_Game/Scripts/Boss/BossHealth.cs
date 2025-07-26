@@ -47,6 +47,9 @@ public class BossHealth : LivingEntity
     {
         OnBossDead?.Invoke();
         GameEvents.RaiseEnemyDied(true);
+        // 보스 골드 드랍 – 최대 체력 기준 예시
+        int gold = Mathf.RoundToInt(maxHealth * 0.1f);
+        CurrencyService.Instance?.AddGold(gold);
         Destroy(gameObject);
     }
 

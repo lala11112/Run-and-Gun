@@ -206,15 +206,4 @@ public class GameManager : MonoBehaviour
         // 상태 머신을 타이틀로 전환
         _stateMachine?.ChangeState(new TitleState(_stateMachine, this));
     }
-
-    /// <summary>
-    /// Pause 메뉴의 Resume 버튼에서 호출 – PausedState 를 종료하고 Gameplay 로 복귀합니다.
-    /// </summary>
-    public void ResumeFromPause()
-    {
-        if (_stateMachine?.CurrentState is PausedState paused)
-        {
-            paused.Resume();
-        }
-    }
 } 

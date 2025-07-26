@@ -58,6 +58,15 @@ public class EnemyHealth : LivingEntity
         // 4) GameEvents 알림
         GameEvents.RaiseEnemyDied(false);
 
+        // 4.5) 골드 드랍
+        int gold = 1;
+        if (TryGetComponent(out EnemyCore core) && core.statData != null)
+        {
+            var data = core.statData;
+            gold = Random.Range(data.goldMin, data.goldMax + 1);
+        }
+        CurrencyService.Instance?.AddGold(gold);
+
         // 5) 실제 파괴
         Destroy(gameObject);
     }

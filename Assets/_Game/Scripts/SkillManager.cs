@@ -133,6 +133,38 @@ public class SkillManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 상점 업그레이드 적용 – upgradeId 규칙은 "Skill:Z:Cooldown-1" 등 자유롭게 정의.
+    /// 우선 데모로 스킬 쿨다운 20% 감소 예시만 처리.
+    /// </summary>
+    public bool ApplyUpgrade(string upgradeId)
+    {
+        if (string.IsNullOrEmpty(upgradeId)) return false;
+
+        // 예: "Skill:Z:Cooldown0.8" → Z 스킬 쿨다운 배수 적용
+        var parts = upgradeId.Split(':');
+        if (parts.Length < 3) return false;
+        if (parts[0] != "Skill") return false;
+
+        if (System.Enum.TryParse(parts[1], out SkillType type))
+        {
+            if (parts[2].StartsWith("Cooldown"))
+            {
+                if (float.TryParse(parts[2].Substring(8), out float mul))
+                {
+                    // 스킬별 기본 쿨타임을 ScriptableObject 에 저장한다고 가정
+                    if (skillConfigs.Find(s => s.type == type) is { } cfg)
+                    {
+                        cfg.baseCooldown *= mul;
+                        Debug.Log($"[SkillManager] {type} 쿨타임이 x{mul} 적용되었습니다.");
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// 실제 스킬 효과를 발동시키는 메서드
     /// 현재는 이벤트만 발생시키며, 구체적인 스킬 효과는 다른 스크립트에서 구현
     /// </summary>

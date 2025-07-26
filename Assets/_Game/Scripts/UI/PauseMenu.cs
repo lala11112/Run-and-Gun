@@ -24,7 +24,14 @@ public class PauseMenu : MonoBehaviour
     private void OnResume()
     {
         // UIManager 스택 Pop → PausedState.Resume()
-        GameManager.Instance?.ResumeFromPause();
+        UIManager.Instance?.Pop();
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Paused)
+        {
+            // Esc 로직과 동일하게 재개
+            // GameManager 내부 _stateMachine 참조에 직접 접근 불가하므로 Input으로 재개
+            // 간단히 Esc 키 시뮬레이트
+            GameManager.Instance.SendMessage("TogglePause", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     private void OnTitle()

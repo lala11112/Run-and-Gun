@@ -21,6 +21,9 @@ public static class GameEvents
     // 적 사망: (bool isBoss)
     public static event Action<bool> EnemyDied;
 
+    // 골드 변경: (int newGold)
+    public static event Action<int> GoldChanged;
+
     /// <summary>
     /// SkillManager 등에서 호출 – 스킬 사용 이벤트 브로드캐스트
     /// </summary>
@@ -50,5 +53,10 @@ public static class GameEvents
     public static void RaiseEnemyDied(bool isBoss)
     {
         EnemyDied?.Invoke(isBoss);
+    }
+
+    public static void RaiseGoldChanged(int newGold)
+    {
+        GoldChanged?.Invoke(newGold);
     }
 } 

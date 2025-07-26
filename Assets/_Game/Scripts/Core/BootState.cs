@@ -32,6 +32,10 @@ public class BootState : IState
     {
         // TODO: 세이브/옵션 로드 등 부트 초기화 로직 추가
         SaveService.Initialize();
+        if (CurrencyService.Instance == null)
+        {
+            new GameObject("CurrencyService").AddComponent<CurrencyService>();
+        }
         ApplyOptions();
         yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.titleSceneName));
         _sm.ChangeState(new TitleState(_sm, _gm));

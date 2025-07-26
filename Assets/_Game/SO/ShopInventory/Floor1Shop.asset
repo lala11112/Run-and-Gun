@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5d3f3c40b45c847a4959aaa4991cda, type: 3}
+  m_Name: Floor1Shop
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 11400000, guid: 8e64aaf844daa2b4e9b178a206200445, type: 2}
+  - {fileID: 11400000, guid: ee914686b50359643a78e67bcd04398b, type: 2}
