@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// 게임 모드별 전용 로직을 캡슐화하기 위한 전략 인터페이스.
@@ -16,4 +17,10 @@ public interface IGameMode
 
     /// <summary>런 종료 이벤트: bool victory</summary>
     event Action<bool> OnRunEnded;
+
+    /// <summary>이 모드에서 사용할 일시정지 메뉴 프리팹</summary>
+    GameObject PauseMenuPrefab { get; }
+
+    /// <summary>일시정지 메뉴에 표시할 컨텍스트 데이터를 생성합니다.</summary>
+    PauseMenuContext GetPauseMenuContext();
 } 

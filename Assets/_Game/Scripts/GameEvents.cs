@@ -24,6 +24,9 @@ public static class GameEvents
     // 골드 변경: (int newGold)
     public static event Action<int> GoldChanged;
 
+    // 타이틀 화면 상호작용: (TitleInteractionType type)
+    public static event Action<TitleInteractionType> TitleInteractionHovered;
+
     /// <summary>
     /// SkillManager 등에서 호출 – 스킬 사용 이벤트 브로드캐스트
     /// </summary>
@@ -58,5 +61,10 @@ public static class GameEvents
     public static void RaiseGoldChanged(int newGold)
     {
         GoldChanged?.Invoke(newGold);
+    }
+
+    public static void RaiseTitleInteractionHovered(TitleInteractionType type)
+    {
+        TitleInteractionHovered?.Invoke(type);
     }
 } 

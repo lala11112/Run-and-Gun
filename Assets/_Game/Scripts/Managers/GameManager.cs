@@ -86,9 +86,10 @@ public class GameManager : MonoBehaviour
     {
         if (_stateMachine == null) return;
 
-        if (_stateMachine.CurrentState is GameplayState gameplay)
+        if (_stateMachine.CurrentState is GameplayState gameplayState)
         {
-            _stateMachine.ChangeState(new PausedState(_stateMachine, this, gameplay));
+            // GameplayState에 일시정지 처리를 위임합니다.
+            gameplayState.PauseGame();
         }
         else if (_stateMachine.CurrentState is PausedState paused)
         {
@@ -148,8 +149,8 @@ public class GameManager : MonoBehaviour
         {
             _currentMode = mode;
             _currentMode.OnRunEnded += HandleRunEnded;
-            _currentMode.Initialize();
-            ChangeState(GameState.InGame);
+            // GameplayState를 생성하고, 선택된 모드를 전달합니다.
+            _stateMachine.ChangeState(new GameplayState(_stateMachine, this, _currentMode));
         }
         else
         {
@@ -191,8 +192,15 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerDied()
     {
-        LastRunVictory = false;
-        _stateMachine?.ChangeState(new ResultState(_stateMachine, this, false));
+        if (_stateMachine.CurrentState is GameplayState gameplayState)
+        {
+            gameplayState.HandlePlayerDied();
+        }
+        else
+        {
+            // 게임플레이 상태가 아닐 때 죽는 예외적인 경우, 즉시 타이틀로.
+            ReturnToTitle();
+        }
     }
 
     /// <summary>
@@ -206,4 +214,21 @@ public class GameManager : MonoBehaviour
         // 상태 머신을 타이틀로 전환
         _stateMachine?.ChangeState(new TitleState(_stateMachine, this));
     }
+
+    /// <summary>
+    /// 현재 상태를 특정 타입으로 가져오기 위한 헬퍼 메서드.
+    /// </summary>
+    public bool TryGetState<T>(out T state) where T : class, IState
+    {
+        if (_stateMachine.CurrentState is T specificState)
+        {
+            state = specificState;
+            return true;
+        }
+        state = null;
+        return false;
+    }
+
+    // 외부에서 상태 머신 참조가 필요할 때 사용 (사용 최소화 권장)
+    public StateMachine GetStateMachine() => _stateMachine;
 } 

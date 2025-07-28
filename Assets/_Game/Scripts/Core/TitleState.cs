@@ -2,9 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// TitleState – 타이틀 씬에서 메뉴 입력을 대기합니다.
-/// 데모 목적으로, 몇 초 후 자동으로 GameplayState 로 전환합니다.
-/// 실제 게임에서는 UI 버튼의 콜백에서 GameStart() 를 호출하도록 변경하세요.
+/// TitleState – 타이틀 씬을 로드하고 메뉴 입력을 대기합니다.
 /// </summary>
 public class TitleState : IState
 {
@@ -19,9 +17,8 @@ public class TitleState : IState
 
     public void Enter()
     {
-        Debug.Log("[TitleState] Enter – 타이틀 UI 표시");
-        // 필요하다면 BGM 재생, UI 활성화 등을 여기서 처리
-        _gm.StartCoroutine(DemoAutoStart());
+        Debug.Log("[TitleState] Enter – 타이틀 씬 로딩 시작");
+        _gm.StartCoroutine(LoadTitle());
     }
 
     public void Exit()
@@ -29,18 +26,17 @@ public class TitleState : IState
         Debug.Log("[TitleState] Exit – 타이틀 UI 정리");
     }
 
-    public void Tick() { }
-
-    // --------- 데모용 자동 시작 ---------
-    private IEnumerator DemoAutoStart()
+    public void Tick()
     {
-        yield return new WaitForSeconds(1.0f);
-        StartGame();
+        // 메뉴 버튼 클릭이 TitleMenuController에서 처리됩니다.
     }
 
-    // 실제 게임 시작 호출
-    public void StartGame()
+    private IEnumerator LoadTitle()
     {
-        _sm.ChangeState(new GameplayState(_sm, _gm));
+        // GameManager의 ReturnToTitle에서 이미 Time.timeScale을 1로 복구했지만,
+        // 상태 전환 과정에서 확실하게 처리해주는 것이 더 안전합니다.
+        Time.timeScale = 1f;
+        yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.titleSceneName));
+        // 씬이 로드된 후 BGM을 재생하는 등의 추가 작업을 할 수 있습니다.
     }
 } 

@@ -73,3 +73,19 @@ The following packages were added:
   com.unity.analytics@3.8.1
   com.unity.purchasing@4.12.2
   com.unity.xr.legacyinputhelpers@2.1.12
+
+=== Mon Jul 28 20:16:37 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.render-pipelines.core from version 12.1.6 to 17.0.4
+
+=== Mon Jul 28 20:16:37 2025
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.render-pipelines.core@17.0.4

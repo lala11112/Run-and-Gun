@@ -77,6 +77,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 스택에 있는 모든 UI 팝업을 닫습니다.
+    /// </summary>
+    public void CloseAllPopups()
+    {
+        while (_uiStack.Count > 0)
+        {
+            var panel = _uiStack.Pop();
+            // 오브젝트가 이미 파괴되었을 수 있으므로 null 체크
+            if (panel != null)
+            {
+                panel.SetActive(false);
+            }
+        }
+    }
+
     // --------------------- Internal ---------------------
     private void HandleStateChanged(IState st)
     {

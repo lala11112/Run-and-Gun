@@ -8,13 +8,18 @@ public class PausedState : IState
     private readonly StateMachine _sm;
     private readonly GameManager _gm;
     private readonly IState _resumeState;
+    private readonly GameObject _menuPrefab;
+    private readonly PauseMenuContext _context;
     private float _prevTimeScale;
+    private GameObject _menuInstance;
 
-    public PausedState(StateMachine sm, GameManager gm, IState resumeState)
+    public PausedState(StateMachine sm, GameManager gm, IState resumeState, GameObject menuPrefab, PauseMenuContext context)
     {
         _sm = sm;
         _gm = gm;
         _resumeState = resumeState;
+        _menuPrefab = menuPrefab;
+        _context = context;
     }
 
     public void Enter()
@@ -25,11 +30,12 @@ public class PausedState : IState
         // DOTween, AudioMixer 등 일시정지 처리 필요시 추가
 
         // Pause 메뉴 표시
-        var prefab = Resources.Load<GameObject>("UI/PauseMenu");
-        if (prefab != null)
+        if (_menuPrefab != null)
         {
-            var panel = Object.Instantiate(prefab);
-            UIManager.Instance?.Push(panel);
+            _menuInstance = Object.Instantiate(_menuPrefab);
+            var controller = _menuInstance.GetComponent<PauseMenuControllerBase>();
+            controller?.Initialize(_context);
+            UIManager.Instance?.Push(_menuInstance);
         }
     }
 
@@ -38,8 +44,12 @@ public class PausedState : IState
         Debug.Log("[PausedState] Exit – Pause 해제");
         Time.timeScale = _prevTimeScale;
 
-        // 메뉴 숨김
+        // UIManager 스택에서 UI를 제거하고, 생성했던 인스턴스를 파괴합니다.
         UIManager.Instance?.Pop();
+        if (_menuInstance != null)
+        {
+            Object.Destroy(_menuInstance);
+        }
     }
 
     public void Tick() { }
@@ -47,6 +57,7 @@ public class PausedState : IState
     // Pause 해제 메서드(ESC 등 입력에서 호출)
     public void Resume()
     {
+        // 이제 Resume은 상태 변경만 트리거합니다. 뒷정리는 Exit()이 알아서 합니다.
         _sm.ChangeState(_resumeState);
     }
 } 

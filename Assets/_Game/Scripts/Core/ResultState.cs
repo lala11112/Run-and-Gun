@@ -8,18 +8,18 @@ public class ResultState : IState
 {
     private readonly StateMachine _sm;
     private readonly GameManager _gm;
-    private readonly bool _victory;
+    private readonly RunResultData _resultData;
 
-    public ResultState(StateMachine sm, GameManager gm, bool victory = false)
+    public ResultState(StateMachine sm, GameManager gm, RunResultData resultData)
     {
         _sm = sm;
         _gm = gm;
-        _victory = victory;
+        _resultData = resultData;
     }
 
     public void Enter()
     {
-        Debug.Log($"[ResultState] Enter – 결과 씬 로딩, Victory={_victory}");
+        Debug.Log($"[ResultState] Enter – Victory: {_resultData.wasVictory}, Time: {_resultData.timePlayed:F2}s, Gold: {_resultData.goldEarned}");
         _gm.StartCoroutine(LoadResult());
     }
 
@@ -35,6 +35,6 @@ public class ResultState : IState
     {
         yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.resultSceneName));
         // TODO: 결과 데이터 표시(UIManager 호출 등)
-        Debug.Log(_victory ? "[ResultState] 승리!" : "[ResultState] 패배...");
+        // 예: ResultPanel.Show(_resultData);
     }
 } 
