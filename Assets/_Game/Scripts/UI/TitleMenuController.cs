@@ -56,8 +56,8 @@ public class TitleMenuController : MonoBehaviour
 
     private void OnSettings()
     {
-        // TODO: 설정 패널 열기 (UIManager.Push)
         Debug.Log("설정 선택됨");
+        OpenSettingsPanel();
     }
 
     private void OnExit()
@@ -66,5 +66,19 @@ public class TitleMenuController : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+
+    private void OpenSettingsPanel()
+    {
+        var prefab = Resources.Load<GameObject>("UI/SettingsPanel");
+        if (prefab != null)
+        {
+            var panel = Instantiate(prefab);
+            UIManager.Instance.Push(panel);
+        }
+        else
+        {
+            Debug.LogError("Resources/UI/SettingsPanel.prefab을 찾을 수 없습니다!");
+        }
     }
 } 

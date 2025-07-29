@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
-/// UIManager – HUD, 팝업 등을 계층적으로 관리하는 싱글톤.
-/// GameplayHUD(HealthHUD, StyleHUD 등)는 Gameplay 상태일 때 자동으로 On/Off 됩니다.
-/// 팝업/메뉴는 Push()/Pop() 스택으로 관리해 중복 UI를 방지합니다.
+/// UI 스택 관리, HUD 표시/숨김 등 UI 관련 전반을 담당하는 싱글톤 매니저
 /// </summary>
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     private readonly Stack<GameObject> _uiStack = new();
 
     private CanvasGroup _gameplayHudGroup;
+    private Canvas _popupCanvas;
+    private const int POPUP_CANVAS_SORT_ORDER = 100;
 
     private void Awake()
     {
@@ -23,6 +25,8 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        EnsurePopupCanvas();
 
         // 이벤트 구독
         GameEvents.StateChanged += HandleStateChanged;
@@ -55,13 +59,15 @@ public class UIManager : MonoBehaviour
     /// <summary>팝업/메뉴 GameObject를 스택에 Push(보여주기)</summary>
     public void Push(GameObject panel)
     {
+        EnsurePopupCanvas();
         if (panel == null) return;
         if (_uiStack.Count > 0)
         {
             var top = _uiStack.Peek();
-            top.SetActive(false);
+            // SetActive(false) 대신 CanvasGroup으로 제어하여 애니메이션 등을 유지할 수 있게 함
+            top.GetComponent<CanvasGroup>().interactable = false;
         }
-        panel.SetActive(true);
+        panel.transform.SetParent(_popupCanvas.transform, false);
         _uiStack.Push(panel);
     }
 
@@ -70,10 +76,13 @@ public class UIManager : MonoBehaviour
     {
         if (_uiStack.Count == 0) return;
         var top = _uiStack.Pop();
-        top.SetActive(false);
+        // 실제 파괴는 각 상태의 Exit에서 처리하므로 여기서는 비활성화만.
+        // 오브젝트가 이미 파괴되었을 수 있음
+        if (top != null) Destroy(top);
+
         if (_uiStack.Count > 0)
         {
-            _uiStack.Peek().SetActive(true);
+            _uiStack.Peek().GetComponent<CanvasGroup>().interactable = true;
         }
     }
 
@@ -86,10 +95,7 @@ public class UIManager : MonoBehaviour
         {
             var panel = _uiStack.Pop();
             // 오브젝트가 이미 파괴되었을 수 있으므로 null 체크
-            if (panel != null)
-            {
-                panel.SetActive(false);
-            }
+            if (panel != null) Destroy(panel);
         }
     }
 
@@ -116,5 +122,21 @@ public class UIManager : MonoBehaviour
         {
             _gameplayHudGroup = null;
         }
+    }
+
+    private void EnsurePopupCanvas()
+    {
+        if (_popupCanvas != null) return;
+
+        var go = new GameObject("PopupCanvas");
+        go.transform.SetParent(this.transform);
+        _popupCanvas = go.AddComponent<Canvas>();
+        _popupCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        _popupCanvas.sortingOrder = POPUP_CANVAS_SORT_ORDER;
+
+        go.AddComponent<CanvasScaler>();
+        go.AddComponent<GraphicRaycaster>();
+
+        DontDestroyOnLoad(go);
     }
 } 

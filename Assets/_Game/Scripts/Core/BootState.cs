@@ -36,6 +36,10 @@ public class BootState : IState
         {
             new GameObject("CurrencyService").AddComponent<CurrencyService>();
         }
+        if (SettingsManager.Instance == null)
+        {
+            new GameObject("SettingsManager").AddComponent<SettingsManager>();
+        }
         ApplyOptions();
         yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.titleSceneName));
         _sm.ChangeState(new TitleState(_sm, _gm));

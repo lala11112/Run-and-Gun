@@ -33,8 +33,17 @@ public abstract class PauseMenuControllerBase : MonoBehaviour
 
     protected virtual void OnSettings()
     {
-        Debug.Log("설정 창 열기 (미구현)");
-        // UIManager.Instance.Push(settingsPanelPrefab);
+        var prefab = Resources.Load<GameObject>("UI/SettingsPanel");
+        if (prefab != null)
+        {
+            var panel = Instantiate(prefab);
+            // UIManager가 현재 PauseMenu 위에 SettingsPanel을 쌓습니다.
+            UIManager.Instance.Push(panel);
+        }
+        else
+        {
+            Debug.LogError("Resources/UI/SettingsPanel.prefab을 찾을 수 없습니다!");
+        }
     }
 
     protected virtual void OnMainMenu()

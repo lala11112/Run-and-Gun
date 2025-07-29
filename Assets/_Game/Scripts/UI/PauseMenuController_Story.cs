@@ -20,6 +20,12 @@ public class PauseMenuController_Story : PauseMenuControllerBase
 
     public override void Initialize(PauseMenuContext context)
     {
+        if (objectiveText == null)
+        {
+            Debug.LogError("ObjectiveText 필드가 연결되지 않았습니다!", this.gameObject);
+            return;
+        }
+
         if (context is StoryPauseContext storyContext)
         {
             objectiveText.text = $"현재 목표: {storyContext.currentObjective}";

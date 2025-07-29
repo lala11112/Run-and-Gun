@@ -46,10 +46,6 @@ public class PausedState : IState
 
         // UIManager 스택에서 UI를 제거하고, 생성했던 인스턴스를 파괴합니다.
         UIManager.Instance?.Pop();
-        if (_menuInstance != null)
-        {
-            Object.Destroy(_menuInstance);
-        }
     }
 
     public void Tick() { }

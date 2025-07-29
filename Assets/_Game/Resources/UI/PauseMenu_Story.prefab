@@ -966,7 +966,7 @@ MonoBehaviour:
   settingsButton: {fileID: 8432164776916902248}
   mainMenuButton: {fileID: 9005241472682127170}
   restartButton: {fileID: 7615925649799054647}
-  objectiveText: {fileID: 0}
+  objectiveText: {fileID: 7297338756378884086}
 --- !u!1 &6228528248333823945
 GameObject:
   m_ObjectHideFlags: 0
