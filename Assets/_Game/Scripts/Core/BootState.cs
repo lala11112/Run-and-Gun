@@ -40,6 +40,10 @@ public class BootState : IState
         {
             new GameObject("SettingsManager").AddComponent<SettingsManager>();
         }
+        if (CameraManager.Instance == null)
+        {
+            new GameObject("CameraManager").AddComponent<CameraManager>();
+        }
         ApplyOptions();
         yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.titleSceneName));
         _sm.ChangeState(new TitleState(_sm, _gm));

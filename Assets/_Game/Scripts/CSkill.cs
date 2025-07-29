@@ -28,14 +28,9 @@ public class CSkill : PlayerSkillBase
     [Tooltip("S 랭크 대시 속도 배수")] public float sDashSpeedMultiplier = 1.5f;
     [Tooltip("S 랭크 실드 지속 시간 배수")] public float sShieldLifetimeMultiplier = 1.5f;
 
-    [Header("카메라 흔들림 설정")]
-    [Tooltip("대시 시작 시 카메라 흔들림 지속 시간")] public float dashShakeDuration = 0.12f;
-    [Tooltip("대시 시작 시 카메라 흔들림 강도")] public float dashShakeMagnitude = 0.18f;
-    // bulletShake 변수 제거 (궤도 탄막 폐기)
-    
-    [Header("실드 피격 카메라 흔들림")]
-    [Tooltip("실드가 적을 맞췄을 때 카메라 흔들림 지속 시간")] public float shieldHitShakeDuration = 0.08f;
-    [Tooltip("실드가 적을 맞췄을 때 카메라 흔들림 강도")] public float shieldHitShakeMagnitude = 0.12f;
+    [Header("카메라 흔들림 프리셋")]
+    [Tooltip("대시 시작 시 사용할 Shake 프리셋 이름")] public string dashShakePreset = "Skill_Dash";
+    [Tooltip("실드가 적을 맞췄을 때 사용할 Shake 프리셋 이름")] public string shieldHitShakePreset = "EnemyHit";
     
     [Header("실드 투사체 설정 (B랭크 이상)")]
     [Tooltip("실드가 날아갈 속도")] public float shieldProjectileSpeed = 14f;
@@ -72,10 +67,7 @@ public class CSkill : PlayerSkillBase
 
         // 대시 사운드 & 카메라 흔들림
         MasterAudio.PlaySound3DAtTransform("Dash", transform);
-        if (CameraShake.Instance != null)
-        {
-            CameraShake.Instance.Shake(dashShakeDuration, dashShakeMagnitude);
-        }
+        CameraManager.Instance?.ShakeWithPreset(dashShakePreset);
 
         // 랭크별 전방 실드 생성
         SpawnShieldObjects(dashDir, rank);
@@ -117,8 +109,7 @@ public class CSkill : PlayerSkillBase
                 shield.target = transform; // 플레이어를 따라다님
                 shield.localOffset = offset;
                 shield.damage = damageVal;
-                shield.shakeDuration = shieldHitShakeDuration;
-                shield.shakeMagnitude = shieldHitShakeMagnitude;
+                shield.shakePresetName = shieldHitShakePreset;
 
                 // B 랭크 이상: 실드 투사체로 날아감
                 if (rank >= StyleRank.B)

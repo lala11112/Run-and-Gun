@@ -16,6 +16,7 @@ public class EnemyHealth : LivingEntity
     [Tooltip("사망 시 카메라 흔들림 세기")] public float dieShakeMagnitude = 0.3f;
     [Tooltip("사망 시 적용할 타임스케일 배수 (1 = 정상 속도)")] [Range(0.05f,1f)] public float dieSlowScale = 0.2f;
     [Tooltip("슬로우 모션 지속 시간(실시간 초)")] public float dieSlowDuration = 0.15f;
+    [Tooltip("사망 시 사용할 Shake 프리셋 이름")] public string dieShakePreset = "EnemyDie";
 
     protected override void Die()
     {
@@ -31,10 +32,7 @@ public class EnemyHealth : LivingEntity
         }
 
         // 2) 카메라 흔들림
-        if (CameraShake.Instance != null)
-        {
-            CameraShake.Instance.Shake(dieShakeDuration, dieShakeMagnitude);
-        }
+        CameraManager.Instance?.ShakeWithPreset(dieShakePreset);
 
         // 3) 슬로우 모션
         if (TimeScaleController.Instance != null)

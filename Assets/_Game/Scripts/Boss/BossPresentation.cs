@@ -11,10 +11,11 @@ public class BossPresentation : MonoBehaviour
     [Header("사운드 설정")] [Tooltip("페이즈 변경 시 재생할 사운드")] public string phaseChangeSfx = "BossPhase";
     [Tooltip("사망 시 재생할 사운드")] public string deathSfx = "BossDie";
 
-    [Header("카메라 흔들림 설정")] [Tooltip("페이즈 전환 시 흔들림")]
-    public Vector2 phaseShake = new Vector2(0.2f,0.4f);
-    [Tooltip("사망 시 흔들림")]
-    public Vector2 deathShake = new Vector2(0.3f,0.6f);
+    [Header("카메라 흔들림 프리셋")] 
+    [Tooltip("페이즈 전환 시 사용할 Shake 프리셋 이름")]
+    public string phaseShakePreset = "Boss_PhaseChange";
+    [Tooltip("사망 시 사용할 Shake 프리셋 이름")]
+    public string deathShakePreset = "Boss_Death";
 
     private void Awake()
     {
@@ -28,8 +29,7 @@ public class BossPresentation : MonoBehaviour
         if (!string.IsNullOrEmpty(phaseChangeSfx))
             DarkTonic.MasterAudio.MasterAudio.PlaySound3DAtTransform(phaseChangeSfx, transform);
 
-        if (CameraShake.Instance != null)
-            CameraShake.Instance.Shake(phaseShake.y, phaseShake.x);
+        CameraManager.Instance?.ShakeWithPreset(phaseShakePreset);
     }
 
     private void PlayDeathEffect()
@@ -37,8 +37,7 @@ public class BossPresentation : MonoBehaviour
         if (!string.IsNullOrEmpty(deathSfx))
             DarkTonic.MasterAudio.MasterAudio.PlaySound3DAtTransform(deathSfx, transform);
 
-        if (CameraShake.Instance != null)
-            CameraShake.Instance.Shake(deathShake.y, deathShake.x);
+        CameraManager.Instance?.ShakeWithPreset(deathShakePreset);
 
         // 간단한 scale-out 연출
         transform.DOScale(0f, 1f).SetEase(Ease.InBack).OnComplete(()=>Destroy(gameObject));

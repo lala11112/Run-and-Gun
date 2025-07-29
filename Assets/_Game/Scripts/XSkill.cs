@@ -39,11 +39,9 @@ public class XSkill : PlayerSkillBase
     [Tooltip("내부 범위 이펙트 프리팹")] public GameObject innerEffectPrefab;
     [Tooltip("범위 이펙트 지속 시간")] public float effectDuration = 0.3f;
 
-    [Header("카메라 흔들림 설정")]
-    [Tooltip("바깥쪽(Outer) 적중 시 카메라 흔들림 지속 시간")] public float outerShakeDuration = 0.12f;
-    [Tooltip("바깥쪽(Outer) 적중 시 흔들림 강도")] public float outerShakeMagnitude = 0.15f;
-    [Tooltip("내부(Inner) 적중 시 카메라 흔들림 지속 시간")] public float innerShakeDuration = 0.17f;
-    [Tooltip("내부(Inner) 적중 시 흔들림 강도")] public float innerShakeMagnitude = 0.28f;
+    [Header("카메라 흔들림 프리셋")]
+    [Tooltip("외부 범위 적중 시 사용할 Shake 프리셋 이름")] public string outerShakePreset = "EnemyHit";
+    [Tooltip("내부 범위 적중 시 사용할 Shake 프리셋 이름")] public string innerShakePreset = "Skill_SpinHit";
 
     protected override void Awake()
     {
@@ -134,15 +132,15 @@ public class XSkill : PlayerSkillBase
         MasterAudio.PlaySound3DAtTransform(innerHit ? "InSwords" : "Swords", transform);
 
         // 카메라 흔들림 적용 (Inner > Outer)
-        if (CameraShake.Instance != null)
+        if (CameraManager.Instance != null)
         {
             if (innerHit)
             {
-                CameraShake.Instance.Shake(innerShakeDuration, innerShakeMagnitude);
+                CameraManager.Instance.ShakeWithPreset(innerShakePreset);
             }
             else if (outerHit)
             {
-                CameraShake.Instance.Shake(outerShakeDuration, outerShakeMagnitude);
+                CameraManager.Instance.ShakeWithPreset(outerShakePreset);
             }
         }
 

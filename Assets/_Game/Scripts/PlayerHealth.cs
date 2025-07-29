@@ -11,7 +11,8 @@ public class PlayerHealth : LivingEntity
 {
     [Tooltip("피격 후 무적 시간(초)")] public float invincibilityDuration = 0.5f;
 
-    [Header("피격 시 카메라 흔들림")] public float shakeDuration = 0.15f; public float shakeMagnitude = 0.25f;
+    [Header("피격 시 카메라 흔들림")] 
+    [Tooltip("피격 시 사용할 Shake 프리셋 이름")] public string hitShakePreset = "PlayerHit";
 
     [Header("피격 시 플레이어 깜빡임")]
     [Tooltip("플레이어 SpriteRenderer")] public SpriteRenderer spriteRenderer;
@@ -55,7 +56,7 @@ public class PlayerHealth : LivingEntity
 
         _invincibleTimer = invincibilityDuration;
 
-        CameraShake.Instance?.Shake(shakeDuration, shakeMagnitude);
+        CameraManager.Instance?.ShakeWithPreset(hitShakePreset);
 
         // Hit Stop (TimeScaleController 활용)
         if (TimeScaleController.Instance != null)

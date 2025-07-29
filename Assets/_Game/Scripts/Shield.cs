@@ -17,8 +17,7 @@ public class Shield : MonoBehaviour
     // 실드가 적에게 줄 피해량 – CSkill에서 주입
     [HideInInspector] public int damage = 1;
     // 적 중첩 시 카메라 흔들림 – CSkill에서 주입
-    [HideInInspector] public float shakeDuration = 0.08f;
-    [HideInInspector] public float shakeMagnitude = 0.12f;
+    [HideInInspector] public string shakePresetName;
 
     // 이동 / 투사체 관련
     [HideInInspector] public bool followTarget = true; // true = 플레이어 따라다님, false = 투사체
@@ -84,10 +83,7 @@ public class Shield : MonoBehaviour
             StyleManager.Instance?.RegisterSkillHit(SkillType.C);
 
             // 카메라 흔들림
-            if (CameraShake.Instance != null)
-            {
-                CameraShake.Instance.Shake(shakeDuration, shakeMagnitude);
-            }
+            CameraManager.Instance?.ShakeWithPreset(shakePresetName);
 
             // 넉백 적용
             if (applyKnockback)

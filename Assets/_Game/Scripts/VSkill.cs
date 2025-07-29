@@ -32,8 +32,7 @@ public class VSkill : PlayerSkillBase
     [Header("점프/내리치기 설정")]
     [Tooltip("점프 높이 (월드 Y 오프셋)")] public float jumpHeight = 1.2f;
     [Tooltip("공중 체공 시간(초)")] public float airTime = 0.4f;
-    [Tooltip("땅 충돌 시 카메라 흔들림 지속 시간")] public float slamShakeDuration = 0.2f;
-    [Tooltip("땅 충돌 시 카메라 흔들림 세기")] public float slamShakeMagnitude = 0.3f;
+    [Tooltip("땅 충돌 시 사용할 Shake 프리셋 이름")] public string slamShakePreset = "Skill_Slam";
 
     [Header("착지 이펙트")] [Tooltip("착지 시 생성할 파티클 프리팹")] public GameObject landingEffectPrefab;
 
@@ -66,10 +65,7 @@ public class VSkill : PlayerSkillBase
         yield return jumpSeq.WaitForCompletion();
 
         // 2) 내리치기 – 카메라 흔들림
-        if (CameraShake.Instance != null)
-        {
-            CameraShake.Instance.Shake(slamShakeDuration, slamShakeMagnitude);
-        }
+        CameraManager.Instance?.ShakeWithPreset(slamShakePreset);
 
         // 착지 이펙트
         if (landingEffectPrefab != null)

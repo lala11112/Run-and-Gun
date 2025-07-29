@@ -24,8 +24,8 @@ public class ZSkill : PlayerSkillBase
     [Tooltip("트레일 유지 시간")] public float trailLifetime = 1.5f;
     [Tooltip("같은 위치 중복 생성을 막는 최소 거리")] public float trailMinDistance = 0.3f;
 
-    [Header("카메라 흔들림 설정")] [Tooltip("투사체 발사 시 카메라 흔들림 지속 시간")] public float shootShakeDuration = 0.05f;
-    [Tooltip("투사체 발사 시 카메라 흔들림 강도")] public float shootShakeMagnitude = 0.05f;
+    [Header("카메라 흔들림 프리셋")] 
+    [Tooltip("투사체 발사 시 사용할 Shake 프리셋 이름")] public string shootShakePreset = "EnemyHit";
 
     [Header("스타일 비용 설정")]
     [Tooltip("스킬 사용 시 소비될 스타일 점수")] public int styleCost = 30;
@@ -180,9 +180,9 @@ public class ZSkill : PlayerSkillBase
             }
 
             // 카메라 흔들림 (중복 방지)
-            if (CameraShake.Instance != null && Time.time - _lastShootShakeTime > ShootSfxMinInterval)
+            if (CameraManager.Instance != null && Time.time - _lastShootShakeTime > ShootSfxMinInterval)
             {
-                CameraShake.Instance.Shake(shootShakeDuration, shootShakeMagnitude);
+                CameraManager.Instance.ShakeWithPreset(shootShakePreset);
                 _lastShootShakeTime = Time.time;
             }
             yield return new WaitForSeconds(interval);
