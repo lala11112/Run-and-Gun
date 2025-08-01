@@ -80,7 +80,7 @@ public class Shield : MonoBehaviour
             enemy.TakeDamage(damage);
 
             // 스타일 점수 등록
-            StyleManager.Instance?.RegisterSkillHit(SkillType.C);
+            // StyleManager.Instance?.RegisterSkillHit(SkillType.C);
 
             // 카메라 흔들림
             CameraManager.Instance?.ShakeWithPreset(shakePresetName);

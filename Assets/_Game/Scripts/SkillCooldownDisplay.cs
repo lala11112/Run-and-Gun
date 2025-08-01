@@ -1,3 +1,5 @@
+#if false // 전체 스크립트를 비활성화합니다.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -32,4 +34,6 @@ public class SkillCooldownDisplay : MonoBehaviour
 
         if (cooldownText != null) cooldownText.text = Mathf.CeilToInt(remaining).ToString();
     }
-} 
+}
+
+#endif // 전체 스크립트 비활성화 종료

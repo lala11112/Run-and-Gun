@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d0c5fbdf8682443b53766398820077, type: 3}
+  m_Name: Step_3_SpawnDummy
+  m_EditorClassIdentifier: 
+  description: 
+  waveSpawns:
+  - enemyPrefab: {fileID: 3396180094095165315, guid: 2b64b7af4c3c58d4792aad52cbffda61, type: 3}
+    spawnPointName: Middle
+    count: 5
+  - enemyPrefab: {fileID: 9142883972293441753, guid: 63e018297de339a4fad06af4c4aeab15, type: 3}
+    spawnPointName: Middle
+    count: 2

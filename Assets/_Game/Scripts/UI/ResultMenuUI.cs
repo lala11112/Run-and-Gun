@@ -20,8 +20,9 @@ public class ResultMenuUI : MonoBehaviour
 
     private void OnRetry()
     {
-        // 동일 모드 재시작
-        GameManager.Instance.SwitchMode(GameManager.Instance.CurrentState == GameState.GameOver ? GameModeType.Roguelike : GameModeType.Story);
+        // TODO: 새로운 재시작 로직 구현 필요
+        // // 동일 모드 재시작
+        // GameManager.Instance.SwitchMode(GameManager.Instance.CurrentState == GameState.GameOver ? GameModeType.Roguelike : GameModeType.Story);
     }
 
     private void OnTitle()

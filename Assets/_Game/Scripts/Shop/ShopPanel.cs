@@ -1,3 +1,5 @@
+#if false // 전체 스크립트를 비활성화합니다.
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -61,14 +63,14 @@ public class ShopPanel : MonoBehaviour
             return;
         }
         // 효과 적용
-        bool applied = SkillManager.Instance != null && SkillManager.Instance.ApplyUpgrade(item.upgradeKey);
+        //bool applied = SkillManager.Instance != null && SkillManager.Instance.ApplyUpgrade(item.upgradeKey);
         // 구매 기록 저장
         var list = new System.Collections.Generic.List<string>(SaveService.Data.purchasedUpgrades);
         list.Add(item.itemId);
         SaveService.Data.purchasedUpgrades = list.ToArray();
         SaveService.Save();
         GameEvents.RaiseGoldChanged(CurrencyService.Instance.Gold);
-        Debug.Log($"[Shop] {item.displayName} 구매 완료 (적용:{applied})");
+        //Debug.Log($"[Shop] {item.displayName} 구매 완료 (적용:{applied})");
     }
 
     // ----------- Helper -----------
@@ -87,4 +89,5 @@ public class ShopPanel : MonoBehaviour
             Debug.LogWarning("[ShopPanel] Resources/UI/ShopPanel 프리팹이 없습니다.");
         }
     }
-} 
+}
+#endif // 전체 스크립트 비활성화 종료

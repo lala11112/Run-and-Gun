@@ -22,6 +22,9 @@ public static class GameEvents
     public static event Action<bool> EnemyDied;
 
     // 골드 변경: (int newGold)
+
+    // 탐색 스텝 완료
+    public static event Action ExplorationCompleted;
     public static event Action<int> GoldChanged;
 
     // 타이틀 화면 상호작용: (TitleInteractionType type)
@@ -61,6 +64,11 @@ public static class GameEvents
     public static void RaiseGoldChanged(int newGold)
     {
         GoldChanged?.Invoke(newGold);
+    }
+
+    public static void RaiseExplorationCompleted()
+    {
+        ExplorationCompleted?.Invoke();
     }
 
     public static void RaiseTitleInteractionHovered(TitleInteractionType type)

@@ -2441,6 +2441,7 @@ GameObject:
   - component: {fileID: 1865945015}
   - component: {fileID: 1865945014}
   - component: {fileID: 1865945018}
+  - component: {fileID: 1865945019}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2540,11 +2541,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865945013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c07901b6abc3b45b81420d9f61cef1, type: 3}
+  m_Script: {fileID: 11500000, guid: 065762762a4cecc428e4d7c24dca5e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingChapter: {fileID: 11400000, guid: 1de1a4f2474ac5848bcf3883e87b0bdd, type: 2}
+  continueButton: {fileID: 679137968}
+  newGameButton: {fileID: 1135566818}
   roguelikeButton: {fileID: 576009725}
-  storyButton: {fileID: 1135566818}
+  settingsButton: {fileID: 1066665503}
+  exitButton: {fileID: 1785657204}
+--- !u!225 &1865945019
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865945013}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1993922074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,7 +2573,6 @@ GameObject:
   - component: {fileID: 1993922075}
   - component: {fileID: 1993922077}
   - component: {fileID: 1993922076}
-  - component: {fileID: 1993922078}
   m_Layer: 5
   m_Name: MenuPanel
   m_TagString: Untagged
@@ -2626,23 +2642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993922074}
   m_CullTransparentMesh: 1
---- !u!114 &1993922078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1993922074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065762762a4cecc428e4d7c24dca5e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  continueButton: {fileID: 679137968}
-  newGameButton: {fileID: 1135566818}
-  roguelikeButton: {fileID: 576009725}
-  settingsButton: {fileID: 1066665503}
-  exitButton: {fileID: 1785657204}
 --- !u!1 &2070667712
 GameObject:
   m_ObjectHideFlags: 0

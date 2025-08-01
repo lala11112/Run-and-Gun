@@ -1,3 +1,5 @@
+#if false // 전체 스크립트를 비활성화합니다.
+
 using UnityEngine;
 
 /// <summary>
@@ -29,7 +31,8 @@ public class ShopTrigger : MonoBehaviour
             Debug.LogWarning("[ShopTrigger] Inventory가 비어 있습니다.");
             return;
         }
-        ShopPanel.OpenShop(inventory);
+        //ShopPanel.OpenShop(inventory);
         _opened = true;
     }
-} 
+}
+#endif // 전체 스크립트 비활성화 종료

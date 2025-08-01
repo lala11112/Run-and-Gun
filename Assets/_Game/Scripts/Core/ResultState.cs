@@ -8,18 +8,16 @@ public class ResultState : IState
 {
     private readonly StateMachine _sm;
     private readonly GameManager _gm;
-    private readonly RunResultData _resultData;
 
-    public ResultState(StateMachine sm, GameManager gm, RunResultData resultData)
+    public ResultState(StateMachine sm, GameManager gm)
     {
         _sm = sm;
         _gm = gm;
-        _resultData = resultData;
     }
 
     public void Enter()
     {
-        Debug.Log($"[ResultState] Enter – Victory: {_resultData.wasVictory}, Time: {_resultData.timePlayed:F2}s, Gold: {_resultData.goldEarned}");
+        Debug.Log($"[ResultState] Enter");
         _gm.StartCoroutine(LoadResult());
     }
 

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class TitleMenuController : MonoBehaviour
 {
+    [Header("시작 챕터 설정")]
+    [Tooltip("'새 게임'을 눌렀을 때 시작할 스토리 챕터 에셋")]
+    public StoryChapterSO startingChapter;
+    
     [Header("메뉴 버튼")]
     public Button continueButton;
     public Button newGameButton;
@@ -23,35 +27,50 @@ public class TitleMenuController : MonoBehaviour
         exitButton?.onClick.AddListener(OnExit);
 
         // 저장 데이터 존재 여부에 따라 '이어하기' 버튼 상태 결정
-        bool hasSaveData = SaveService.Data != null && SaveService.Data.highestFloorCleared > 0;
+        // bool hasSaveData = SaveService.Data != null && SaveService.Data.highestFloorCleared > 0;
         if (continueButton != null)
         {
-            continueButton.interactable = hasSaveData;
+            continueButton.interactable = false; // 이어하기는 아직 미구현
         }
-        // 로그라이크 모드 해금 조건 (예: 스토리 1챕터 클리어)
-        bool roguelikeUnlocked = SaveService.Data != null && SaveService.Data.storyChapterUnlocked > 0;
+        
+        // 로그라이크 모드는 아직 미구현
         if (roguelikeButton != null)
         {
-            roguelikeButton.interactable = roguelikeUnlocked;
+            roguelikeButton.interactable = false;
         }
     }
 
     private void OnContinue()
     {
         // TODO: 마지막 저장 지점에서 이어하기 로직
-        Debug.Log("이어하기 선택됨");
+        Debug.Log("이어하기 선택됨 (미구현)");
     }
 
     private void OnNewGame()
     {
-        Debug.Log("새 게임 선택됨");
-        GameManager.Instance.SwitchMode(GameModeType.Story);
+        Debug.Log("'새 게임' 선택됨");
+        if (startingChapter == null)
+        {
+            Debug.LogError("'startingChapter'가 지정되지 않았습니다! TitleMenuController의 인스펙터에서 설정해주세요.");
+            return;
+        }
+
+        if (StoryPlayer.Instance != null)
+        {
+            // GameManager를 통해 게임 상태를 InGame으로 변경하고,
+            // StoryPlayer를 통해 지정된 챕터를 재생합니다.
+            GameManager.Instance.ChangeState(GameState.InGame);
+            StoryPlayer.Instance.Play(startingChapter);
+        }
+        else
+        {
+            Debug.LogError("씬에 StoryPlayer가 존재하지 않습니다! InGame 씬에 StoryPlayer 컴포넌트를 가진 오브젝트를 추가해주세요.");
+        }
     }
 
     private void OnRoguelike()
     {
-        Debug.Log("로그라이크 모드 선택됨");
-        GameManager.Instance.SwitchMode(GameModeType.Roguelike);
+        Debug.Log("로그라이크 모드 선택됨 (미구현)");
     }
 
     private void OnSettings()

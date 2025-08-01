@@ -103,7 +103,7 @@ public class QProjectile : MonoBehaviour
             {
                 enemy.Stun(0.5f);
             }
-            StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
+            // StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
             Despawn();
             return;
         }
@@ -118,7 +118,7 @@ public class QProjectile : MonoBehaviour
         else if (other.TryGetComponent(out IDamageable dmg))
         {
             dmg.TakeDamage(damage);
-            StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
+            // StyleManager.Instance?.RegisterSkillHit(SkillType.Z);
             Despawn();
             return;
         }

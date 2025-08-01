@@ -24,5 +24,9 @@ public class PauseMenuUI : MonoBehaviour
         panelRoot.SetActive(paused);
     }
 
-    public void OnResumeButton() => GameManager.Instance.SetPause(false);
+    public void OnResumeButton()
+    {
+        // TODO: 새로운 일시정지 해제 로직 구현 필요
+        // GameManager.Instance.SetPause(false);
+    }
 } 

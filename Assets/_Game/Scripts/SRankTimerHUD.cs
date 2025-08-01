@@ -12,14 +12,14 @@ public class SRankTimerHUD : MonoBehaviour
 
     private void Update()
     {
-        if (timerSlider == null || StyleManager.Instance == null) return;
-
-        float t = StyleManager.Instance.SRemainingNormalized;
-        timerSlider.value = t;
-
-        if (hideWhenInactive)
-        {
-            timerSlider.gameObject.SetActive(t > 0f);
-        }
+        // if (timerSlider == null || StyleManager.Instance == null) return;
+        //
+        // float t = StyleManager.Instance.SRemainingNormalized;
+        // timerSlider.value = t;
+        //
+        // if (hideWhenInactive)
+        // {
+        //     timerSlider.gameObject.SetActive(t > 0f);
+        // }
     }
 } 

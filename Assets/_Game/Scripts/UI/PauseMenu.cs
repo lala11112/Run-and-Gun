@@ -23,12 +23,13 @@ public class PauseMenu : MonoBehaviour
 
     private void OnResume()
     {
-        // PausedState에게 재개를 직접 요청
-        if (GameManager.Instance != null &&
-            GameManager.Instance.TryGetState(out PausedState pausedState))
-        {
-            pausedState.Resume();
-        }
+        // TODO: 새로운 일시정지 로직 구현 필요
+        // // PausedState에게 재개를 직접 요청
+        // if (GameManager.Instance != null &&
+        //     GameManager.Instance.TryGetState(out PausedState pausedState))
+        // {
+        //     pausedState.Resume();
+        // }
     }
 
     private void OnTitle()

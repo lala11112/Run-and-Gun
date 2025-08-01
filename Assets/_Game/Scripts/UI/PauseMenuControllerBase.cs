@@ -25,10 +25,11 @@ public abstract class PauseMenuControllerBase : MonoBehaviour
 
     protected virtual void OnResume()
     {
-        if (GameManager.Instance != null && GameManager.Instance.TryGetState(out PausedState ps))
-        {
-            ps.Resume();
-        }
+        // TODO: 새로운 일시정지 로직 구현 필요
+        // if (GameManager.Instance != null && GameManager.Instance.TryGetState(out PausedState ps))
+        // {
+        //     ps.Resume();
+        // }
     }
 
     protected virtual void OnSettings()
