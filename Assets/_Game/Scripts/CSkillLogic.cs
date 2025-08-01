@@ -1,39 +1,44 @@
 using UnityEngine;
 using System.Linq;
-using System.Collections.Generic;
 
 /// <summary>
 /// C 스킬(대시 & 실드)의 행동을 실제로 구현하는 전용 로직 클래스입니다.
 /// </summary>
 public class CSkillLogic : SkillBase
 {
-    public override void Activate(GameObject caster, SkillDataSO skillData, StyleRank currentRank)
+    [Header("C-Skill 고유 데이터")]
+    [Tooltip("대시 행동에 대한 상세 데이터입니다.")]
+    public DashData dashData;
+    [Tooltip("실드 생성에 대한 상세 데이터입니다.")]
+    public ShieldData shieldData;
+    
+    public override void Activate(GameObject caster, StyleRank currentRank)
     {
         var playerController = caster.GetComponent<PlayerController>();
         if (playerController == null) return;
 
         // 1. 대시 실행
-        if (skillData.dashData != null)
+        if(dashData != null)
         {
-            // TODO: PlayerController에 대시 기능 구현 필요
-            // playerController.Dash(playerController.CurrentInputDir, skillData.dashData.dashSpeed, skillData.dashData.dashDuration);
-            Debug.Log($"[CSkillLogic] 대시 실행! 속도: {skillData.dashData.dashSpeed}");
+            playerController.Dash(playerController.LastMoveDir, dashData.dashSpeed, dashData.dashDuration);
+            Debug.Log($"[CSkillLogic] 대시 실행! 속도: {dashData.dashSpeed}");
         }
 
         // 2. 실드 생성
-        if (skillData.shieldData != null && skillData.shieldData.shieldPrefab != null)
+        if (shieldData != null && shieldData.shieldPrefab != null)
         {
-            SpawnShields(caster, skillData.shieldData, currentRank);
+            SpawnShields(caster, currentRank);
         }
     }
 
-    private void SpawnShields(GameObject caster, ShieldData shieldData, StyleRank currentRank)
+    private void SpawnShields(GameObject caster, StyleRank currentRank)
     {
         var playerController = caster.GetComponent<PlayerController>();
-        Vector2 centerDir = playerController.CurrentInputDir != Vector2.zero ? playerController.CurrentInputDir : (Vector2)caster.transform.up;
+        // 이제 항상 유효한 방향값을 가지는 LastMoveDir를 사용합니다.
+        Vector2 centerDir = playerController.LastMoveDir; 
 
-        // 랭크에 맞는 보너스 찾기
-        var rankBonus = shieldData.shieldBonus; // 현재는 하나의 보너스만 사용
+        // 랭크에 맞는 보너스 찾기 (현재는 하나의 보너스만 사용)
+        var rankBonus = shieldData.shieldBonus;
 
         for (int i = 0; i < rankBonus.count; i++)
         {

@@ -325,6 +325,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAction1: {fileID: -4404756715624644918, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   attackAction2: {fileID: 6668580966373001754, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  attackAction3: {fileID: -8828271037046322613, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  dashAction: {fileID: 3227614301978358530, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  testSkillDatas: []
+  attackAction3: {fileID: 3227614301978358530, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  dashAction: {fileID: -8828271037046322613, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  equippedSkillDataList:
+  - {fileID: 11400000, guid: 4a2e5fdfc8fae024fbb80a168feba8ff, type: 2}
+  - {fileID: 11400000, guid: e2c5dd5d685f69f4aa61bba9d282368c, type: 2}
+  - {fileID: 11400000, guid: be68981249923644fb6fcfed57227c91, type: 2}
+  - {fileID: 11400000, guid: 783242a39166e294f91f68a234e93065, type: 2}

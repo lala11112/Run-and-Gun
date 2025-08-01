@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4657639545505901463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820809672448370275}
+  - component: {fileID: 42634644871825453}
+  m_Layer: 0
+  m_Name: XSkillLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820809672448370275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657639545505901463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &42634644871825453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657639545505901463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6213d08bf7fc9b34b95d0b990d1d2ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  radius: 10
+  repeatCount: 1
+  repeatDelay: 0.25
+  outerEffectPrefab: {fileID: 6329113440936734665, guid: d6cd933a03f756e4b97ba6600cc26fb8, type: 3}
+  innerEffectPrefab: {fileID: 1064867209193409781, guid: 62244e38d7433774386d800c96ed8e09, type: 3}
+  hitSoundName: Swords
+  cameraShakePresetName: Skill_SpinHit
+  innerRadiusRatio: 0.5
+  innerBonusDamage: 10
+  rankBonuses:
+  - rank: 0
+    damageMultiplier: 0.8
+    cooldownMultiplier: 1.2
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 1
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 2
+    damageMultiplier: 1.2
+    cooldownMultiplier: 0.8
+    radiusMultiplier: 0
+    countMultiplier: 0
+    enableKnockback: 1
+    enableProjectileReflection: 0
+  - rank: 3
+    damageMultiplier: 1.3
+    cooldownMultiplier: 0.6
+    radiusMultiplier: 1.2
+    countMultiplier: 2
+    enableKnockback: 1
+    enableProjectileReflection: 1
+  - rank: 4
+    damageMultiplier: 2
+    cooldownMultiplier: 0.1
+    radiusMultiplier: 3
+    countMultiplier: 3
+    enableKnockback: 1
+    enableProjectileReflection: 1

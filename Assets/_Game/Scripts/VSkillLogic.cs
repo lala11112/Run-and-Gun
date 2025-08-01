@@ -2,65 +2,85 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening; // DOTween을 사용하므로 네임스페이스 추가
+using DG.Tweening;
 
 /// <summary>
 /// V 스킬(점프-슬램 & 다방향 투사체)의 행동을 실제로 구현하는 전용 로직 클래스입니다.
 /// </summary>
 public class VSkillLogic : SkillBase
 {
-    private bool _isRunning;
-
-    public override void Activate(GameObject caster, SkillDataSO skillData, StyleRank currentRank)
+    /// <summary>
+    /// VSkill의 랭크별 보너스 데이터만 담는 전용 클래스입니다.
+    /// </summary>
+    [System.Serializable]
+    public class VRankBonus
     {
-        if (_isRunning) return;
-        StartCoroutine(SkillRoutine(caster, skillData, currentRank));
+        public StyleRank rank;
+        [Tooltip("투사체 데미지에 곱해질 배율입니다.")]
+        public float damageMultiplier = 1f;
+        [Tooltip("발사 방향 개수에 곱해질 배율입니다.")]
+        public float countMultiplier = 1f;
     }
 
-    private IEnumerator SkillRoutine(GameObject caster, SkillDataSO skillData, StyleRank currentRank)
+
+    [Header("V-Skill 고유 데이터")]
+    [Tooltip("점프 후 내리찍는 행동에 대한 상세 데이터입니다.")]
+    public JumpSlamData jumpSlamData;
+    [Tooltip("여러 방향으로 동시에 투사체를 발사하는 행동에 대한 상세 데이터입니다.")]
+    public MultiShotData multiShotData;
+    [Tooltip("투사체의 기본 데미지입니다.")]
+    public float projectileDamage = 10f;
+    
+    [Header("랭크별 성장 정보")]
+    [Tooltip("V스킬의 랭크별 성능 변화 목록입니다.")]
+    public List<VRankBonus> rankBonuses = new List<VRankBonus>();
+
+    private bool _isRunning;
+
+    public override void Activate(GameObject caster, StyleRank currentRank)
+    {
+        if (_isRunning) return;
+        StartCoroutine(SkillRoutine(caster, currentRank));
+    }
+
+    private IEnumerator SkillRoutine(GameObject caster, StyleRank currentRank)
     {
         _isRunning = true;
         
-        var playerController = caster.GetComponent<PlayerController>();
-
         // 1. 점프-슬램 연출
-        if (skillData.jumpSlamData != null)
+        if (jumpSlamData != null)
         {
-            var jumpData = skillData.jumpSlamData;
             // TODO: PlayerController를 통해 무적 처리 필요
             
             Sequence jumpSeq = DOTween.Sequence();
-            jumpSeq.Append(caster.transform.DOBlendableMoveBy(Vector3.up * jumpData.jumpHeight, jumpData.airTime * 0.5f).SetEase(Ease.OutQuad));
-            jumpSeq.Append(caster.transform.DOBlendableMoveBy(Vector3.down * jumpData.jumpHeight, jumpData.airTime * 0.5f).SetEase(Ease.InQuad));
+            jumpSeq.Append(caster.transform.DOBlendableMoveBy(Vector3.up * jumpSlamData.jumpHeight, jumpSlamData.airTime * 0.5f).SetEase(Ease.OutQuad));
+            jumpSeq.Append(caster.transform.DOBlendableMoveBy(Vector3.down * jumpSlamData.jumpHeight, jumpSlamData.airTime * 0.5f).SetEase(Ease.InQuad));
             yield return jumpSeq.WaitForCompletion();
 
-            // TODO: 카메라 흔들림 및 착지 이펙트 로직 추가
-            // CameraManager.Instance?.ShakeWithPreset(jumpData.slamShakePreset);
-            // if(jumpData.landingEffectPrefab != null) Instantiate(jumpData.landingEffectPrefab, caster.transform.position, Quaternion.identity);
+            if(!string.IsNullOrEmpty(jumpSlamData.slamShakePreset)) CameraManager.Instance?.ShakeWithPreset(jumpSlamData.slamShakePreset);
+            if(jumpSlamData.landingEffectPrefab != null) Instantiate(jumpSlamData.landingEffectPrefab, caster.transform.position, Quaternion.identity);
         }
 
         // 2. 다방향 투사체 발사
-        if (skillData.multiShotData != null)
+        if (multiShotData != null)
         {
-            var shotData = skillData.multiShotData;
-            var rankBonus = skillData.rankBonuses.FirstOrDefault(b => b.rank == currentRank) ?? new RankBonusData();
+            var rankBonus = rankBonuses.FirstOrDefault(b => b.rank == currentRank) ?? new VRankBonus();
             
-            float finalDamage = skillData.baseDamage * rankBonus.damageMultiplier;
-            int directions = shotData.directions; // TODO: 랭크별 방향 개수 보너스 적용 필요
+            float finalDamage = projectileDamage * rankBonus.damageMultiplier;
+            int finalDirections = Mathf.RoundToInt(multiShotData.directions * rankBonus.countMultiplier);
             
-            Vector2[] dirVectors = GetDirections(directions, caster.transform);
+            Vector2[] dirVectors = GetDirections(finalDirections, caster.transform);
 
             foreach (var dir in dirVectors)
             {
                 Quaternion rot = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f);
-                GameObject proj = Instantiate(shotData.projectilePrefab, caster.transform.position, rot);
+                GameObject proj = Instantiate(multiShotData.projectilePrefab, caster.transform.position, rot);
                 
                 if(proj.TryGetComponent<Projectile>(out var p))
                 {
                     p.damage = (int)finalDamage;
-                    // p.speed = ...
+                    // p.speed = ... // 투사체 속도 설정이 필요하다면 MultiShotData에 speed 필드 추가 필요
                     p.Init(dir);
-                    // TODO: 랭크별 스턴/커브/넉백 등 특수효과 적용 로직 필요
                 }
             }
         }
@@ -72,12 +92,12 @@ public class VSkillLogic : SkillBase
     {
         List<Vector2> dirs = new List<Vector2>();
         float angleStep = 360f / count;
+        float baseAngle = Mathf.Atan2(casterTransform.up.y, casterTransform.up.x) * Mathf.Rad2Deg;
         for(int i = 0; i < count; i++)
         {
-            float angle = i * angleStep;
-            // caster의 up 벡터를 기준으로 회전
-            Vector2 dir = Quaternion.Euler(0, 0, angle) * casterTransform.up;
-            dirs.Add(dir.normalized);
+            float angle = baseAngle + i * angleStep;
+            Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            dirs.Add(dir);
         }
         return dirs.ToArray();
     }

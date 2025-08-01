@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4657639545505901463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820809672448370275}
+  - component: {fileID: 6438123865584302331}
+  m_Layer: 0
+  m_Name: VSkillLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820809672448370275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657639545505901463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6438123865584302331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657639545505901463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a4e49a8331f4f4783222bc1940aea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSlamData:
+    jumpHeight: 1.2
+    airTime: 0.4
+    slamShakePreset: Skill_SpinHit
+    landingEffectPrefab: {fileID: 6409674488405722314, guid: 897e96c9446189c4682db2477ed93015, type: 3}
+  multiShotData:
+    projectilePrefab: {fileID: 6188139445992187909, guid: e952bc900afdd9b4c9cd4080244120d6, type: 3}
+    directions: 4
+  projectileDamage: 20
+  rankBonuses:
+  - rank: 0
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 1
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 2
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 3
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
+  - rank: 4
+    damageMultiplier: 1
+    cooldownMultiplier: 1
+    radiusMultiplier: 1
+    countMultiplier: 1
+    enableKnockback: 0
+    enableProjectileReflection: 0
