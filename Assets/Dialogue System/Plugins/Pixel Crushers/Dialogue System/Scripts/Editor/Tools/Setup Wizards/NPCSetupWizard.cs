@@ -12,7 +12,7 @@ namespace PixelCrushers.DialogueSystem
     public class NPCSetupWizard : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Wizards/NPC Setup Wizard", false, 1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/마법사/NPC 설정 마법사", false, 1)]
         public static void Init()
         {
             (EditorWindow.GetWindow(typeof(NPCSetupWizard), false, "NPC Setup") as NPCSetupWizard).minSize = new Vector2(700, 500);

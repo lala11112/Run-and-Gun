@@ -5,7 +5,7 @@ namespace Run_and_Gun.Story
     /// <summary>
     /// 지정된 이름의 씬을 로드하는 스토리 스텝입니다.
     /// </summary>
-    [CreateAssetMenu(fileName = "LoadSceneStep", menuName = "Story/Steps/Load Scene Step")]
+    [CreateAssetMenu(fileName = "LoadSceneStep", menuName = "Run and Gun/Story/Steps/Load Scene")]
     public class LoadSceneStepSO : StoryStepSO
     {
         [Tooltip("로드할 씬의 이름입니다. 반드시 File > Build Settings에 해당 씬이 포함되어 있어야 합니다.")]

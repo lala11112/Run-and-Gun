@@ -44,6 +44,10 @@ public class BootState : IState
         {
             new GameObject("CameraManager").AddComponent<CameraManager>();
         }
+        if (AdvancedPoolManager.Instance == null)
+        {
+            new GameObject("AdvancedPoolManager").AddComponent<AdvancedPoolManager>();
+        }
         ApplyOptions();
         yield return _gm.StartCoroutine(SceneLoader.LoadSceneAsync(_gm.titleSceneName));
         _sm.ChangeState(new TitleState(_sm, _gm));

@@ -18,7 +18,7 @@ public struct EnemySpawnData
 /// <summary>
 /// '전투 웨이브' 스텝의 데이터를 정의하는 ScriptableObject입니다.
 /// </summary>
-[CreateAssetMenu(fileName = "CombatWaveStep", menuName = "Story/Steps/Combat Wave")]
+[CreateAssetMenu(fileName = "CombatWaveStep", menuName = "Run and Gun/Story/Steps/Combat Wave")]
 public class CombatWaveStepSO : StoryStepSO
 {
     [Header("전투 웨이브 설정")]

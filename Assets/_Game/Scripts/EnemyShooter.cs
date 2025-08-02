@@ -66,7 +66,7 @@ public class EnemyShooter : MonoBehaviour
 
         Vector2 dir = (_player.position - transform.position).normalized;
         Transform spawnPoint = firePoint != null ? firePoint : transform;
-        GameObject obj = SimplePool.Spawn(projectilePrefab, spawnPoint.position, Quaternion.identity);
+        GameObject obj = AdvancedObjectPool.Spawn(projectilePrefab, spawnPoint.position, Quaternion.identity);
         if (obj.TryGetComponent(out EnemyProjectile ep))
         {
             ep.Init(dir);

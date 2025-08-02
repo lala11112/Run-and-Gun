@@ -4,7 +4,7 @@ using Unity.AI.Navigation;
 /// <summary>
 /// '맵 생성' 스텝의 데이터를 정의하는 ScriptableObject입니다.
 /// </summary>
-[CreateAssetMenu(fileName = "InstantiateMapStep", menuName = "Story/Steps/Instantiate Map")]
+[CreateAssetMenu(fileName = "InstantiateMapStep", menuName = "Run and Gun/Story/Steps/Instantiate Map")]
 public class InstantiateMapStepSO : StoryStepSO
 {
     [Header("맵 설정")]

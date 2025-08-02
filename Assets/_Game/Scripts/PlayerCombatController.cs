@@ -22,6 +22,9 @@ public class PlayerCombatController : MonoBehaviour
     
     // 인스턴스화된 스킬 로직(MonoBehaviour) 목록. equippedSkillDataList와 순서가 일치합니다.
     private readonly List<SkillBase> _skillLogics = new List<SkillBase>();
+    
+    // 성능 최적화: 스킬 쿨다운 관리
+    private readonly Dictionary<int, float> _skillCooldowns = new Dictionary<int, float>();
 
     private void Awake()
     {
@@ -45,10 +48,11 @@ public class PlayerCombatController : MonoBehaviour
 
         // 스킬 로직 프리팹을 이 오브젝트의 자식으로 인스턴스화합니다.
         SkillBase skillLogicInstance = Instantiate(skillData.logicPrefab, transform);
-        skillLogicInstance.name = $"{skillData.skillName}_Logic";
+        string skillName = skillData.skillIdentifier?.displayName ?? "Unknown";
+        skillLogicInstance.name = $"{skillName}_Logic";
         _skillLogics.Add(skillLogicInstance);
         
-        Debug.Log($"스킬 '{skillData.skillName}'이(가) 장착되었습니다.");
+        Debug.Log($"스킬 '{skillName}'이(가) 장착되었습니다.");
     }
 
     private void OnEnable()
@@ -85,6 +89,13 @@ public class PlayerCombatController : MonoBehaviour
             Debug.LogWarning($"{slotIndex + 1}번 공격 슬롯에 스킬이 장착되지 않았거나 로직이 없습니다.");
             return;
         }
+        
+        // 쿨다운 체크
+        if (IsSkillOnCooldown(slotIndex))
+        {
+            Debug.Log($"{slotIndex + 1}번 스킬이 쿨다운 중입니다.");
+            return;
+        }
 
         // 1. StyleManager에 스킬 사용 보고 (어떤 스킬인지 식별할 정보 전달)
         // StyleManager가 SO를 직접 참조하도록 변경할 수 있으나, 우선 skillName으로 전달
@@ -100,6 +111,54 @@ public class PlayerCombatController : MonoBehaviour
         SkillBase logicToExecute = _skillLogics[slotIndex];
         logicToExecute.Activate(gameObject, currentRank);
         
+        // 4. 쿨다운 시작
+        StartCooldown(slotIndex);
+        
+        // 5. 스킬 사용 이벤트 발생 (GameEvents 시스템 사용)
+        if (slotIndex < equippedSkillDataList.Count && equippedSkillDataList[slotIndex].skillIdentifier != null)
+        {
+            GameEvents.RaiseSkillActivated(equippedSkillDataList[slotIndex].skillIdentifier, false);
+        }
+        
         Debug.Log($"스킬 '{logicToExecute.name}' 발동 (Rank: {currentRank})");
+    }
+    
+    /// <summary>
+    /// 스킬이 쿨다운 중인지 확인합니다.
+    /// </summary>
+    private bool IsSkillOnCooldown(int slotIndex)
+    {
+        if (_skillCooldowns.TryGetValue(slotIndex, out float cooldownEndTime))
+        {
+            return Time.time < cooldownEndTime;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// 스킬 쿨다운을 시작합니다.
+    /// </summary>
+    private void StartCooldown(int slotIndex)
+    {
+        if (slotIndex < equippedSkillDataList.Count)
+        {
+            var skillData = equippedSkillDataList[slotIndex];
+            if (skillData != null)
+            {
+                _skillCooldowns[slotIndex] = Time.time + skillData.cooldown;
+            }
+        }
+    }
+    
+    /// <summary>
+    /// 스킬의 남은 쿨다운 시간을 반환합니다. (UI용)
+    /// </summary>
+    public float GetSkillCooldownRemaining(int slotIndex)
+    {
+        if (_skillCooldowns.TryGetValue(slotIndex, out float cooldownEndTime))
+        {
+            return Mathf.Max(0f, cooldownEndTime - Time.time);
+        }
+        return 0f;
     }
 }

@@ -1702,51 +1702,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &417673409
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 417673411}
-  - component: {fileID: 417673410}
-  m_Layer: 0
-  m_Name: PoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &417673410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417673409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aba67d1997d5a154f915a81adf86d8eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCapacity: 10
---- !u!4 &417673411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417673409}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447293606
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,6 +4401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2e9c445c5d353a44a105508f0aa9c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableDetailedLogging: 1
+  stepTimeout: 30
 --- !u!4 &1419278704
 Transform:
   m_ObjectHideFlags: 0
@@ -5072,6 +5029,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
       propertyPath: useTextGroupFilter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
+      propertyPath: vrSettingsExpanded
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
+      propertyPath: logAdvancedExpanded
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: eda3119358a5fe04aa67974b14a26774, type: 3}
@@ -6600,7 +6565,6 @@ SceneRoots:
   - {fileID: 5840718115774427915}
   - {fileID: 1252038361}
   - {fileID: 1950350711}
-  - {fileID: 417673411}
   - {fileID: 1542078550}
   - {fileID: 1244926475}
   - {fileID: 1419278704}

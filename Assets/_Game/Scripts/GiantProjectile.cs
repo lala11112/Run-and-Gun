@@ -65,7 +65,7 @@ public class GiantProjectile : MonoBehaviour
     private IEnumerator ManageLifetime()
     {
         yield return new WaitForSeconds(lifetime);
-        SimplePool.Despawn(gameObject);
+        AdvancedObjectPool.Despawn(gameObject);
     }
 
     private void FixedUpdate()
@@ -106,7 +106,7 @@ public class GiantProjectile : MonoBehaviour
             {
                 return;
             }
-            SimplePool.Despawn(gameObject);
+            AdvancedObjectPool.Despawn(gameObject);
             return;
         }
 

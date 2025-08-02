@@ -27,8 +27,12 @@ public class PlayerHealth : LivingEntity
 
     // 무적 시간 관리용 타이머
     private float _invincibleTimer;
+    private bool _isInvincible; // 성능 최적화: Update 호출 최소화
 
     private PlayerController _pc;
+    
+    // 메모리 누수 방지: DOTween 시퀀스 추적
+    private DG.Tweening.Sequence _flashSequence;
 
     // 플레이어가 사망했을 때 호출되는 이벤트 (UI, 게임 오버 처리 등에서 구독)
     public System.Action OnPlayerDied;
@@ -39,8 +43,8 @@ public class PlayerHealth : LivingEntity
         if (playerStats != null)
         {
             maxHealth = (int)playerStats.maxHealth;
-            // defense 변수가 LivingEntity에 있다면 defense도 초기화합니다.
-            // defense = playerStats.defense; 
+            // 방어력 시스템 구현
+            defense = (int)playerStats.defense;
         }
         else
         {
@@ -54,8 +58,16 @@ public class PlayerHealth : LivingEntity
 
     private void Update()
     {
-        if (_invincibleTimer > 0f)
+        // 성능 최적화: 무적 상태일 때만 Update 실행
+        if (_isInvincible)
+        {
             _invincibleTimer -= Time.deltaTime;
+            if (_invincibleTimer <= 0f)
+            {
+                _isInvincible = false;
+                _invincibleTimer = 0f;
+            }
+        }
     }
 
     public override void TakeDamage(int dmg)
@@ -71,6 +83,7 @@ public class PlayerHealth : LivingEntity
         // }
 
         _invincibleTimer = invincibilityDuration;
+        _isInvincible = true; // 성능 최적화: 무적 상태 플래그 설정
 
         CameraManager.Instance?.ShakeWithPreset(hitShakePreset);
 
@@ -84,12 +97,21 @@ public class PlayerHealth : LivingEntity
             StartCoroutine(HitStopRoutine(hitStopScale, hitStopDuration));
         }
 
-        // DOTween 깜빡임
+        // DOTween 깜빡임 (메모리 누수 방지 개선)
         if (spriteRenderer != null)
         {
-            spriteRenderer.DOKill();
-            Color c = spriteRenderer.color;
-            spriteRenderer.DOFade(flashAlpha, 0.08f).SetLoops(flashLoops * 2, LoopType.Yoyo).OnComplete(() => spriteRenderer.color = c);
+            // 이전 시퀀스 정리
+            _flashSequence?.Kill();
+            
+            Color originalColor = spriteRenderer.color;
+            _flashSequence = DOTween.Sequence()
+                .Append(spriteRenderer.DOFade(flashAlpha, 0.08f))
+                .SetLoops(flashLoops * 2, LoopType.Yoyo)
+                .OnComplete(() => 
+                {
+                    spriteRenderer.color = originalColor;
+                    _flashSequence = null;
+                });
         }
 
         // 실제 체력 감소 및 사망 판정은 LivingEntity에 위임
@@ -100,6 +122,13 @@ public class PlayerHealth : LivingEntity
     {
         OnPlayerDied?.Invoke();
         GameEvents.RaisePlayerDied();
+    }
+    
+    private void OnDestroy()
+    {
+        // 메모리 누수 방지: DOTween 시퀀스 정리
+        _flashSequence?.Kill();
+        _flashSequence = null;
     }
 
     private IEnumerator HitStopRoutine(float scale, float dur)

@@ -59,55 +59,55 @@ namespace PixelCrushers.DialogueSystem
 
         #region Help
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/About", false, 0)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/정보", false, 0)]
         static public void HelpAbout()
         {
             ShowAboutWindow();
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Manual", false, 1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/매뉴얼", false, 1)]
         static public void HelpUserManual()
         {
             Application.OpenURL("http://www.pixelcrushers.com/dialogue_system/manual2x/html/");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Video Tutorials", false, 1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/비디오 튜토리얼", false, 1)]
         static public void HelpVideoTutorials()
         {
             Application.OpenURL("http://www.pixelcrushers.com/dialogue-system-tutorials/");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/FAQ", false, 3)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/자주 묻는 질문", false, 3)]
         static public void HelpFAQ()
         {
             Application.OpenURL("https://www.pixelcrushers.com/dialogue_system/manual2x/html/faq.html");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Scripting Reference", false, 4)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/스크립팅 레퍼런스", false, 4)]
         static public void HelpScriptingReference()
         {
             Application.OpenURL("https://www.pixelcrushers.com/dialogue_system/manual2x/html/classes.html");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Release Notes", false, 15)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/릴리즈 노트", false, 15)]
         static public void HelpLateReleaseNotes()
         {
             Application.OpenURL("https://www.pixelcrushers.com/dialogue_system/manual2x/html/release_notes.html");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Late-Breaking News", false, 16)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/최신 뉴스", false, 16)]
         static public void HelpLateBreakingNews()
         {
             Application.OpenURL("http://www.pixelcrushers.com/dialogue-system-late-breaking-news/");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Forum", false, 17)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/포럼", false, 17)]
         static public void HelpForum()
         {
             Application.OpenURL("http://forum.unity3d.com/threads/204752-Dialogue-System-for-Unity");
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Help/Report a Bug", false, 17)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도움말/버그 신고", false, 17)]
         static public void HelpReportABug()
         {
             Application.OpenURL("http://www.pixelcrushers.com/support-form/");

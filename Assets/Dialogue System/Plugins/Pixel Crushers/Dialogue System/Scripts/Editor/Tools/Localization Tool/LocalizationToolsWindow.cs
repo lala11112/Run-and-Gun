@@ -16,7 +16,7 @@ namespace PixelCrushers.DialogueSystem
     public class LocalizationToolsWindow : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Tools/Localization Tools", false, 3)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도구/현지화 도구", false, 3)]
         public static void Init()
         {
             EditorWindow.GetWindow(typeof(LocalizationToolsWindow), false, "Loc Tools");

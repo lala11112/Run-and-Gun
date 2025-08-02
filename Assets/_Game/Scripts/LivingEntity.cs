@@ -10,6 +10,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 {
     [Header("공통 체력 설정")]
     [Tooltip("최대 체력")] public int maxHealth = 5;
+    [Tooltip("방어력 (받는 피해량 감소)")] public int defense = 0;
 
     /// <summary>현재 체력. 인스펙터에서 확인만 가능합니다.</summary>
     [Tooltip("현재 체력(읽기 전용)")] public int currentHealth;
@@ -29,13 +30,19 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
     }
 
     /// <summary>
-    /// 피해 처리 메서드. 파생 클래스에서 확장하려면 base.TakeDamage 호출 후 추가 로직을 작성하세요.
+    /// 피해 처리 메서드. 방어력을 적용한 후 체력을 감소시킵니다.
+    /// 파생 클래스에서 확장하려면 base.TakeDamage 호출 후 추가 로직을 작성하세요.
     /// </summary>
     public virtual void TakeDamage(int dmg)
     {
-        currentHealth -= dmg;
+        // 방어력 적용: 최소 1의 피해는 받도록 보장
+        int finalDamage = Mathf.Max(1, dmg - defense);
+        
+        currentHealth -= finalDamage;
         if (currentHealth < 0) currentHealth = 0;
+        
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        
         if (currentHealth <= 0)
         {
             Die();

@@ -60,10 +60,32 @@ public class XSkillLogic : SkillBase
     [Header("랭크별 성장 정보")]
     [Tooltip("X스킬의 랭크별 성능 변화 목록입니다.")]
     public List<XRankBonus> rankBonuses = new List<XRankBonus>();
+    
+    [Header("게임 설정")]
+    [Tooltip("게임 전체 설정이 담긴 ScriptableObject입니다.")]
+    public GameConfigSO gameConfig;
+    
+    // 성능 최적화: Physics 쿼리 결과 재사용을 위한 배열
+    private Collider2D[] _hitResults;
+    
+    // 메모리 누수 방지: 진행 중인 코루틴 추적
+    private Coroutine _spinCoroutine;
+
+    private void Awake()
+    {
+        // 성능 최적화: 배열 크기를 GameConfig에서 가져오거나 기본값 사용
+        int arraySize = gameConfig != null ? gameConfig.maxEnemyDetection : 32;
+        _hitResults = new Collider2D[arraySize];
+    }
 
     public override void Activate(GameObject caster, StyleRank currentRank)
     {
-        StartCoroutine(SpinRoutine(caster, currentRank));
+        // 이전 코루틴이 실행 중이면 중지
+        if (_spinCoroutine != null)
+        {
+            StopCoroutine(_spinCoroutine);
+        }
+        _spinCoroutine = StartCoroutine(SpinRoutine(caster, currentRank));
     }
 
     private IEnumerator SpinRoutine(GameObject caster, StyleRank currentRank)
@@ -94,9 +116,13 @@ public class XSkillLogic : SkillBase
         if (!string.IsNullOrEmpty(hitSoundName)) MasterAudio.PlaySound3DAtTransform(hitSoundName, caster.transform);
         if (!string.IsNullOrEmpty(cameraShakePresetName)) CameraManager.Instance?.ShakeWithPreset(cameraShakePresetName);
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(caster.transform.position, currentRadius);
-        foreach (var hit in hits)
+        // 성능 최적화: 배열 재사용으로 GC 압박 감소
+        int hitCount = Physics2D.OverlapCircleNonAlloc(caster.transform.position, currentRadius, _hitResults);
+        for (int i = 0; i < hitCount; i++)
         {
+            var hit = _hitResults[i];
+            if (hit == null) continue;
+            
             if (hit.TryGetComponent(out EnemyHealth enemyHealth))
             {
                 float dealtDamage = currentDamage;
@@ -109,14 +135,28 @@ public class XSkillLogic : SkillBase
                 if (rankBonus.enableKnockback && hit.TryGetComponent(out Rigidbody2D enemyRb))
                 {
                     Vector2 knockbackDir = (hit.transform.position - caster.transform.position).normalized;
-                    enemyRb.AddForce(knockbackDir * 10f, ForceMode2D.Impulse); 
+                    float knockbackForce = gameConfig != null ? gameConfig.defaultKnockbackForce : 10f;
+                    enemyRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse); 
                 }
             }
 
-            if (rankBonus.enableProjectileReflection && hit.CompareTag("EnemyBullet"))
+            string enemyBulletTag = gameConfig != null ? gameConfig.enemyBulletTagName : "EnemyBullet";
+            if (rankBonus.enableProjectileReflection && hit.CompareTag(enemyBulletTag))
             {
                 Destroy(hit.gameObject);
             }
+        }
+        
+        _spinCoroutine = null; // 코루틴 완료 표시
+    }
+    
+    private void OnDestroy()
+    {
+        // 메모리 누수 방지: 오브젝트 파괴 시 모든 코루틴 정리
+        if (_spinCoroutine != null)
+        {
+            StopCoroutine(_spinCoroutine);
+            _spinCoroutine = null;
         }
     }
     
@@ -124,7 +164,10 @@ public class XSkillLogic : SkillBase
     {
         if (effectPrefab == null) return;
         
-        GameObject effectInstance = Instantiate(effectPrefab, caster.position, caster.rotation, caster);
+        // Object Pool 사용: Instantiate 대신 풀에서 가져오기
+        GameObject effectInstance = AdvancedObjectPool.Spawn(effectPrefab, caster.position, caster.rotation, caster);
+        if (effectInstance == null) return; // 풀이 가득 찬 경우
+        
         var ps = effectInstance.GetComponent<ParticleSystem>();
         if (ps != null)
         {
@@ -137,10 +180,16 @@ public class XSkillLogic : SkillBase
             {
                  effectInstance.transform.localScale = Vector3.one * targetRadius * 2;
             }
+            
+            // 파티클 시스템 재생 시간 후 자동으로 풀로 반환
+            float duration = ps.main.duration + ps.main.startLifetime.constant;
+            AdvancedObjectPool.DespawnAfter(effectInstance, duration);
         }
         else
         {
              effectInstance.transform.localScale = Vector3.one * targetRadius * 2;
+             // 파티클 시스템이 없으면 2초 후 반환 (기본값)
+             AdvancedObjectPool.DespawnAfter(effectInstance, 2f);
         }
     }
 }

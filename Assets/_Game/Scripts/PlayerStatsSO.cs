@@ -4,7 +4,7 @@ using UnityEngine;
 /// 플레이어의 핵심 능력치를 정의하는 ScriptableObject입니다.
 /// 이 데이터를 교체하여 다양한 유형의 플레이어(전사, 마법사 등)를 쉽게 만들 수 있습니다.
 /// </summary>
-[CreateAssetMenu(fileName = "PlayerStats_New", menuName = "Run and Gun/Player Stats", order = 0)]
+[CreateAssetMenu(fileName = "PlayerStats_New", menuName = "Run and Gun/Player/Player Stats", order = 10)]
 public class PlayerStatsSO : ScriptableObject
 {
     [Header("체력 관련")]

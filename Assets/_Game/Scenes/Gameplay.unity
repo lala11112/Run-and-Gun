@@ -1823,7 +1823,6 @@ GameObject:
   - component: {fileID: 645338737}
   - component: {fileID: 645338740}
   - component: {fileID: 645338739}
-  - component: {fileID: 645338738}
   m_Layer: 5
   m_Name: ZSkillIcon
   m_TagString: Untagged
@@ -1852,21 +1851,6 @@ RectTransform:
   m_AnchoredPosition: {x: 91.95, y: -32}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &645338738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645338736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94d9f65797bd9a4d9524f1271f36ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillType: 0
-  cooldownText: {fileID: 752915395}
-  cooldownSlider: {fileID: 1270532939}
 --- !u!114 &645338739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2817,7 +2801,6 @@ GameObject:
   - component: {fileID: 1048355406}
   - component: {fileID: 1048355409}
   - component: {fileID: 1048355408}
-  - component: {fileID: 1048355407}
   m_Layer: 5
   m_Name: CSkillIcon
   m_TagString: Untagged
@@ -2846,21 +2829,6 @@ RectTransform:
   m_AnchoredPosition: {x: 259.75, y: -32}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1048355407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048355405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94d9f65797bd9a4d9524f1271f36ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillType: 2
-  cooldownText: {fileID: 1154036933}
-  cooldownSlider: {fileID: 211635667}
 --- !u!114 &1048355408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4919,7 +4887,6 @@ GameObject:
   - component: {fileID: 1902599136}
   - component: {fileID: 1902599139}
   - component: {fileID: 1902599138}
-  - component: {fileID: 1902599137}
   m_Layer: 5
   m_Name: VSkillIcon
   m_TagString: Untagged
@@ -4948,21 +4915,6 @@ RectTransform:
   m_AnchoredPosition: {x: 343.64996, y: -32}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1902599137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902599135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94d9f65797bd9a4d9524f1271f36ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillType: 3
-  cooldownText: {fileID: 1993869336}
-  cooldownSlider: {fileID: 265097760}
 --- !u!114 &1902599138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5559,7 +5511,6 @@ GameObject:
   - component: {fileID: 2088754063}
   - component: {fileID: 2088754066}
   - component: {fileID: 2088754065}
-  - component: {fileID: 2088754064}
   m_Layer: 5
   m_Name: 'XSkillIcon '
   m_TagString: Untagged
@@ -5588,21 +5539,6 @@ RectTransform:
   m_AnchoredPosition: {x: 175.84999, y: -32}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2088754064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088754062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94d9f65797bd9a4d9524f1271f36ced, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillType: 1
-  cooldownText: {fileID: 387614289}
-  cooldownSlider: {fileID: 857091897}
 --- !u!114 &2088754065
 MonoBehaviour:
   m_ObjectHideFlags: 0

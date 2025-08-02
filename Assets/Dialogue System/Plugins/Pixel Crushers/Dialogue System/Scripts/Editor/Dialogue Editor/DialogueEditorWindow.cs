@@ -14,10 +14,10 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
     public partial class DialogueEditorWindow : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Dialogue Editor", false, -1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/대화 에디터", false, -1)]
         public static DialogueEditorWindow OpenDialogueEditorWindow()
         {
-            var window = GetWindow<DialogueEditorWindow>("Dialogue");
+            var window = GetWindow<DialogueEditorWindow>("대화");
             window.OnSelectionChange();
             return window;
         }

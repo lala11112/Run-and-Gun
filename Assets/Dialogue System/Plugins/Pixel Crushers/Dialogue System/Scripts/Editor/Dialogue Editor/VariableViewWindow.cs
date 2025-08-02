@@ -12,10 +12,10 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
     /// </summary>
     public class VariableViewWindow : EditorWindow
     {
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Tools/Variable Viewer", false, -1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/Tools/변수 뷰어", false, -1)]
         public static VariableViewWindow OpenVariableViewWindow()
         {
-            var window = GetWindow<VariableViewWindow>("Variables");
+            var window = GetWindow<VariableViewWindow>("변수");
             window.OnSelectionChange();
             return window;
         }

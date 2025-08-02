@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public abstract class PlayerSkillBase : MonoBehaviour
 {
-    [Tooltip("해당 스킬 타입")] public SkillType skillType;
+    [Tooltip("해당 스킬의 식별자")] public SkillIdentifierSO skillIdentifier;
 
     protected PlayerController pc;
 

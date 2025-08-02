@@ -13,7 +13,7 @@ namespace PixelCrushers.DialogueSystem
     public class PlayerSetupWizard : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Wizards/Player Setup Wizard", false, 1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/마법사/플레이어 설정 마법사", false, 1)]
         public static void Init()
         {
             (EditorWindow.GetWindow(typeof(PlayerSetupWizard), false, "Player Setup") as PlayerSetupWizard).minSize = new Vector2(700, 500);

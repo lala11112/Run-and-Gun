@@ -105,6 +105,6 @@ public class Projectile : MonoBehaviour
             StopCoroutine(_lifeRoutine);
             _lifeRoutine = null;
         }
-        SimplePool.Despawn(gameObject);
+        AdvancedObjectPool.Despawn(gameObject);
     }
 } 

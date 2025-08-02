@@ -9,15 +9,8 @@ using System.Collections.Generic;
 public class SkillDataSO : ScriptableObject
 {
     [Header("UI & 기본 정보")]
-    [Tooltip("스킬의 이름입니다. UI에 표시됩니다.")]
-    public string skillName;
-
-    [Tooltip("스킬에 대한 상세 설명입니다. UI에 표시됩니다.")]
-    [TextArea]
-    public string description;
-
-    [Tooltip("스킬 아이콘으로 사용될 스프라이트입니다.")]
-    public Sprite icon;
+    [Tooltip("스킬 식별자 - 스킬의 고유 정보를 담고 있습니다.")]
+    public SkillIdentifierSO skillIdentifier;
     
     [Header("핵심 로직 & 쿨타임")]
     [Tooltip("이 스킬이 사용할 행동 로직 프리팹입니다. SkillBase를 상속받아야 합니다.")]
@@ -111,6 +104,8 @@ public class BarrageData
     public GameObject projectilePrefab;
     [Tooltip("투사체의 속도입니다.")]
     public float projectileSpeed = 20f;
+    [Tooltip("투사체의 기본 생존 시간(초)입니다.")]
+    public float projectileLifetime = 3f;
     [Tooltip("기본 발사 횟수입니다.")]
     public int projectileCount = 8;
     [Tooltip("발사 간격입니다.")]

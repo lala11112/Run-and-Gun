@@ -14,7 +14,7 @@ namespace PixelCrushers.DialogueSystem
     public class DialogueSystemAssetRenamerWindow : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Tools/Asset Renamer", false, 4)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도구/에셋 이름 변경기", false, 4)]
         public static void Open()
         {
             var window = GetWindow<DialogueSystemAssetRenamerWindow>(false, "Renamer");

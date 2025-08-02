@@ -6,8 +6,8 @@ using System;
 /// </summary>
 public static class GameEvents
 {
-    // 스킬 사용: (SkillType type, bool weakened)
-    public static event Action<SkillType, bool> SkillActivated;
+    // 스킬 사용: (SkillIdentifierSO skillId, bool weakened)
+    public static event Action<SkillIdentifierSO, bool> SkillActivated;
 
     // 스타일 랭크 변경: (StyleRank newRank)
     public static event Action<StyleRank> StyleRankChanged;
@@ -31,11 +31,11 @@ public static class GameEvents
     public static event Action<TitleInteractionType> TitleInteractionHovered;
 
     /// <summary>
-    /// SkillManager 등에서 호출 – 스킬 사용 이벤트 브로드캐스트
+    /// PlayerCombatController 등에서 호출 – 스킬 사용 이벤트 브로드캐스트
     /// </summary>
-    public static void RaiseSkillActivated(SkillType type, bool weakened)
+    public static void RaiseSkillActivated(SkillIdentifierSO skillId, bool weakened)
     {
-        SkillActivated?.Invoke(type, weakened);
+        SkillActivated?.Invoke(skillId, weakened);
     }
 
     /// <summary>

@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrageData:
     projectilePrefab: {fileID: 3920448791100974222, guid: 19ab86accfd8d0a418521dad9a78d65e, type: 3}
-    projectileSpeed: 20
+    projectileSpeed: 100
+    projectileLifetime: 3
     projectileCount: 8
     fireInterval: 0.07
   selfBuffData:
@@ -57,9 +58,9 @@ MonoBehaviour:
   baseDamage: 5
   rankBonuses:
   - rank: 0
-    damageMultiplier: 1
-    countMultiplier: 1
-    moveSpeedBuffMultiplier: 2
+    damageMultiplier: 2
+    countMultiplier: 2
+    moveSpeedBuffMultiplier: 1
   - rank: 1
     damageMultiplier: 1
     countMultiplier: 1
@@ -76,3 +77,4 @@ MonoBehaviour:
     damageMultiplier: 1
     countMultiplier: 1
     moveSpeedBuffMultiplier: 1
+  gameConfig: {fileID: 11400000, guid: bc150905d96bcb8449cb35e3437709e4, type: 2}

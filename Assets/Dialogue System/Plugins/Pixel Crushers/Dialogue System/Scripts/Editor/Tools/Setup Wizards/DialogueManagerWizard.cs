@@ -12,7 +12,7 @@ namespace PixelCrushers.DialogueSystem
     public class DialogueManagerWizard : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Wizards/Dialogue Manager Wizard", false, 1)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/마법사/대화 매니저 마법사", false, 1)]
         public static void Init()
         {
             (EditorWindow.GetWindow(typeof(DialogueManagerWizard), false, "Dialogue Mgr") as DialogueManagerWizard).minSize = new Vector2(720, 500);

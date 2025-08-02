@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3184b2682214a5142a2a71e639c22841, type: 3}
+  m_Name: BossData_New
+  m_EditorClassIdentifier: 
+  bossName: 
+  description: 
+  icon: {fileID: 0}
+  maxHealth: 1000
+  defense: 0
+  phases:
+  - phaseName: 
+    healthRatio: 0.783
+    patterns:
+    - {fileID: 11400000, guid: ef6461b428925144c84cc2a415bec576, type: 2}
+    transitionMessage: 
+  goldRewardMultiplier: 0.1
+  experienceReward: 100
+  phaseChangeSfx: BossPhase
+  deathSfx: BossDie
+  phaseShakePreset: Boss_PhaseChange
+  deathShakePreset: Boss_Death

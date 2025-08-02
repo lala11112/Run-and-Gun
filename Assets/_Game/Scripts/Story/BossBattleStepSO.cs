@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// '보스전' 스텝의 데이터를 정의하는 ScriptableObject입니다.
 /// </summary>
-[CreateAssetMenu(fileName = "BossBattleStep", menuName = "Story/Steps/Boss Battle")]
+[CreateAssetMenu(fileName = "BossBattleStep", menuName = "Run and Gun/Story/Steps/Boss Battle")]
 public class BossBattleStepSO : StoryStepSO
 {
     [Header("보스전 설정")]

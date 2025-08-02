@@ -4,7 +4,7 @@ using UnityEngine;
 /// 적 기본 능력치 ScriptableObject.
 /// 프리팹에 지정하여 밸런스 수치를 중앙에서 관리할 수 있다.
 /// </summary>
-[CreateAssetMenu(fileName = "EnemyStatData", menuName = "Game/Enemy Stat Data")]
+[CreateAssetMenu(fileName = "EnemyStatData", menuName = "Run and Gun/Enemy/Enemy Stat Data")]
 public class EnemyStatData : ScriptableObject
 {
     [Header("기본 능력치")]

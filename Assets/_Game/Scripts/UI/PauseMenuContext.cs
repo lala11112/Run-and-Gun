@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class PauseMenuContext
 {
-    public List<SkillData> equippedSkills; // 현재 장착 스킬
+    public List<SkillDataSO> equippedSkills; // 현재 장착 스킬
 }
 
 /// <summary>

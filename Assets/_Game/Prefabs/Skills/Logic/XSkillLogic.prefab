@@ -56,37 +56,33 @@ MonoBehaviour:
   innerBonusDamage: 10
   rankBonuses:
   - rank: 0
-    damageMultiplier: 0.8
-    cooldownMultiplier: 1.2
     radiusMultiplier: 1
+    damageMultiplier: 0.8
     countMultiplier: 1
     enableKnockback: 0
     enableProjectileReflection: 0
   - rank: 1
-    damageMultiplier: 1
-    cooldownMultiplier: 1
     radiusMultiplier: 1
+    damageMultiplier: 1
     countMultiplier: 1
     enableKnockback: 0
     enableProjectileReflection: 0
   - rank: 2
-    damageMultiplier: 1.2
-    cooldownMultiplier: 0.8
     radiusMultiplier: 0
+    damageMultiplier: 1.2
     countMultiplier: 0
     enableKnockback: 1
     enableProjectileReflection: 0
   - rank: 3
-    damageMultiplier: 1.3
-    cooldownMultiplier: 0.6
     radiusMultiplier: 1.2
+    damageMultiplier: 1.3
     countMultiplier: 2
     enableKnockback: 1
     enableProjectileReflection: 1
   - rank: 4
-    damageMultiplier: 2
-    cooldownMultiplier: 0.1
     radiusMultiplier: 3
+    damageMultiplier: 2
     countMultiplier: 3
     enableKnockback: 1
     enableProjectileReflection: 1
+  gameConfig: {fileID: 11400000, guid: bc150905d96bcb8449cb35e3437709e4, type: 2}

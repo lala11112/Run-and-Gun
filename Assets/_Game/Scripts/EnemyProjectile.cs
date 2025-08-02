@@ -32,17 +32,28 @@ public class EnemyProjectile : MonoBehaviour
     private Coroutine _lifeRoutine;
 
     /// <summary>
+    /// 현재 이동 방향을 가져오거나 설정합니다.
+    /// </summary>
+    public Vector2 direction
+    {
+        get => _direction;
+        set
+        {
+            _direction = value.normalized;
+            if (faceMovingDirection)
+            {
+                float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        }
+    }
+
+    /// <summary>
     /// 발사체 이동 방향 지정 (정규화된 벡터)
     /// </summary>
     public void Init(Vector2 dir)
     {
-        _direction = dir.normalized;
-
-        if (faceMovingDirection)
-        {
-            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+        direction = dir; // 프로퍼티를 사용하여 설정
     }
 
     private void Awake()
@@ -117,6 +128,6 @@ public class EnemyProjectile : MonoBehaviour
             StopCoroutine(_lifeRoutine);
             _lifeRoutine = null;
         }
-        SimplePool.Despawn(gameObject);
+        AdvancedObjectPool.Despawn(gameObject);
     }
 } 

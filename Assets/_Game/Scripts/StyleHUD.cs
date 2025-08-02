@@ -23,7 +23,19 @@ public class StyleHUD : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.FindWithTag("Player")?.transform;
+        // 성능 최적화: FindWithTag 대신 더 효율적인 방법 사용
+        var gameConfig = Resources.Load<GameConfigSO>("GameConfig");
+        string playerTag = gameConfig != null ? gameConfig.playerTagName : "Player";
+        
+        var playerObj = GameObject.FindWithTag(playerTag);
+        if (playerObj != null)
+        {
+            _player = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogWarning($"[StyleHUD] '{playerTag}' 태그를 가진 플레이어를 찾을 수 없습니다!");
+        }
     }
 
     private void OnEnable()

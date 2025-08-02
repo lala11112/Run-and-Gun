@@ -5,7 +5,7 @@ using PixelCrushers.DialogueSystem;
 /// '대화' 스텝의 데이터를 정의하는 ScriptableObject입니다.
 /// Dialogue System for Unity 에셋과의 연동을 담당합니다.
 /// </summary>
-[CreateAssetMenu(fileName = "DialogueStep", menuName = "Story/Steps/Dialogue")]
+[CreateAssetMenu(fileName = "DialogueStep", menuName = "Run and Gun/Story/Steps/Dialogue")]
 public class DialogueStepSO : StoryStepSO
 {
     [Header("대화 설정")]

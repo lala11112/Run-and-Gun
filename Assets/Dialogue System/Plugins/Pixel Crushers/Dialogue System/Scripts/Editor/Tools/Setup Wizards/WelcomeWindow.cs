@@ -36,7 +36,7 @@ namespace PixelCrushers.DialogueSystem
             set { EditorPrefs.SetBool(ShowOnStartEditorPrefsKey, value); }
         }
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Welcome Window", false, -2)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/환영 창", false, -2)]
         public static WelcomeWindow ShowWindow()
         {
             var window = GetWindow<WelcomeWindow>(false, "Welcome");

@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private float _currentMoveSpeed; // 모든 보너스가 적용된 최종 이동 속도
     private bool _isDashing;
     private Coroutine _speedBuffCoroutine; // 현재 적용중인 속도 버프 코루틴
+    
+    // 성능 최적화: GameConfig 캐싱
+    private static GameConfigSO _cachedGameConfig;
 
     /// <summary>
     /// 현재 프레임의 정규화된 입력 방향입니다. (조작 없을 시 0)
@@ -47,7 +50,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.LogError("PlayerStatsSO가 연결되지 않았습니다! 기본값으로 설정합니다.", this);
-            _baseMoveSpeed = 5f;
+            // 성능 최적화: GameConfig 캐싱
+            if (_cachedGameConfig == null)
+            {
+                _cachedGameConfig = Resources.Load<GameConfigSO>("GameConfig");
+            }
+            _baseMoveSpeed = _cachedGameConfig != null ? _cachedGameConfig.defaultMoveSpeed : 5f;
         }
         RecalculateMoveSpeed();
         LastMoveDir = Vector2.up; // 초기 방향을 위로 설정
@@ -68,6 +76,23 @@ public class PlayerController : MonoBehaviour
         if (StyleManager.Instance != null)
         {
             StyleManager.Instance.OnRankChanged -= HandleRankChange;
+        }
+        
+        // 메모리 누수 방지: 진행 중인 코루틴 정리
+        if (_speedBuffCoroutine != null)
+        {
+            StopCoroutine(_speedBuffCoroutine);
+            _speedBuffCoroutine = null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // 메모리 누수 방지: 오브젝트 파괴 시 모든 코루틴 정리
+        if (_speedBuffCoroutine != null)
+        {
+            StopCoroutine(_speedBuffCoroutine);
+            _speedBuffCoroutine = null;
         }
     }
 

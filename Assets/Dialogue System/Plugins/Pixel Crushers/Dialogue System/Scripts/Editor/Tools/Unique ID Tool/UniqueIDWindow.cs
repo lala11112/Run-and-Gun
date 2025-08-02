@@ -13,7 +13,7 @@ namespace PixelCrushers.DialogueSystem
     public class UniqueIDWindow : EditorWindow
     {
 
-        [MenuItem("Tools/Pixel Crushers/Dialogue System/Tools/Unique ID Tool", false, 3)]
+        [MenuItem("Tools/Pixel Crushers/Dialogue System/도구/고유 ID 도구", false, 3)]
         public static void OpenUniqueIDWindow()
         {
             instance = EditorWindow.GetWindow<UniqueIDWindow>(false, "Unique IDs");

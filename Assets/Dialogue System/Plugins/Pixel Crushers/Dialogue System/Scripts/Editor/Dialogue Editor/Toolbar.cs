@@ -23,13 +23,13 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             set { current = value; }
         }
 
-        private string[] ToolbarStrings = { "Database", "Actors", "Items", "Locations", "Variables", "Conversations", "Templates" };
+        private string[] ToolbarStrings = { "데이터베이스", "액터", "아이템", "장소", "변수", "대화", "템플릿" };
         private const int ItemsToolbarIndex = 2;
-        private const string ItemsToolbarString = "Items";
-        private const string ItemsAsQuestsToolbarString = "Quests/Items";
+        private const string ItemsToolbarString = "아이템";
+        private const string ItemsAsQuestsToolbarString = "퀘스트/아이템";
         private const int TemplatesToolbarIndex = 6;
-        private const string TemplatesToolbarString = "Templates";
-        private const string WatchesToolbarString = "Watches";
+        private const string TemplatesToolbarString = "템플릿";
+        private const string WatchesToolbarString = "감시";
         private const float ToolbarWidth = 700;
 
         public void UpdateTabNames(bool treatItemsAsQuests)
